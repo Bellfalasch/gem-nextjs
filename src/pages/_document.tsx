@@ -18,7 +18,7 @@ class MyDocument
 
         return (
             <Html>
-                <Head></Head>
+                <Head/>
                 <body {...bodyAttrs}>
                 <Main/>
                 <NextScript/>

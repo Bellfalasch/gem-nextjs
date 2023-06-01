@@ -3,7 +3,7 @@ import {FetchContentResult, getUrl} from '@enonic/nextjs-adapter';
 
 const Person = (props: FetchContentResult) => {
     const {displayName, data, parent} = props.data?.get as any;
-    const {bio, photos} = data;
+    const {bio, photos, dateofbirth} = data;
     const meta = props.meta;
     const {_path} = parent;
 
@@ -12,6 +12,7 @@ const Person = (props: FetchContentResult) => {
             <div>
                 <h2>{displayName}</h2>
                 <p>{bio}</p>
+                { dateofbirth && <p>{dateofbirth}</p> }
                 {
                     photos.map((photo: any, i: number) => (
                         <img key={i}

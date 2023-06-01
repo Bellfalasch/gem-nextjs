@@ -20,6 +20,10 @@ import Countdown from '../parts/CountDown/CountDown';
 import WeatherWidgetPart from '../parts/WeatherWidget';
 import Taxi from '../parts/Taxi/Taxi';
 
+// Event
+import getEvent from './queries/getEvent';
+import Event from './parts/Event';
+
 // You can set common query for all views here
 ComponentRegistry.setCommonQuery([commonQuery, commonVariables]);
 
@@ -70,6 +74,13 @@ ComponentRegistry.addPart(`${APP_NAME}:weatherwidget`, {
 ComponentRegistry.addPart(`${APP_NAME}:taxi`, {
   view: Taxi,
 });
+ComponentRegistry.addPart(`${APP_NAME}:event`, {
+    query: getEvent,
+    view: Event
+});
+
+// Layout mappings
+
 
 /*
 // Debug
