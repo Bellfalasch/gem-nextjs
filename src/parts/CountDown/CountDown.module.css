@@ -1,0 +1,20 @@
+.container {
+  text-align: center;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.countdown {
+  font-size: 20px;
+  font-weight: bold;
+  word-spacing: 40px;
+}
+
+.countdowntext {
+  font-size: 15px;
+  word-spacing: 10px;
+  color: #888;
+}
