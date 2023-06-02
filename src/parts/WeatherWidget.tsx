@@ -1,23 +1,16 @@
 import React from 'react';
-import { PartProps } from '@enonic/nextjs-adapter/views/BasePart';
 
-interface WeatherWidgetPartProps extends PartProps {
-  widgetTitle?: string;
-  widgetUrl?: string;
-}
-
-const WeatherWidgetPart: React.FC<WeatherWidgetPartProps> = ({
-  widgetTitle,
-  widgetUrl,
-}) => {
+const WeatherWidget: React.FC = () => {
   return (
-    <iframe
-      src='https://www.yr.no/nb/innhold/1-72837/card.html'
-      width='100%'
-      height='500'
-      title={widgetTitle || 'Weather Widget'}
-    ></iframe>
+    <div>
+      <iframe
+        src='https://www.yr.no/nb/innhold/1-72837/table.html'
+        title='Weather Widget'
+        width='100%'
+        height='515px'
+      />
+    </div>
   );
 };
 
-export default WeatherWidgetPart;
+export default WeatherWidget;

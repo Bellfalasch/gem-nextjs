@@ -17,7 +17,7 @@ import TwoColumnLayout from './layouts/TwoColumnLayout';
 import MovieDetails, { getMovie } from '../parts/MovieDetails';
 import GoogleMap from '../parts/GoogleMap/GoogleMap';
 import Countdown from '../parts/CountDown/CountDown';
-import WeatherWidgetPart from '../parts/WeatherWidget';
+import WeatherWidget from '../parts/WeatherWidget';
 import Taxi from '../parts/Taxi/Taxi';
 
 // Event
@@ -68,7 +68,7 @@ ComponentRegistry.addPart(`${APP_NAME}:countdown`, {
 });
 
 ComponentRegistry.addPart(`${APP_NAME}:weatherwidget`, {
-  view: WeatherWidgetPart,
+  view: WeatherWidget,
 });
 
 ComponentRegistry.addPart(`${APP_NAME}:taxi`, {
