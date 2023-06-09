@@ -19,6 +19,7 @@ import GoogleMap from '../parts/GoogleMap/GoogleMap';
 import Countdown from '../parts/CountDown/CountDown';
 import WeatherWidget from '../parts/WeatherWidget';
 import Taxi from '../parts/Taxi/Taxi';
+import Faq from '../parts/Faq/Faq';
 
 // Event
 import getEvent from './queries/getEvent';
@@ -74,13 +75,17 @@ ComponentRegistry.addPart(`${APP_NAME}:weatherwidget`, {
 ComponentRegistry.addPart(`${APP_NAME}:taxi`, {
   view: Taxi,
 });
+
 ComponentRegistry.addPart(`${APP_NAME}:event`, {
-    query: getEvent,
-    view: Event
+  query: getEvent,
+  view: Event,
+});
+
+ComponentRegistry.addPart(`${APP_NAME}:faq`, {
+  view: Faq,
 });
 
 // Layout mappings
-
 
 /*
 // Debug
