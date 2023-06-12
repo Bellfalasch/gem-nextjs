@@ -10,16 +10,7 @@ const Person = (props: FetchContentResult) => {
     return (
         <>
             <div>
-                {
-                    header?.imageUrl && (
-                        <img
-                             src={getUrl(header.imageUrl, meta)}
-                             title={getTitle(header, displayName)}
-                             alt={getTitle(header, displayName)}
-                             width="800"
-                        />
-                    )
-                }
+
                 <h1>{displayName}</h1>
                 <p>{description}</p>
                 { startDate && <p>Begins: {startDate}</p> }

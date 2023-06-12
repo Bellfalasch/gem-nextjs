@@ -1,16 +1,16 @@
 import {
   CATCH_ALL,
   ComponentRegistry,
-} from '@enonic/nextjs-adapter/ComponentRegistry';
-import { commonQuery, commonVariables } from './queries/common';
-import PropsView from './views/Props';
-import getPerson from './queries/getPerson';
-import { APP_NAME } from '@enonic/nextjs-adapter';
-import Person from './views/Person';
-import MainPage from '../pages/Main';
+} from "@enonic/nextjs-adapter/ComponentRegistry";
+import { commonQuery, commonVariables } from "./queries/common";
+import PropsView from "./views/Props";
+import getPerson from "./queries/getPerson";
+import { APP_NAME } from "@enonic/nextjs-adapter";
+import Person from "./views/Person";
+import MainPage from "../pages/Main";
 import ChildList, {
   childListProcessor,
-  getChildList,
+  getChildList
 } from '../parts/ChildList/ChildList';
 import Heading from '../parts/Heading';
 import TwoColumnLayout from './layouts/TwoColumnLayout';
@@ -22,9 +22,13 @@ import WeatherWidget from '../parts/WeatherWidget';
 import Taxi from '../parts/Taxi/Taxi';
 import Faq from '../parts/Faq/Faq';
 
+
 // Event
-import getEvent from './queries/getEvent';
-import Event from './parts/Event';
+import getEvent from "./queries/getEvent";
+import Event from "./parts/Event";
+
+//Image
+import Image from "../parts/Image/Image";
 
 // You can set common query for all views here
 ComponentRegistry.setCommonQuery([commonQuery, commonVariables]);
@@ -86,11 +90,13 @@ ComponentRegistry.addPart(`${APP_NAME}:event`, {
   view: Event,
 });
 
+ComponentRegistry.addPart(`${APP_NAME}:image`, {
+  view: Image,
+});
+
 ComponentRegistry.addPart(`${APP_NAME}:faq`, {
   view: Faq,
 });
-
-// Layout mappings
 
 /*
 // Debug

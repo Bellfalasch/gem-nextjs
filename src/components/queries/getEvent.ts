@@ -10,14 +10,7 @@ query($path:ID!){
           startDate
           endDate
           description
-          header {
-           ... on media_Image {                                             
-              imageUrl: imageUrl(type: absolute, scale: "width(800)")
-              attachments {                                                 
-                name
-              }
-            }
-          }
+
         }
       }
       parent {
