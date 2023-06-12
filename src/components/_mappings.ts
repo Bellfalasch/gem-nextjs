@@ -14,6 +14,7 @@ import ChildList, {
 } from '../parts/ChildList/ChildList';
 import Heading from '../parts/Heading';
 import TwoColumnLayout from './layouts/TwoColumnLayout';
+import ThreeColumnLayout from "./layouts/ThreeColumnLayout";
 import MovieDetails, { getMovie } from '../parts/MovieDetails';
 import GoogleMap from '../parts/GoogleMap/GoogleMap';
 import Countdown from '../parts/CountDown/CountDown';
@@ -42,6 +43,10 @@ ComponentRegistry.addPage(`${APP_NAME}:main`, {
 // Layout mappings
 ComponentRegistry.addLayout(`${APP_NAME}:2-column`, {
   view: TwoColumnLayout,
+});
+
+ComponentRegistry.addLayout(`${APP_NAME}:3-column`, {
+  view: ThreeColumnLayout,
 });
 
 // Part mappings
