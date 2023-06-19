@@ -4,9 +4,7 @@ import {
 } from "@enonic/nextjs-adapter/ComponentRegistry";
 import { commonQuery, commonVariables } from "./queries/common";
 import PropsView from "./views/Props";
-import getPerson from "./queries/getPerson";
 import { APP_NAME } from "@enonic/nextjs-adapter";
-import Person from "./views/Person";
 import MainPage from "../pages/Main";
 import ChildList, {
   childListProcessor,
@@ -14,7 +12,6 @@ import ChildList, {
 } from './parts/ChildList/ChildList';
 import TwoColumnLayout from './layouts/TwoColumnLayout';
 import ThreeColumnLayout from './layouts/ThreeColumnLayout';
-import MovieDetails, { getMovie } from './parts/MovieDetails/MovieDetails';
 import GoogleMap from './parts/GoogleMap/GoogleMap';
 import Countdown from './parts/CountDown/CountDown';
 import Image from './parts/Image/Image';
@@ -31,10 +28,10 @@ ComponentRegistry.setCommonQuery([commonQuery, commonVariables]);
 // *********************
 // Content type mappings
 // *********************
-ComponentRegistry.addContentType(`${APP_NAME}:person`, {
+/*ComponentRegistry.addContentType(`${APP_NAME}:person`, {
   query: getPerson,
   view: Person,
-});
+});*/
 
 // *********************
 // Page mappings
@@ -61,11 +58,6 @@ ComponentRegistry.addPart(`${APP_NAME}:child-list`, {
   query: getChildList,
   processor: childListProcessor,
   view: ChildList,
-});
-
-ComponentRegistry.addPart(`${APP_NAME}:movie-details`, {
-  query: getMovie,
-  view: MovieDetails,
 });
 
 ComponentRegistry.addPart(`${APP_NAME}:googlemap`, {
