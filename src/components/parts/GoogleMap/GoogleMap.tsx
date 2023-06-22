@@ -1,6 +1,7 @@
 import React from 'react';
-import Script from 'next/script';
 import { APP_NAME, PartData } from '@enonic/nextjs-adapter';
+import Script from 'next/script';
+
 import styles from './GoogleMap.module.css';
 
 export const GOOGLE_MAP_PART_NAME = `${APP_NAME}:googlemap`;
@@ -21,8 +22,8 @@ const GoogleMap: React.FC<GoogleMapData> = ({ part, common }) => {
   return (
     <>
       <Script
-        src='https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg'
-        strategy='lazyOnload'
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg"
+        strategy="lazyOnload"
         onLoad={() => {
           console.log(`script loaded correctly, window.FB has been populated`);
 
@@ -34,22 +35,22 @@ const GoogleMap: React.FC<GoogleMapData> = ({ part, common }) => {
 
           const lat = theNewMap.getAttribute('data-lata');
 
-          let map = new google.maps.Map(theNewMap, {
+          const map = new google.maps.Map(theNewMap, {
             // @ts-ignore
             center: { lat: Number(lat), lng: Number(lng) },
-            zoom: 10,
+            zoom: 10
           });
 
           const marker = new google.maps.Marker({
             // @ts-ignore
-            position: { lat: Number(lat), lng: Number(lng) },
+            position: { lat: Number(lat), lng: Number(lng) }
           });
 
           marker.setMap(map);
         }}
       />
       <div
-        className='GoogleMap'
+        className="GoogleMap"
         style={{ width: '100%', height: '400px', backgroundColor: 'black' }}
         data-long={longitude}
         data-lata={latitude}

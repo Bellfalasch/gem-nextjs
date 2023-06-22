@@ -11,7 +11,7 @@
     "client-build": "npx next build",
     "server-build": "tsc --build ./server/tsconfig.json",
     "lint-staged": "lint-staged",
-    "lint:fix": "yarn lint --fix",
+    "lint:fix": "npm run lint --fix",
     "lint": "eslint \"**/*.{ts,tsx,js,jsx,json}\" --resolve-plugins-relative-to ./node_modules/@gjensidige/eslint-config-core"
   },
   "dependencies": {

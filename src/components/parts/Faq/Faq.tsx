@@ -1,8 +1,9 @@
 import React from 'react';
-import { Expandable } from '@gjensidige/core-components/lib/expandable';
-import { Title } from '@gjensidige/nci-core-typography/lib/title';
-import { Text } from '@gjensidige/nci-core-typography/lib/text';
 import { PartProps } from '@enonic/nextjs-adapter/views/BasePart';
+import { Expandable } from '@gjensidige/core-components/lib/expandable';
+import { Text } from '@gjensidige/nci-core-typography/lib/text';
+import { Title } from '@gjensidige/nci-core-typography/lib/title';
+
 import styles from './Faq.module.css';
 
 interface FaqProps extends PartProps {
@@ -25,8 +26,8 @@ const Faq: React.FC<FaqProps> = ({ part }) => {
       {faqs.map((faq: any, i: number) => (
         <Expandable key={i} wrapperClassName={styles.faqs}>
           {{
-            header: <Text size='body'>{faq.question}</Text>,
-            content: <Text size='small'>{faq.answer}</Text>,
+            header: <Text size="body">{faq.question}</Text>,
+            content: <Text size="small">{faq.answer}</Text>
           }}
         </Expandable>
       ))}

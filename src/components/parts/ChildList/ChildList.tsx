@@ -1,6 +1,7 @@
 import React from 'react';
 import { Context, getUrl, VariablesGetterResult } from '@enonic/nextjs-adapter';
 import { PartProps } from '@enonic/nextjs-adapter/views/BasePart';
+
 import styles from './ChildList.module.css';
 
 const ChildList = (props: PartProps) => {
@@ -61,9 +62,9 @@ export const getChildList = {
   ): VariablesGetterResult {
     return {
       path,
-      order: config?.sorting,
+      order: config?.sorting
     };
-  },
+  }
 };
 
 export async function childListProcessor(
