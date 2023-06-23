@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { FetchContentResult, getUrl } from '@enonic/nextjs-adapter';
+import React, { useState } from "react";
+import { FetchContentResult, getUrl } from "@enonic/nextjs-adapter";
 
 const Event = (props: FetchContentResult) => {
   const { displayName, data, parent } = props.data?.get as any;
@@ -22,7 +22,6 @@ const Event = (props: FetchContentResult) => {
       days: 0,
       hours: 0,
       minutes: 0,
-      seconds: 0
     };
 
     if (difference > 0) {
@@ -30,7 +29,6 @@ const Event = (props: FetchContentResult) => {
         days: Math.floor(difference / (1000 * 60 * 60 * 24)),
         hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
         minutes: Math.floor((difference / (1000 * 60)) % 60),
-        seconds: Math.floor((difference / 1000) % 60)
       };
     }
 
@@ -38,14 +36,6 @@ const Event = (props: FetchContentResult) => {
   };
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, [calculateTimeLeft]);
 
   return (
     <>
@@ -58,17 +48,12 @@ const Event = (props: FetchContentResult) => {
         {endDate && <p>Ends: {endDate}</p>}
         {endTime && <p>Ends at: {endTime}</p>}
       </div>
-      {startDate && startTime && (
+      {startDate && startTime && showCountdown && (
         <div>
-          {showCountdown && (
-            <div>
-              <h4>Countdown</h4>
-              <div>
-                {timeLeft.days} days {timeLeft.hours} hours {timeLeft.minutes}{' '}
-                minutes {timeLeft.seconds} seconds
-              </div>
-            </div>
-          )}
+          <h4>Countdown</h4>
+          <div>
+            {timeLeft.days} days {timeLeft.hours} hours {timeLeft.minutes} minutes
+          </div>
         </div>
       )}
       <p>

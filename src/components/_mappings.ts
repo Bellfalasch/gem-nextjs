@@ -22,6 +22,9 @@ import Image from './parts/Image/Image';
 import WeatherWidget from './parts/WeatherWidget/WeatherWidget';
 import PropsView from './views/Props';
 
+//RSVP
+import Rsvp from "../parts/Rsvp/Rsvp";
+
 // You can set common query for all views here
 ComponentRegistry.setCommonQuery([commonQuery, commonVariables]);
 
@@ -83,6 +86,10 @@ ComponentRegistry.addPart(`${APP_NAME}:image`, {
 
 ComponentRegistry.addPart(`${APP_NAME}:faq`, {
   view: Faq
+});
+
+ComponentRegistry.addPart(`${APP_NAME}:rsvp`, {
+  view: Rsvp,
 });
 
 /*
