@@ -41,22 +41,20 @@ const ChildList = (props: PartProps) => {
 
 export default ChildList;
 
-export const getChildList = {
-  query: function (path: string, context?: Context, config?: any): string {
-    return `query($path:ID!, $order:String){
-              guillotine {
-                getSite {
-                  displayName
-                }
-                get(key:$path) {
-                  displayName
-                  children(sort: $order) {
-                      _path(type: siteRelative)
-                      _id
-                      displayName
-                  }
-                }
-              }
-            }`;
+export const getChildList = `
+  query ($path:ID!, $order:String) {
+    guillotine {
+      getSite {
+        displayName
+      }
+      get(key:$path) {
+        displayName
+        children(sort: $order) {
+            _path(type: siteRelative)
+            _id
+            displayName
+        }
+      }
+    }
   }
-};
+`;

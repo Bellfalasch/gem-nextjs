@@ -7,10 +7,7 @@ import getEvent from './queries/getEvent';
 import MainPage from '../pages/Main';
 import ThreeColumnLayout from './layouts/ThreeColumnLayout';
 import TwoColumnLayout from './layouts/TwoColumnLayout';
-import ChildList, {
-  childListProcessor,
-  getChildList
-} from './parts/ChildList/ChildList';
+import ChildList, { getChildList } from './parts/ChildList/ChildList';
 import Countdown from './parts/CountDown/CountDown';
 import Event from './parts/Event/Event';
 import Faq from './parts/Faq/Faq';
@@ -55,7 +52,6 @@ ComponentRegistry.addLayout(`${APP_NAME}:3-column`, {
 // *********************
 ComponentRegistry.addPart(`${APP_NAME}:child-list`, {
   query: getChildList,
-  processor: childListProcessor,
   view: ChildList
 });
 
