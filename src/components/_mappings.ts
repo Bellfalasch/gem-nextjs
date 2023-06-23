@@ -1,8 +1,5 @@
 import { APP_NAME } from '@enonic/nextjs-adapter';
-import {
-  CATCH_ALL,
-  ComponentRegistry
-} from '@enonic/nextjs-adapter/ComponentRegistry';
+import { ComponentRegistry } from '@enonic/nextjs-adapter/ComponentRegistry';
 
 import { commonQuery, commonVariables } from './queries/common';
 // Event
@@ -20,10 +17,9 @@ import Faq from './parts/Faq/Faq';
 import GoogleMap from './parts/GoogleMap/GoogleMap';
 import Image from './parts/Image/Image';
 import WeatherWidget from './parts/WeatherWidget/WeatherWidget';
-import PropsView from './views/Props';
 
 //RSVP
-import Rsvp from "../parts/Rsvp/Rsvp";
+import Rsvp from '../parts/Rsvp/Rsvp';
 
 // You can set common query for all views here
 ComponentRegistry.setCommonQuery([commonQuery, commonVariables]);
@@ -89,14 +85,5 @@ ComponentRegistry.addPart(`${APP_NAME}:faq`, {
 });
 
 ComponentRegistry.addPart(`${APP_NAME}:rsvp`, {
-  view: Rsvp,
+  view: Rsvp
 });
-
-/*
-// *********************
-// Debug
-// *********************
-ComponentRegistry.addContentType(CATCH_ALL, {
-    view: PropsView
-});
-*/

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Context, getUrl, VariablesGetterResult } from '@enonic/nextjs-adapter';
+import { Context, getUrl } from '@enonic/nextjs-adapter';
 import { PartProps } from '@enonic/nextjs-adapter/views/BasePart';
 
 import styles from './ChildList.module.css';
@@ -12,6 +12,7 @@ const ChildList = (props: PartProps) => {
   }
 
   // Filter out image files
+  // @ts-ignore expected any
   const filteredChildren = children.filter((child: any) => {
     const fileExtension = child._path.split('.').pop()?.toLowerCase();
     const imageExtensions = ['jpg', 'jpeg', 'png', 'gif'];
@@ -22,13 +23,16 @@ const ChildList = (props: PartProps) => {
     <main className={styles.container}>
       {filteredChildren.length > 0 && (
         <ul className={styles.ul}>
-          {filteredChildren.map((child: any, i: number) => (
-            <li key={i} className={styles.li}>
-              <a className={styles.a} href={getUrl(child._path, meta)}>
-                {child.displayName}
-              </a>
-            </li>
-          ))}
+          {
+            // @ts-ignore expected any
+            filteredChildren.map((child: any, i: number) => (
+              <li key={i} className={styles.li}>
+                <a className={styles.a} href={getUrl(child._path, meta)}>
+                  {child.displayName}
+                </a>
+              </li>
+            ))
+          }
         </ul>
       )}
     </main>
@@ -54,24 +58,5 @@ export const getChildList = {
                 }
               }
             }`;
-  },
-  variables: function (
-    path: string,
-    context?: Context,
-    config?: any
-  ): VariablesGetterResult {
-    return {
-      path,
-      order: config?.sorting
-    };
   }
 };
-
-export async function childListProcessor(
-  common: any,
-  context?: Context,
-  config?: any
-): Promise<any> {
-  common.modifiedBy = 'childListProcessor';
-  return common;
-}
