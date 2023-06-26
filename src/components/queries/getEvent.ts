@@ -1,4 +1,4 @@
-import { APP_NAME_UNDERSCORED } from "@enonic/nextjs-adapter";
+import { APP_NAME_UNDERSCORED } from '@enonic/nextjs-adapter';
 
 const getEvent = `
 query($path:ID!){

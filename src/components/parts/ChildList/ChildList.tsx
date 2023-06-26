@@ -1,8 +1,8 @@
-import { getUrl } from "@enonic/nextjs-adapter";
-import { PartProps } from "@enonic/nextjs-adapter/views/BasePart";
-import React from "react";
+import React from 'react';
+import { Context, getUrl } from '@enonic/nextjs-adapter';
+import { PartProps } from '@enonic/nextjs-adapter/views/BasePart';
 
-import styles from "./ChildList.module.css";
+import styles from './ChildList.module.css';
 
 const ChildList = (props: PartProps) => {
   const { data, meta } = props;
@@ -12,10 +12,10 @@ const ChildList = (props: PartProps) => {
   }
 
   // Filter out image files
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // @ts-ignore expected any
   const filteredChildren = children.filter((child: any) => {
-    const fileExtension = child._path.split(".").pop()?.toLowerCase();
-    const imageExtensions = ["jpg", "jpeg", "png", "gif"];
+    const fileExtension = child._path.split('.').pop()?.toLowerCase();
+    const imageExtensions = ['jpg', 'jpeg', 'png', 'gif'];
     return !imageExtensions.includes(fileExtension);
   });
 
@@ -24,7 +24,7 @@ const ChildList = (props: PartProps) => {
       {filteredChildren.length > 0 && (
         <ul className={styles.ul}>
           {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            // @ts-ignore expected any
             filteredChildren.map((child: any, i: number) => (
               <li key={i} className={styles.li}>
                 <a className={styles.a} href={getUrl(child._path, meta)}>

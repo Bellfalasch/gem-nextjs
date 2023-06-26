@@ -1,5 +1,4 @@
 const withTM = require('next-transpile-modules')(['@enonic/nextjs-adapter']);
-
 const withEnonicCache =
   require('@enonic/nextjs-adapter/server').withEnonicCache;
 

@@ -3,6 +3,8 @@ import React from "react";
 
 import styles from "./Header.module.css";
 
+import styles from './Header.module.css';
+
 export interface HeaderProps {
   title: string;
   meta: MetaData;
