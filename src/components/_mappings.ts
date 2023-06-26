@@ -1,28 +1,18 @@
-import {
-  CATCH_ALL,
-  ComponentRegistry,
-} from "@enonic/nextjs-adapter/ComponentRegistry";
-import { commonQuery, commonVariables } from "./queries/common";
-import PropsView from "./views/Props";
 import { APP_NAME } from "@enonic/nextjs-adapter";
+import { ComponentRegistry } from "@enonic/nextjs-adapter/ComponentRegistry";
+
+import ThreeColumnLayout from "./layouts/ThreeColumnLayout";
+import TwoColumnLayout from "./layouts/TwoColumnLayout";
+import ChildList, { getChildList } from "./parts/ChildList/ChildList";
+import Countdown from "./parts/CountDown/CountDown";
+import Event from "./parts/Event/Event";
+import Faq from "./parts/Faq/Faq";
+import GoogleMap from "./parts/GoogleMap/GoogleMap";
+import Image from "./parts/Image/Image";
+import WeatherWidget from "./parts/WeatherWidget/WeatherWidget";
+import { commonQuery, commonVariables } from "./queries/common";
+import getEvent from "./queries/getEvent";
 import MainPage from "../pages/Main";
-import ChildList, {
-  childListProcessor,
-  getChildList,
-} from './parts/ChildList/ChildList';
-import TwoColumnLayout from './layouts/TwoColumnLayout';
-import ThreeColumnLayout from './layouts/ThreeColumnLayout';
-import GoogleMap from './parts/GoogleMap/GoogleMap';
-import Countdown from './parts/CountDown/CountDown';
-import Image from './parts/Image/Image';
-import Faq from './parts/Faq/Faq';
-import WeatherWidget from './parts/WeatherWidget/WeatherWidget';
-
-// Event
-import getEvent from './queries/getEvent';
-import Event from './parts/Event/Event';
-
-//RSVP
 import Rsvp from "../parts/Rsvp/Rsvp";
 
 // You can set common query for all views here
@@ -59,7 +49,6 @@ ComponentRegistry.addLayout(`${APP_NAME}:3-column`, {
 // *********************
 ComponentRegistry.addPart(`${APP_NAME}:child-list`, {
   query: getChildList,
-  processor: childListProcessor,
   view: ChildList,
 });
 
@@ -91,12 +80,3 @@ ComponentRegistry.addPart(`${APP_NAME}:faq`, {
 ComponentRegistry.addPart(`${APP_NAME}:rsvp`, {
   view: Rsvp,
 });
-
-/*
-// *********************
-// Debug
-// *********************
-ComponentRegistry.addContentType(CATCH_ALL, {
-    view: PropsView
-});
-*/

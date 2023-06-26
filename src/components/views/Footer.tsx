@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import React from 'react';
+import Link from "next/link";
+import React from "react";
 
 const Footer = () => (
   <footer
@@ -13,6 +13,7 @@ const Footer = () => (
     <hr />
     <br />
     {`Copyright © Gjensidige ${new Date().getFullYear()}`}
+    <Link href="https://www.gjensidige.no">Gjensidige Forsikring ASA</Link>
   </footer>
 );
 

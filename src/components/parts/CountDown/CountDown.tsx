@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { PartProps } from '@enonic/nextjs-adapter/views/BasePart';
-import styles from './CountDown.module.css';
+import { PartProps } from "@enonic/nextjs-adapter/views/BasePart";
+import React, { useEffect, useState } from "react";
+
+import styles from "./CountDown.module.css";
 
 interface CountdownProps extends PartProps {
   targetDate: string;
@@ -8,8 +9,8 @@ interface CountdownProps extends PartProps {
 }
 
 const Countdown: React.FC<CountdownProps> = ({ part }) => {
-  const targetDate = part?.config?.targetDate || '';
-  const title = part?.config?.title || '';
+  const targetDate = part?.config?.targetDate || "";
+  const title = part?.config?.title || "";
 
   const calculateTimeLeft = () => {
     const difference = new Date(targetDate).getTime() - new Date().getTime();

@@ -11,4 +11,4 @@ For a live demo of the integration, follow the `TLDR;` instructions in the Tutor
 
 ## Local Development Prerequisites
 
-In order to authenticate frontend with backend, some tokens are needed. For local development, rename the `.env.example`-file to `.env` and fill out the variables in it. Use the tutorial for some guidance. This file must never be added to git.
+In order to authenticate frontend with backend, some tokens are needed. For local development, copy the `.env.example`-file and name it `.env`. Fill out the variables in it. Use the tutorial for some guidance. This file must never be added to git. Keep the `.example`-file.

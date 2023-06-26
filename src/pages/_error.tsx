@@ -1,26 +1,32 @@
-import {ServerResponse} from 'http';
-import {Component} from 'react';
+import { Component } from 'react';
+import { ServerResponse } from 'http';
 
 type ErrorProps = {
-    code?: string,
-    message?: string
-}
+  code?: string;
+  message?: string;
+};
 
-export default class Error
-    extends Component<ErrorProps> {
+export default class Error extends Component<ErrorProps> {
+  render() {
+    return (
+      <>
+        <h1>
+          {this.props.code
+            ? `${this.props.code} - Server Error`
+            : 'Client Side Error'}
+        </h1>
+        {this.props.message && <p>{this.props.message}</p>}
+      </>
+    );
+  }
 
-    render() {
-        return <>
-            <h1>
-                {this.props.code
-                 ? `${this.props.code} - Server Error`
-                 : 'Client Side Error'}
-            </h1>
-            {this.props.message && <p>{this.props.message}</p>}
-        </>
-    }
-
-    static async getInitialProps({res, err}: { res: ServerResponse, err: ErrorProps }): Promise<ErrorProps> {
-        return err;
-    }
+  static async getInitialProps({
+    res,
+    err
+  }: {
+    res: ServerResponse;
+    err: ErrorProps;
+  }): Promise<ErrorProps> {
+    return err;
+  }
 }
