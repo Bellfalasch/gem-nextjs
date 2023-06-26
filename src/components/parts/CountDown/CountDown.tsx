@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { PartProps } from '@enonic/nextjs-adapter/views/BasePart';
+import { PartProps } from "@enonic/nextjs-adapter/views/BasePart";
+import React, { useEffect, useState } from "react";
 
-import styles from './CountDown.module.css';
+import styles from "./CountDown.module.css";
 
 interface CountdownProps extends PartProps {
   targetDate: string;
@@ -9,8 +9,8 @@ interface CountdownProps extends PartProps {
 }
 
 const Countdown: React.FC<CountdownProps> = ({ part }) => {
-  const targetDate = part?.config?.targetDate || '';
-  const title = part?.config?.title || '';
+  const targetDate = part?.config?.targetDate || "";
+  const title = part?.config?.title || "";
 
   const calculateTimeLeft = () => {
     const difference = new Date(targetDate).getTime() - new Date().getTime();
@@ -18,7 +18,7 @@ const Countdown: React.FC<CountdownProps> = ({ part }) => {
       days: 0,
       hours: 0,
       minutes: 0,
-      seconds: 0
+      seconds: 0,
     };
 
     if (difference > 0) {
@@ -26,7 +26,7 @@ const Countdown: React.FC<CountdownProps> = ({ part }) => {
         days: Math.floor(difference / (1000 * 60 * 60 * 24)),
         hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
         minutes: Math.floor((difference / 1000 / 60) % 60),
-        seconds: Math.floor((difference / 1000) % 60)
+        seconds: Math.floor((difference / 1000) % 60),
       };
     }
 

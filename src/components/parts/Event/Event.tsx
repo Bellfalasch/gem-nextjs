@@ -12,7 +12,7 @@ const Event = (props: FetchContentResult) => {
     startTime,
     endTime,
     location,
-    showCountdown
+    showCountdown,
   } = data;
   const meta = props.meta;
   const { _path } = parent;
