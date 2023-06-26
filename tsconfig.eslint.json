@@ -1,10 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "typeRoots": [
-        "node_modules/@types",
-        "node_modules/cypress/types",
-    ]
+    "typeRoots": ["node_modules/@types"]
   },
   "include": [
     "**/**.d.ts",

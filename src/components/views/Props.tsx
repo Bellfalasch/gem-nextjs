@@ -1,15 +1,17 @@
-import React from 'react';
+import React from "react";
 
 type Props = {
   label: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: any;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const PropsView = (props: any) => {
   return (
     <div
       className={`debug`}
-      style={{ margin: '10px', padding: '10px', border: '2px solid lightgrey' }}
+      style={{ margin: "10px", padding: "10px", border: "2px solid lightgrey" }}
     >
       <DataDump label="Page" data={props.page} />
       <DataDump label="Part" data={props.part} />
@@ -25,13 +27,13 @@ export default PropsView;
 const DataDump = ({ label, data }: Props) =>
   (data && (
     <>
-      {label && <h5 style={{ marginTop: '0', marginBottom: '0' }}>{label}:</h5>}
+      {label && <h5 style={{ marginTop: "0", marginBottom: "0" }}>{label}:</h5>}
       <pre
         style={{
-          fontSize: '.8em',
-          width: '100%',
-          whiteSpace: 'pre-wrap',
-          wordWrap: 'break-word'
+          fontSize: ".8em",
+          width: "100%",
+          whiteSpace: "pre-wrap",
+          wordWrap: "break-word",
         }}
       >
         {JSON.stringify(data, null, 2)}

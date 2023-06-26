@@ -1,7 +1,9 @@
+import type { FetchContentResult } from "@enonic/nextjs-adapter";
+import { getUrl } from "@enonic/nextjs-adapter";
 import React, { useState } from "react";
-import { FetchContentResult, getUrl } from "@enonic/nextjs-adapter";
 
 const Event = (props: FetchContentResult) => {
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
   const { displayName, data, parent } = props.data?.get as any;
   const {
     startDate,
@@ -35,7 +37,7 @@ const Event = (props: FetchContentResult) => {
     return timeLeft;
   };
 
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+  const [timeLeft] = useState(calculateTimeLeft());
 
   return (
     <>
@@ -52,7 +54,8 @@ const Event = (props: FetchContentResult) => {
         <div>
           <h4>Countdown</h4>
           <div>
-            {timeLeft.days} days {timeLeft.hours} hours {timeLeft.minutes} minutes
+            {timeLeft.days} days {timeLeft.hours} hours {timeLeft.minutes}{" "}
+            minutes
           </div>
         </div>
       )}

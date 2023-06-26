@@ -20,6 +20,6 @@ query($path:ID!){
 
 export function commonVariables(path: string) {
   return {
-    path
+    path,
   };
 }

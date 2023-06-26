@@ -4,9 +4,7 @@
     "module": "commonjs",
     "skipLibCheck": true,
     "moduleResolution": "Node",
-    "lib": [
-      "es6"
-    ],
+    "lib": ["es6"],
     "strict": true,
     "esModuleInterop": true,
     "outDir": "../dist/server",
@@ -14,8 +12,5 @@
     "noImplicitAny": true,
     "resolveJsonModule": true
   },
-  "include": [
-    "../next-env.d.ts",
-    "./**.ts"
-  ]
+  "include": ["../next-env.d.ts", "./**.ts"]
 }

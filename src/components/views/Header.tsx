@@ -1,21 +1,22 @@
-import React from 'react';
-import { getUrl, MetaData } from '@enonic/nextjs-adapter';
+import { getUrl, MetaData } from "@enonic/nextjs-adapter";
+import React from "react";
+
+import styles from "./Header.module.css";
 
 import styles from './Header.module.css';
 
 export interface HeaderProps {
   title: string;
-  logoUrl: string;
   meta: MetaData;
 }
 
-const Header = ({ title, logoUrl, meta }: HeaderProps) => {
+const Header = ({ title, meta }: HeaderProps) => {
   return (
     <header className={styles.header}>
       <div className={styles.wrapper}>
         {title && (
           <h1>
-            <a href={getUrl('/', meta)}>
+            <a href={getUrl("/", meta)}>
               <svg
                 aria-hidden="true" // Hide from screen readers
                 fill="currentColor" // Inherit text color
@@ -32,13 +33,13 @@ const Header = ({ title, logoUrl, meta }: HeaderProps) => {
         )}
         <ul className={styles.veffectlink}>
           <li>
-            <a href={getUrl('/faq', meta)}>FAQ</a>
+            <a href={getUrl("/faq", meta)}>FAQ</a>
           </li>
           <li>
-            <a href={getUrl('/transport', meta)}>Transport</a>
+            <a href={getUrl("/transport", meta)}>Transport</a>
           </li>
           <li>
-            <a href={getUrl('/kontakt-oss', meta)}>Kontakt oss</a>
+            <a href={getUrl("/kontakt-oss", meta)}>Kontakt oss</a>
           </li>
         </ul>
       </div>

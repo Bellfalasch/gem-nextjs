@@ -1,17 +1,16 @@
-import React from "react";
-import { useState } from "react";
 import { PartProps } from "@enonic/nextjs-adapter/views/BasePart";
-import { RadioButton } from "@gjensidige/core-components/lib/forms/radiobutton";
-import { Title } from "@gjensidige/nci-core-typography";
 import { Checkbox } from "@gjensidige/core-components/lib/forms/checkbox";
 import { Input } from "@gjensidige/core-components/lib/forms/input";
+import { RadioButton } from "@gjensidige/core-components/lib/forms/radiobutton";
+import { Title } from "@gjensidige/nci-core-typography";
+import React, { useState } from "react";
 
 interface RsvpProps extends PartProps {
   myradiobutton: string;
   allergy: string;
 }
 
-const Rsvp: React.FC<RsvpProps> = ({ part }) => {
+const Rsvp: React.FC<RsvpProps> = () => {
   const [value, setValue] = useState("");
 
   return (

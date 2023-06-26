@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { PartProps } from '@enonic/nextjs-adapter/views/BasePart';
+import { PartProps } from "@enonic/nextjs-adapter/views/BasePart";
+import React from "react";
 //import styles from './CountDown.module.css';
 
 interface ImageProps extends PartProps {
@@ -7,8 +7,8 @@ interface ImageProps extends PartProps {
 }
 
 const Image: React.FC<ImageProps> = ({ part }) => {
-  const header = part?.config?.header || '';
-
+  const header = part?.config?.header || "";
+  console.log(header);
   return <div>TODO: render picture</div>;
 };
 
