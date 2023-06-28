@@ -27,15 +27,6 @@
   margin: 0 10px 0 auto;
 }
 
-.yellow {
-  background: #f9ffd7;
-  margin: 0 auto;
-  max-width: 100%;
-  padding-top: 0.8rem;
-  padding-bottom: 1.5rem;
-  display: flex;
-}
-
 .veffectlink {
   list-style-type: none;
   margin: 0;
@@ -72,4 +63,51 @@
   bottom: calc(-1px);
   right: 0;
   transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+/* Different themes */
+
+.default {
+  background: #f9ffd7;
+  margin: 0 auto;
+  max-width: 100%;
+  padding-top: 0.8rem;
+  padding-bottom: 1.5rem;
+  display: flex;
+}
+
+.christmas {
+  background: #0f5064;
+  margin: 0 auto;
+  max-width: 100%;
+  padding-top: 0.8rem;
+  padding-bottom: 1.5rem;
+  display: flex;
+}
+
+.newyear {
+  background: #f900bf;
+  margin: 0 auto;
+  max-width: 100%;
+  padding-top: 0.8rem;
+  padding-bottom: 1.5rem;
+  display: flex;
+}
+
+.summer {
+  background: #ff0202;
+  margin: 0 auto;
+  max-width: 100%;
+  padding-top: 0.8rem;
+  padding-bottom: 1.5rem;
+  display: flex;
+}
+
+.pride {
+  background: #0338ab;
+  margin: 0 auto;
+  max-width: 100%;
+  padding-top: 0.8rem;
+  padding-bottom: 1.5rem;
+  display: flex;
 }

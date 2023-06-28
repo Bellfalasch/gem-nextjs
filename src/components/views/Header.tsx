@@ -16,8 +16,8 @@ const Header = ({ title, meta, theme }: HeaderProps) => {
     case "christmas":
       className = styles.christmas;
       break;
-    case "new year":
-      className = styles.newYear;
+    case "newyear":
+      className = styles.newyear;
       break;
     case "summer":
       className = styles.summer;
@@ -61,7 +61,7 @@ const Header = ({ title, meta, theme }: HeaderProps) => {
           </li>
         </ul>
       </div>
-      <div className={styles.yellow}></div>
+      <div className={className}></div>
     </header>
   );
 };
