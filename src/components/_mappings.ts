@@ -1,4 +1,5 @@
 import { APP_NAME } from "@enonic/nextjs-adapter";
+
 import { ComponentRegistry } from "@enonic/nextjs-adapter/ComponentRegistry";
 
 import ThreeColumnLayout from "./layouts/ThreeColumnLayout";
@@ -70,6 +71,7 @@ ComponentRegistry.addPart(`${APP_NAME}:event`, {
 });
 
 ComponentRegistry.addPart(`${APP_NAME}:image`, {
+  configQuery: getImage,
   view: Image,
 });
 
