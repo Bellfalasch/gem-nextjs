@@ -21,6 +21,8 @@ import Header from '../components/views/Header';
 function MyApp({ Component, pageProps }: AppProps<FetchContentResult>) {
   const isEdit = pageProps?.meta?.renderMode === RENDER_MODE.EDIT;
 
+  console.log(JSON.stringify(pageProps.common, null, 4))
+
   // Component rendering - for component updates in Content Studio without reloading page
   if (pageProps.meta) {
     const meta = pageProps.meta;
@@ -47,9 +49,9 @@ function MyApp({ Component, pageProps }: AppProps<FetchContentResult>) {
     <StaticContent condition={isEdit}>
       <Header
         title="🔥 Gjensidige"
-        logoUrl={getUrl('images/Gjensidige.svg', pageProps.meta)}
         meta={pageProps.meta}
       />
+      <strong>{ pageProps?.common?.get?.dataAsJson?.theme ? `theme is ${pageProps.common.get.dataAsJson.theme}` : 'not an event / no theme' }</strong>
       <main
         style={{
           margin: `0 auto`,
