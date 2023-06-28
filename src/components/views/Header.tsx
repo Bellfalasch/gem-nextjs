@@ -6,9 +6,29 @@ import styles from "./Header.module.css";
 export interface HeaderProps {
   title: string;
   meta: MetaData;
+  theme: string;
 }
 
-const Header = ({ title, meta }: HeaderProps) => {
+const Header = ({ title, meta, theme }: HeaderProps) => {
+  let className;
+
+  switch (theme) {
+    case "christmas":
+      className = styles.christmas;
+      break;
+    case "new year":
+      className = styles.newYear;
+      break;
+    case "summer":
+      className = styles.summer;
+      break;
+    case "pride":
+      className = styles.pride;
+      break;
+    default:
+      className = styles.default;
+      break;
+  }
   return (
     <header className={styles.header}>
       <div className={styles.wrapper}>

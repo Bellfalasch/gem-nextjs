@@ -20,7 +20,8 @@ import Header from '../components/views/Header';
  */
 function MyApp({ Component, pageProps }: AppProps<FetchContentResult>) {
   const isEdit = pageProps?.meta?.renderMode === RENDER_MODE.EDIT;
-
+  const theme = pageProps?.common?.get.dataAsJson.theme;
+  
   // Component rendering - for component updates in Content Studio without reloading page
   if (pageProps.meta) {
     const meta = pageProps.meta;
@@ -49,6 +50,7 @@ function MyApp({ Component, pageProps }: AppProps<FetchContentResult>) {
         title="🔥 Gjensidige"
         logoUrl={getUrl('images/Gjensidige.svg', pageProps.meta)}
         meta={pageProps.meta}
+        theme={theme}
       />
       <main
         style={{
