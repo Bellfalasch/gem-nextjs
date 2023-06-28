@@ -49,7 +49,6 @@ function MyApp({ Component, pageProps }: AppProps<FetchContentResult>) {
     <StaticContent condition={isEdit}>
       <Header
         title="🔥 Gjensidige"
-        logoUrl={getUrl('images/Gjensidige.svg', pageProps.meta)}
         meta={pageProps.meta}
       />
       <strong>{ pageProps?.common?.get?.dataAsJson?.theme ? `theme is ${pageProps.common.get.dataAsJson.theme}` : 'not an event / no theme' }</strong>
