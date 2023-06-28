@@ -1,5 +1,4 @@
 import { APP_NAME } from "@enonic/nextjs-adapter";
-
 import { ComponentRegistry } from "@enonic/nextjs-adapter/ComponentRegistry";
 
 import ThreeColumnLayout from "./layouts/ThreeColumnLayout";
@@ -14,6 +13,7 @@ import Rsvp from "./parts/Rsvp/Rsvp";
 import WeatherWidget from "./parts/WeatherWidget/WeatherWidget";
 import { commonQuery, commonVariables } from "./queries/common";
 import getEvent from "./queries/getEvent";
+import getImage from "./queries/getImage";
 import MainPage from "../pages/Main";
 
 // You can set common query for all views here
