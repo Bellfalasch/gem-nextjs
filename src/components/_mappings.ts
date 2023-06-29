@@ -3,12 +3,15 @@ import { ComponentRegistry } from "@enonic/nextjs-adapter/ComponentRegistry";
 
 import ThreeColumnLayout from "./layouts/ThreeColumnLayout";
 import TwoColumnLayout from "./layouts/TwoColumnLayout";
-import ChildList, { getChildList } from "./parts/ChildList/ChildList";
+import ChildList, {
+  childListProcessor,
+  getChildList,
+} from "./parts/ChildList/ChildList";
 import Countdown from "./parts/CountDown/CountDown";
 import Event from "./parts/Event/Event";
 import Faq from "./parts/Faq/Faq";
-import GoogleMap from "./parts/GoogleMap/GoogleMap";
 import Image from "./parts/Image/Image";
+import Maps from "./parts/Maps/Maps";
 import Rsvp from "./parts/Rsvp/Rsvp";
 import WeatherWidget from "./parts/WeatherWidget/WeatherWidget";
 import { commonQuery, commonVariables } from "./queries/common";
@@ -53,8 +56,8 @@ ComponentRegistry.addPart(`${APP_NAME}:child-list`, {
   view: ChildList,
 });
 
-ComponentRegistry.addPart(`${APP_NAME}:googlemap`, {
-  view: GoogleMap,
+ComponentRegistry.addPart(`${APP_NAME}:maps`, {
+  view: Maps,
 });
 
 ComponentRegistry.addPart(`${APP_NAME}:countdown`, {
