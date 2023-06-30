@@ -1,4 +1,5 @@
 import { getUrl, MetaData } from "@enonic/nextjs-adapter";
+import classNames from "classnames";
 import React from "react";
 
 import styles from "./Header.module.css";
@@ -10,25 +11,7 @@ export interface HeaderProps {
 }
 
 const Header = ({ title, meta, theme }: HeaderProps) => {
-  let className;
 
-  switch (theme) {
-    case "christmas":
-      className = styles.christmas;
-      break;
-    case "newyear":
-      className = styles.newyear;
-      break;
-    case "summer":
-      className = styles.summer;
-      break;
-    case "pride":
-      className = styles.pride;
-      break;
-    default:
-      className = styles.default;
-      break;
-  }
   return (
     <header className={styles.header}>
       <div className={styles.wrapper}>
@@ -61,7 +44,7 @@ const Header = ({ title, meta, theme }: HeaderProps) => {
           </li>
         </ul>
       </div>
-      <div className={className}></div>
+      <div className={classNames(styles["subheader"], styles[theme])}></div>
     </header>
   );
 };

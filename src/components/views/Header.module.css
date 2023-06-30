@@ -41,10 +41,10 @@
 .veffectlink a {
   text-decoration: none;
   display: block;
-  font-family:Arial;
+  font-family: Arial;
   position: relative;
   color: rgb(255, 255, 255);
-  padding:.5em 0
+  padding: 0.5em 0;
 }
 .veffectlink a:hover {
   color: #f4ffaf;
@@ -58,7 +58,7 @@
   content: "";
   position: absolute;
   width: 0;
-  height: .5px;
+  height: 0.5px;
   background-color: #f4ffaf;
   bottom: calc(-1px);
   right: 0;
@@ -67,47 +67,30 @@
 
 /* Different themes */
 
-.default {
-  background: #f9ffd7;
+.subheader {
   margin: 0 auto;
   max-width: 100%;
   padding-top: 0.8rem;
   padding-bottom: 1.5rem;
   display: flex;
+}
+
+.default {
+  background-color: #f9ffd7;
 }
 
 .christmas {
-  background: #0f5064;
-  margin: 0 auto;
-  max-width: 100%;
-  padding-top: 0.8rem;
-  padding-bottom: 1.5rem;
-  display: flex;
+  background-color: #0f5064;
 }
 
 .newyear {
-  background: #f900bf;
-  margin: 0 auto;
-  max-width: 100%;
-  padding-top: 0.8rem;
-  padding-bottom: 1.5rem;
-  display: flex;
+  background-color: #f900bf;
 }
 
 .summer {
-  background: #ff0202;
-  margin: 0 auto;
-  max-width: 100%;
-  padding-top: 0.8rem;
-  padding-bottom: 1.5rem;
-  display: flex;
+  background-color: #ff0202;
 }
 
 .pride {
-  background: #0338ab;
-  margin: 0 auto;
-  max-width: 100%;
-  padding-top: 0.8rem;
-  padding-bottom: 1.5rem;
-  display: flex;
+  background-color: #0338ab;
 }

@@ -48,7 +48,6 @@ function MyApp({ Component, pageProps }: AppProps<FetchContentResult>) {
     <StaticContent condition={isEdit}>
       <Header
         title="🔥 Gjensidige"
-        logoUrl={getUrl('images/Gjensidige.svg', pageProps.meta)}
         meta={pageProps.meta}
         theme={theme}
       />
