@@ -7,9 +7,10 @@ import styles from "./Header.module.css";
 export interface HeaderProps {
   title: string;
   meta: MetaData;
+  theme: string;
 }
 
-const Header = ({ title, meta }: HeaderProps) => {
+const Header = ({ title, meta, theme }: HeaderProps) => {
 
   return (
     <header className={styles.header}>
@@ -43,7 +44,7 @@ const Header = ({ title, meta }: HeaderProps) => {
           </li>
         </ul>
       </div>
-      <div className={styles.subheader}></div>
+      <div className={classNames(styles["subheader"], styles[theme])}></div>
     </header>
   );
 };

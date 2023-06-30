@@ -75,3 +75,19 @@
   padding-bottom: 1.5rem;
   display: flex;
 }
+
+.christmas {
+  background-color: #34A65F;
+}
+
+.newyear {
+  background-color: #ffdd81;
+}
+
+.summer {
+  background-color: #82eaffc9;
+}
+
+.pride {
+  background-color: #ff9cf3;
+}

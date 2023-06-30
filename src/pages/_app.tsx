@@ -50,6 +50,7 @@ function MyApp({ Component, pageProps }: AppProps<FetchContentResult>) {
       <Header
         title="🔥 Gjensidige"
         meta={pageProps.meta}
+        theme={theme}
       />
       <main
         style={{

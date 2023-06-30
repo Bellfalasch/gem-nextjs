@@ -1,24 +1,19 @@
 .background-theme {
-  background-color: #ffffff;
   height: 100vh;
 }
 
-.default {
-  background-color: #f9ffd788;
-}
-
 .christmas {
-  background-color: #0f5064;
+  background-image: url("/images/christmas.png");
 }
 
 .newyear {
-  background-color: #f900bf;
+  background-image: url("/images/newyear.png");
 }
 
 .summer {
-  background-color: #ff020288;
+    background-image: url("/images/summer.png");
 }
 
 .pride {
-  background-color: #0338ab;
+    background-image: url("/images/pride.png");
 }
