@@ -58,6 +58,7 @@ function MyApp({ Component, pageProps }: AppProps<FetchContentResult>) {
           maxWidth: 960,
           padding: `1rem`,
           backgroundColor: `#ffffffbb`,
+          borderRadius: `10px`,
         }}
       >
         <Component {...pageProps} />
