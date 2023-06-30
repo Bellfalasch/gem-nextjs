@@ -1,0 +1,25 @@
+.background-theme {
+  background-color: #ffffff;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.default {
+  background-color: #f9ffd7;
+}
+
+.christmas {
+  background-color: #0f5064;
+}
+
+.newyear {
+  background-color: #f900bf;
+}
+
+.summer {
+  background-color: #ff0202;
+}
+
+.pride {
+  background-color: #0338ab;
+}
