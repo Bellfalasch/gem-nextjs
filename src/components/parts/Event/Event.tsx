@@ -1,5 +1,6 @@
 import type { FetchContentResult } from "@enonic/nextjs-adapter";
 import { getUrl } from "@enonic/nextjs-adapter";
+import { format } from "date-fns";
 import React, { useState } from "react";
 
 const Event = (props: FetchContentResult) => {
@@ -45,9 +46,11 @@ const Event = (props: FetchContentResult) => {
         <h1>{displayName}</h1>
         <p>{description}</p>
         <p>Sted: {location}</p>
-        {startDate && <p>Begins: {startDate}</p>}
+        {startDate && (
+          <p>Begins: {format(new Date(startDate), "dd.MM.yyyy")}</p>
+        )}
         {startTime && <p>Starts at: {startTime}</p>}
-        {endDate && <p>Ends: {endDate}</p>}
+        {endDate && <p>Ends: {format(new Date(endDate), "dd.MM.yyyy")}</p>}
         {endTime && <p>Ends at: {endTime}</p>}
       </div>
       {startDate && startTime && showCountdown && (

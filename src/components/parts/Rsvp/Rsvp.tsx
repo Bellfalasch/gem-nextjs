@@ -53,7 +53,13 @@ const Rsvp: React.FC<RsvpProps> = () => {
         <Title tag="h4" size="4" style={{ marginTop: "1rem" }}>
           Do you have allergies or food intolerances?
         </Title>
-        <Checkbox id="Checkbox-1" name="allergy" label="Nei" value="Nei" />
+        <Checkbox
+          id="Checkbox-1"
+          name="allergy"
+          label="Nei"
+          value="Nei"
+          defaultChecked
+        />
         <Checkbox
           id="Checkbox-2"
           name="allergy"
