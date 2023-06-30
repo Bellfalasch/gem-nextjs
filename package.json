@@ -11,8 +11,10 @@
     "client-build": "npx next build",
     "server-build": "tsc --build ./server/tsconfig.json",
     "lint-staged": "lint-staged",
-    "lint:fix": "npm run lint -- --fix",
-    "lint": "eslint \"**/*.{ts,tsx,json}\" --resolve-plugins-relative-to ./node_modules/@gjensidige/eslint-config-core"
+    "lint:fix": "npm run lint-code -- --fix && npm run lint-style -- --fix",
+    "lint-code": "eslint \"**/*.{ts,tsx,json}\" --resolve-plugins-relative-to ./node_modules/@gjensidige/eslint-config-core",
+    "lint-style": "stylelint \"**/*.css\"",
+    "lint": "npm run lint-code && npm run lint-style"
   },
   "dependencies": {
     "@enonic/nextjs-adapter": "^1.0.2",
@@ -42,6 +44,9 @@
     "eslint-plugin-prettier": "^4.2.1",
     "lint-staged": "13.0.3",
     "prettier": "^2.8.8",
+    "stylelint": "^15.9.0",
+    "stylelint-config-standard": "^33.0.0",
+    "stylelint-order": "^6.0.3",
     "typescript": "5.0.2"
   },
   "lint-staged": {

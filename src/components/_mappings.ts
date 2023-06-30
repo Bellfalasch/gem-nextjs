@@ -3,10 +3,7 @@ import { ComponentRegistry } from "@enonic/nextjs-adapter/ComponentRegistry";
 
 import ThreeColumnLayout from "./layouts/ThreeColumnLayout";
 import TwoColumnLayout from "./layouts/TwoColumnLayout";
-import ChildList, {
-  childListProcessor,
-  getChildList,
-} from "./parts/ChildList/ChildList";
+import ChildList, { getChildList } from "./parts/ChildList/ChildList";
 import Countdown from "./parts/CountDown/CountDown";
 import Event from "./parts/Event/Event";
 import Faq from "./parts/Faq/Faq";

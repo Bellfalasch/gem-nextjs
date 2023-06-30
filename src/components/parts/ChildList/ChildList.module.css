@@ -3,16 +3,19 @@
   justify-content: center;
   align-items: center;
 }
+
 .ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   text-align: center;
 }
+
 .ul li {
   min-width: 5em;
   margin: 0 0.5em;
 }
+
 .ul a {
   text-decoration: none;
   display: block;
@@ -21,15 +24,17 @@
   color: black;
   padding:.5em 0
 }
+
 .ul a:hover {
   color: #c69f73;
 }
 
-.ul a:hover:before {
+.ul a:hover::before {
   left: 0;
   width: 100%;
 }
-.ul a:before {
+
+.ul a::before {
   content: "";
   position: absolute;
   width: 0;
