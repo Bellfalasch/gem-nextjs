@@ -1,0 +1,19 @@
+.background-theme {
+  height: 100vh;
+}
+
+.christmas {
+  background-image: url("/images/christmas.png");
+}
+
+.newyear {
+  background-image: url("/images/newyear.png");
+}
+
+.summer {
+  background-image: url("/images/summer.png");
+}
+
+.pride {
+  background-image: url("/images/pride.png");
+}

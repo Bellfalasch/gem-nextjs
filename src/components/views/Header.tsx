@@ -1,4 +1,5 @@
 import { getUrl, MetaData } from "@enonic/nextjs-adapter";
+import classNames from "classnames";
 import React from "react";
 
 import styles from "./Header.module.css";
@@ -6,9 +7,11 @@ import styles from "./Header.module.css";
 export interface HeaderProps {
   title: string;
   meta: MetaData;
+  theme: string;
 }
 
-const Header = ({ title, meta }: HeaderProps) => {
+const Header = ({ title, meta, theme }: HeaderProps) => {
+
   return (
     <header className={styles.header}>
       <div className={styles.wrapper}>
@@ -41,7 +44,7 @@ const Header = ({ title, meta }: HeaderProps) => {
           </li>
         </ul>
       </div>
-      <div className={styles.yellow}></div>
+      <div className={classNames(styles["subheader"], styles[theme])}></div>
     </header>
   );
 };

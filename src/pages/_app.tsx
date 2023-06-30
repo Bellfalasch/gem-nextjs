@@ -1,4 +1,6 @@
 import '../styles/globals.css';
+import classNames from 'classnames';
+import styles from './app.module.css';
 
 import React from 'react';
 import {
@@ -6,7 +8,6 @@ import {
   RENDER_MODE,
   XP_REQUEST_TYPE
 } from '@enonic/nextjs-adapter';
-import { getUrl } from '@enonic/nextjs-adapter';
 import StaticContent from '@enonic/nextjs-adapter/views/StaticContent';
 import type { AppProps } from 'next/app';
 
@@ -20,8 +21,7 @@ import Header from '../components/views/Header';
  */
 function MyApp({ Component, pageProps }: AppProps<FetchContentResult>) {
   const isEdit = pageProps?.meta?.renderMode === RENDER_MODE.EDIT;
-
-  console.log(JSON.stringify(pageProps.common, null, 4))
+  const theme = pageProps?.common?.get.dataAsJson.theme;
 
   // Component rendering - for component updates in Content Studio without reloading page
   if (pageProps.meta) {
@@ -46,17 +46,19 @@ function MyApp({ Component, pageProps }: AppProps<FetchContentResult>) {
   }
 
   return (
-    <StaticContent condition={isEdit}>
+    <StaticContent className={classNames(styles["background-theme"], styles[theme])} condition={isEdit}>
       <Header
         title="🔥 Gjensidige"
         meta={pageProps.meta}
+        theme={theme}
       />
-      <strong>{ pageProps?.common?.get?.dataAsJson?.theme ? `theme is ${pageProps.common.get.dataAsJson.theme}` : 'not an event / no theme' }</strong>
       <main
         style={{
           margin: `0 auto`,
           maxWidth: 960,
-          padding: `0 1rem`
+          padding: `1rem`,
+          backgroundColor: `#ffffffbb`,
+          borderRadius: `10px`,
         }}
       >
         <Component {...pageProps} />
