@@ -56,7 +56,8 @@ function MyApp({ Component, pageProps }: AppProps<FetchContentResult>) {
         style={{
           margin: `0 auto`,
           maxWidth: 960,
-          padding: `0 1rem`
+          padding: `0 1rem`,
+          backgroundColor: `#ffffffbb`
         }}
       >
         <Component {...pageProps} />
