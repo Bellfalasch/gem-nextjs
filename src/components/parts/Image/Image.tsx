@@ -7,14 +7,10 @@ interface ImageProps extends PartProps {
 }
 
 const Image: React.FC<ImageProps> = ({ part, meta }) => {
-  console.log(JSON.stringify(part, null, 4));
   const headerImgUrl = part?.config?.image?.imageUrl;
-  console.log(headerImgUrl);
 
   return (
-    <div style={{ backgroundColor: "red" }}>
-      {headerImgUrl && <img src={getUrl(headerImgUrl, meta)} alt="" />}
-    </div>
+    <div>{headerImgUrl && <img src={getUrl(headerImgUrl, meta)} alt="" />}</div>
   );
 };
 
