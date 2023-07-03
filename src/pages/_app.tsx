@@ -45,10 +45,11 @@ function MyApp({ Component, pageProps }: AppProps<FetchContentResult>) {
       return null;
     }
   }
+  const backgroundImage = theme && theme !== 'default' ? 'url("' + getUrl(`/images/${theme}.png` + '")', pageProps.meta) : 'none';
 
   return (
     <StaticContent className={classNames(styles["background-theme"], styles[theme])} condition={isEdit} style={{
-      backgroundImage: theme && theme !== 'default' ? 'url("' + getUrl(`/images/${theme}.png` + '")', pageProps.meta) : 'none',
+      backgroundImage
     }}>
       <Header
         title="🔥 Gjensidige"
@@ -62,7 +63,6 @@ function MyApp({ Component, pageProps }: AppProps<FetchContentResult>) {
           padding: `1rem`,
           backgroundColor: `#ffffffee`,
           borderRadius: `10px`,
-          
           boxShadow: `#00000044 0 0 10px`
         }}
       >
