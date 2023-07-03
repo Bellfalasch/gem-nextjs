@@ -12,3 +12,7 @@ For a live demo of the integration, follow the `TLDR;` instructions in the Tutor
 ## Local Development Prerequisites
 
 In order to authenticate frontend with backend, some tokens are needed. For local development, copy the `.env.example`-file and name it `.env`. Fill out the variables in it. Use the tutorial for some guidance. This file must never be added to git. Keep the `.example`-file.
+
+## Enonic XP
+
+Requires Enonic XP to run as it serves the data headless to this app. The repo `internal-gem-backend` contains the backend parts for this app to work.
