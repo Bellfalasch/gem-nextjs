@@ -1,0 +1,27 @@
+.background-theme {
+  height: 100vh;
+}
+
+.christmas main a {
+  background-color: red;
+  color: white;
+  padding: 2px 4px;
+}
+
+.newyear main a {
+  background-color: goldenrod;
+  color: white;
+  padding: 2px 4px;
+}
+
+.summer main a {
+  background-color: lightseagreen;
+  color: white;
+  padding: 2px 4px;
+}
+
+.pride main a {
+  background-color: pink;
+  color: white;
+  padding: 2px 4px;
+}

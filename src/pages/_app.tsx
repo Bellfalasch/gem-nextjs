@@ -1,6 +1,6 @@
 import '../styles/globals.css';
 import classNames from 'classnames';
-import styles from './app.module.css';
+import styles from './_app.module.css';
 
 import React from 'react';
 import {
@@ -10,6 +10,7 @@ import {
 } from '@enonic/nextjs-adapter';
 import StaticContent from '@enonic/nextjs-adapter/views/StaticContent';
 import type { AppProps } from 'next/app';
+import { getUrl, MetaData } from "@enonic/nextjs-adapter";
 
 import Footer from '../components/views/Footer';
 import Header from '../components/views/Header';
@@ -46,7 +47,9 @@ function MyApp({ Component, pageProps }: AppProps<FetchContentResult>) {
   }
 
   return (
-    <StaticContent className={classNames(styles["background-theme"], styles[theme])} condition={isEdit}>
+    <StaticContent className={classNames(styles["background-theme"], styles[theme])} condition={isEdit} style={{
+      backgroundImage: theme && theme !== 'default' ? 'url("' + getUrl(`/images/${theme}.png` + '")', pageProps.meta) : 'none',
+    }}>
       <Header
         title="🔥 Gjensidige"
         meta={pageProps.meta}
@@ -57,8 +60,10 @@ function MyApp({ Component, pageProps }: AppProps<FetchContentResult>) {
           margin: `0 auto`,
           maxWidth: 960,
           padding: `1rem`,
-          backgroundColor: `#ffffffbb`,
+          backgroundColor: `#ffffffee`,
           borderRadius: `10px`,
+          
+          boxShadow: `#00000044 0 0 10px`
         }}
       >
         <Component {...pageProps} />
