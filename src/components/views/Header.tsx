@@ -11,7 +11,6 @@ export interface HeaderProps {
 }
 
 const Header = ({ title, meta, theme }: HeaderProps) => {
-
   return (
     <header className={styles.header}>
       <div className={styles.wrapper}>
