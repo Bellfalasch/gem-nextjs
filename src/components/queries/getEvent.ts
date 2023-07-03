@@ -9,10 +9,8 @@ query($path:ID!){
         data {
           description
           location
-          startDate
-          startTime
-          endDate
-          endTime
+          startDateTime
+          endDateTime
           showCountdown
         }
       }

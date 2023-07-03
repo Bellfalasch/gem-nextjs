@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@gjensidige/nci-core-typography/lib/link";
 import React from "react";
 
 const Footer = () => (
@@ -12,7 +12,7 @@ const Footer = () => (
     <br />
     <hr />
     <br />
-    {`Copyright © Gjensidige ${new Date().getFullYear()}`}
+    <a>{`Copyright © Gjensidige ${new Date().getFullYear()}`} </a>
     <Link href="https://www.gjensidige.no">Gjensidige Forsikring ASA</Link>
   </footer>
 );
