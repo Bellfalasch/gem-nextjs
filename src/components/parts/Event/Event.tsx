@@ -109,10 +109,10 @@ const Event = (props: FetchContentResult) => {
       {startDate && startTime && showCountdown && (
         <div>
           {attendees > 0 && (
-            <Title tag="h4" size="6">
+            <Text>
               This event is limited to <strong>{attendees}</strong>{" "}
               participants!
-            </Title>
+            </Text>
           )}
           <Title tag="h4" size="4">
             Countdown
