@@ -2,13 +2,24 @@ import type { FetchContentResult } from "@enonic/nextjs-adapter";
 import { Checkbox } from "@gjensidige/core-components/lib/forms/checkbox";
 import { Input } from "@gjensidige/core-components/lib/forms/input";
 import { RadioButton } from "@gjensidige/core-components/lib/forms/radiobutton";
-import { Title } from "@gjensidige/nci-core-typography";
+import { TextContainer } from "@gjensidige/core-components/lib/text-container";
+import { DateRange } from "@gjensidige/nci-core-icons/lib/date-range";
+import { Valuables } from "@gjensidige/nci-core-icons/lib/products/valuables";
+import { Title, Text } from "@gjensidige/nci-core-typography";
+import { format } from "date-fns";
 import React, { useState } from "react";
+
+import styles from "./Rsvp.module.css";
 
 const Rsvp = (props: FetchContentResult) => {
   const [value, setValue] = useState("");
-  const { data, parent } = props.data?.get as any;
+  const { data } = props.data?.get as any;
   const { openForRegistration, closedForRegistration } = data;
+
+  const registrationDate = format(new Date(openForRegistration), "dd.MM.yyyy");
+  const registrationTime = format(new Date(openForRegistration), "HH:mm");
+  const closedDate = format(new Date(closedForRegistration), "dd.MM.yyyy");
+  const closedTime = format(new Date(closedForRegistration), "HH:mm");
 
   return (
     <div>
@@ -17,9 +28,51 @@ const Rsvp = (props: FetchContentResult) => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          maxWidth: "35%",
         }}
       >
+        <TextContainer className={styles.container}>
+          <div className={styles.columnise}>
+            <Title tag="h4" size="6">
+              Registration opens at:
+            </Title>
+            {registrationDate && (
+              <div className={styles.iconAndTextCell}>
+                <DateRange className={styles.icon} />
+                <Text>
+                  <strong>
+                    {format(new Date(registrationDate), "dd.MM.yyyy")}
+                  </strong>
+                </Text>
+              </div>
+            )}
+            {registrationTime && (
+              <div className={styles.iconAndTextCell}>
+                <Valuables className={styles.icon} />
+                <Text>{registrationTime}</Text>
+              </div>
+            )}
+          </div>
+
+          <div className={styles.columnise}>
+            <Title tag="h4" size="6">
+              Closed for registration at:
+            </Title>
+            {closedDate && (
+              <div className={styles.iconAndTextCell}>
+                <DateRange className={styles.icon} />
+                <Text>
+                  <strong>{format(new Date(closedDate), "dd.MM.yyyy")}</strong>
+                </Text>
+              </div>
+            )}
+            {closedTime && (
+              <div className={styles.iconAndTextCell}>
+                <Valuables className={styles.icon} />
+                {closedTime && <Text>{closedTime}</Text>}
+              </div>
+            )}
+          </div>
+        </TextContainer>
         <Title tag="h4" size="4" style={{ marginTop: "1rem" }}>
           Are you coming?
         </Title>
