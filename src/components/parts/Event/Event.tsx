@@ -16,8 +16,14 @@ import styles from "./Event.module.css";
 const Event = (props: FetchContentResult) => {
   /* eslint-disable  @typescript-eslint/no-explicit-any */
   const { displayName, data, parent } = props.data?.get as any;
-  const { startDateTime, endDateTime, description, location, showCountdown } =
-    data;
+  const {
+    startDateTime,
+    endDateTime,
+    description,
+    location,
+    showCountdown,
+    attendees,
+  } = data;
   const meta = props.meta;
   const { _path } = parent;
   const startDate = format(new Date(startDateTime), "dd.MM.yyyy");
@@ -102,6 +108,12 @@ const Event = (props: FetchContentResult) => {
       </TextContainer>
       {startDate && startTime && showCountdown && (
         <div>
+          {attendees > 0 && (
+            <Title tag="h4" size="6">
+              This event is limited to <strong>{attendees}</strong>{" "}
+              participants!
+            </Title>
+          )}
           <Title tag="h4" size="4">
             Countdown
           </Title>
