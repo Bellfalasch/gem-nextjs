@@ -7,6 +7,7 @@ import { Valuables } from "@gjensidige/nci-core-icons/lib/products/valuables";
 import { Link } from "@gjensidige/nci-core-typography/lib/link";
 import { Text } from "@gjensidige/nci-core-typography/lib/text";
 import { Title } from "@gjensidige/nci-core-typography/lib/title";
+import classNames from "classnames";
 import { format } from "date-fns";
 import React, { useState } from "react";
 
@@ -48,40 +49,57 @@ const Event = (props: FetchContentResult) => {
 
   return (
     <>
-      <div>
-        <Title tag="h1" size="2">
-          {displayName}
-        </Title>
-        <Text>{description}</Text>
-        <TextContainer className={styles.container}>
-          <div className={styles.locationIsh}>
-            <Earth className={styles.icon} />
-            <Text size="large">{location}</Text>
-          </div>
-          <div className={styles.startEnd}>
-            <div className={styles.locationIsh}>
+      <Title tag="h1" size="2">
+        {displayName}
+      </Title>
+      <Text>{description}</Text>
+      {location && (
+        <div className={classNames([styles.iconAndTextCell, styles.fullRow])}>
+          <Earth className={styles.icon} />
+          <Text>{location}</Text>
+        </div>
+      )}
+      <TextContainer className={styles.container}>
+        <div className={styles.columnise}>
+          <Title tag="h4" size="6">
+            Begins at:
+          </Title>
+          {startDate && (
+            <div className={styles.iconAndTextCell}>
               <DateRange className={styles.icon} />
-              {startDate && (
-                <Text size="large">
-                  {format(new Date(startDateTime), "dd.MM.yyyy")}
-                </Text>
-              )}
-              <Valuables className={styles.icon} />
-              {startTime && <Text size="large">{startTime}</Text>}
+              <Text>
+                <strong>{format(new Date(startDateTime), "dd.MM.yyyy")}</strong>
+              </Text>
             </div>
-            <div className={styles.locationIsh}>
+          )}
+          {startTime && (
+            <div className={styles.iconAndTextCell}>
+              <Valuables className={styles.icon} />
+              <Text>{startTime}</Text>
+            </div>
+          )}
+        </div>
+
+        <div className={styles.columnise}>
+          <Title tag="h4" size="6">
+            Ends at:
+          </Title>
+          {endDate && (
+            <div className={styles.iconAndTextCell}>
               <DateRange className={styles.icon} />
-              {endDate && (
-                <Text size="large">
-                  {format(new Date(endDateTime), "dd.MM.yyyy")}
-                </Text>
-              )}
-              <Valuables className={styles.icon} />
-              {endTime && <Text size="large">{endTime}</Text>}
+              <Text>
+                <strong>{format(new Date(endDateTime), "dd.MM.yyyy")}</strong>
+              </Text>
             </div>
-          </div>
-        </TextContainer>
-      </div>
+          )}
+          {endTime && (
+            <div className={styles.iconAndTextCell}>
+              <Valuables className={styles.icon} />
+              {endTime && <Text>{endTime}</Text>}
+            </div>
+          )}
+        </div>
+      </TextContainer>
       {startDate && startTime && showCountdown && (
         <div>
           <Title tag="h4" size="4">
@@ -93,9 +111,7 @@ const Event = (props: FetchContentResult) => {
           </Text>
         </div>
       )}
-      <Text>
-        <Link href={getUrl(_path, meta)}>Back to Events ...</Link>
-      </Text>
+      <Link href={getUrl(_path, meta)}>Back to Events ...</Link>
     </>
   );
 };

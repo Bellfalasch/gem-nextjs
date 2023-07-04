@@ -1,24 +1,27 @@
 .container {
-    display: flexbox;
     margin-top: 30px;
     margin-bottom: 30px;
 }
-
-.icon{
-    padding-right: 5px;
-    width: 35px;
-    height: 35px;
-    padding-left: 10px;
-}
-
-.locationIsh{
-    display: flex;
-    align-items: center;
-}
-
-.startEnd{
+.container > div > div {
     display: flex;
     justify-content: space-between;
-    flex-direction: row;
-    
+}
+
+.icon {
+    padding-right: 5px;
+    width: 25px;
+    height: 25px;
+}
+
+.columnise {
+    min-width: 250px;
+}
+
+.iconAndTextCell {
+    display: flex;
+    align-content: flex-start;
+    align-items: center;
+}
+.iconAndTextCell.fullRow {
+    margin: 1rem 0;
 }
