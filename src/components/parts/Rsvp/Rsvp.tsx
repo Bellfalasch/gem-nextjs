@@ -1,17 +1,14 @@
-import { PartProps } from "@enonic/nextjs-adapter/views/BasePart";
+import type { FetchContentResult } from "@enonic/nextjs-adapter";
 import { Checkbox } from "@gjensidige/core-components/lib/forms/checkbox";
 import { Input } from "@gjensidige/core-components/lib/forms/input";
 import { RadioButton } from "@gjensidige/core-components/lib/forms/radiobutton";
 import { Title } from "@gjensidige/nci-core-typography";
 import React, { useState } from "react";
 
-interface RsvpProps extends PartProps {
-  myradiobutton: string;
-  allergy: string;
-}
-
-const Rsvp: React.FC<RsvpProps> = () => {
+const Rsvp = (props: FetchContentResult) => {
   const [value, setValue] = useState("");
+  const { data, parent } = props.data?.get as any;
+  const { openForRegistration, closedForRegistration } = data;
 
   return (
     <div>
