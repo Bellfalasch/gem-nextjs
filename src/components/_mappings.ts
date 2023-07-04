@@ -80,5 +80,6 @@ ComponentRegistry.addPart(`${APP_NAME}:faq`, {
 });
 
 ComponentRegistry.addPart(`${APP_NAME}:rsvp`, {
+  query: getEvent,
   view: Rsvp,
 });
