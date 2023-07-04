@@ -12,6 +12,7 @@ query($path:ID!){
           startDateTime
           endDateTime
           showCountdown
+          attendees
         }
       }
       parent {
