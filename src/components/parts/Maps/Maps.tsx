@@ -14,14 +14,14 @@ const Maps: React.FC<MapsProps> = ({ part }) => {
   const largeMap = `https://www.openstreetmap.org/?mlat=${latitude}&amp;mlon=${longitude}#map=${zoom}/${latitude}/${longitude}`;
 
   return (
-    <>
+    <div id="partAnchor_maps">
       <iframe
         className="OpenMap"
         style={{ width: "100%", height: "400px", backgroundColor: "black" }}
         src={src}
       ></iframe>
       <Link href={largeMap}>Vis større kart</Link>
-    </>
+    </div>
   );
 };
 

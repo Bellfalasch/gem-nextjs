@@ -1,18 +1,12 @@
 import { Link } from "@gjensidige/nci-core-typography/lib/link";
+import { Text } from "@gjensidige/nci-core-typography/lib/text";
 import React from "react";
 
+import styles from "./Footer.module.css";
+
 const Footer = () => (
-  <footer
-    style={{
-      margin: `0 auto`,
-      maxWidth: 960,
-      padding: `0 1.0875rem 1.45rem`,
-    }}
-  >
-    <br />
-    <hr />
-    <br />
-    <a>{`Copyright © Gjensidige ${new Date().getFullYear()}`} </a>
+  <footer className={styles.footer}>
+    <Text>{`Copyright © Gjensidige ${new Date().getFullYear()}`} </Text>
     <Link href="https://www.gjensidige.no">Gjensidige Forsikring ASA</Link>
   </footer>
 );

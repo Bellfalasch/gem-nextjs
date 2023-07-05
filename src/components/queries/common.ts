@@ -10,6 +10,7 @@ query($path:ID!){
       type
       dataAsJson
       xAsJson
+      pageAsJson
     }
     getSite {
       displayName
