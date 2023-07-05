@@ -54,7 +54,7 @@ const Event = (props: FetchContentResult) => {
   const [timeLeft] = useState(calculateTimeLeft());
 
   return (
-    <>
+    <div id="partAnchor_event">
       <Title tag="h1" size="2">
         {displayName}
       </Title>
@@ -124,7 +124,7 @@ const Event = (props: FetchContentResult) => {
         </div>
       )}
       <Link href={getUrl(_path, meta)}>Back to Events ...</Link>
-    </>
+    </div>
   );
 };
 

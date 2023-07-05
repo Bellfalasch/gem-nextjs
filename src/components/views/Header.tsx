@@ -8,9 +8,11 @@ export interface HeaderProps {
   title: string;
   meta: MetaData;
   theme: string;
+  partList: string[]; // Add partList to the props
 }
 
-const Header = ({ title, meta, theme }: HeaderProps) => {
+const Header = ({ title, meta, theme, partList }: HeaderProps) => {
+  //console.log(partList); //the console.log of partList is resulting [ 'event', 'faq' ]
   return (
     <header className={styles.header}>
       <div className={styles.wrapper}>
@@ -32,15 +34,11 @@ const Header = ({ title, meta, theme }: HeaderProps) => {
           </div>
         )}
         <ul className={styles.veffectlink}>
-          <li>
-            <a href={getUrl("/faq", meta)}>FAQ</a>
-          </li>
-          <li>
-            <a href={getUrl("/transport", meta)}>Transport</a>
-          </li>
-          <li>
-            <a href={getUrl("/kontakt-oss", meta)}>Kontakt oss</a>
-          </li>
+          {partList.map((part, index) => (
+            <li key={index}>
+              <a href={`#partAnchor_${part}`}>{part}</a>
+            </li>
+          ))}
         </ul>
       </div>
       <div className={classNames(styles["subheader"], styles[theme])}></div>

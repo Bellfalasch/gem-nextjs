@@ -2,7 +2,7 @@ import React from "react";
 
 const WeatherWidget: React.FC = () => {
   return (
-    <div>
+    <div id="partAnchor_weather">
       <iframe
         src="https://www.yr.no/nb/innhold/1-72837/table.html"
         title="Weather Widget"

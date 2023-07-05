@@ -19,7 +19,7 @@ const Faq: React.FC<FaqProps> = ({ part }) => {
   }
 
   return (
-    <main className={styles.container}>
+    <main id="partAnchor_faq" className={styles.container}>
       <Title tag="h2" size="2">
         Ofte stilte spørsmål
       </Title>

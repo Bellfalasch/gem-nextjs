@@ -40,7 +40,7 @@ const Rsvp = (props: FetchContentResult) => {
   }
 
   return (
-    <>
+    <div id="partAnchor_rsvp">
       {showForm ? (
         <div
           style={{
@@ -177,7 +177,7 @@ const Rsvp = (props: FetchContentResult) => {
           title=""
         />
       )}
-    </>
+    </div>
   );
 };
 
