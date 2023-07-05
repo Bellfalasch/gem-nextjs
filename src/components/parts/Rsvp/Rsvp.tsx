@@ -7,6 +7,8 @@ import { Title } from "@gjensidige/nci-core-typography";
 import { format, getUnixTime } from "date-fns";
 import React, { useState } from "react";
 
+import style from "./Rsvp.module.css";
+
 const Rsvp = (props: FetchContentResult) => {
   const [value, setValue] = useState("");
   const { data } = props.data?.get as any;
@@ -36,32 +38,18 @@ const Rsvp = (props: FetchContentResult) => {
   }
 
   return (
-    <div id="partAnchor_rsvp">
+    <div id="partAnchor_rsvp" className={style.rsvpPart}>
       {showForm ? (
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            maxWidth: "55%",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-            }}
-          >
-            <Default
-              closable={false}
-              showIcon={true}
-              text={`Registration will be closing at ${closedDate} - ${closedTime}`}
-              title=""
-            />
-          </div>
-          <Title tag="h4" size="4" style={{ marginTop: "1rem" }}>
-            Are you coming?
-          </Title>
+        <Default
+          closable={false}
+          showIcon={true}
+          text={`Registration will be closing at ${closedDate} - ${closedTime}`}
+          title=""
+        />
+        <Title tag="h2" size="2">
+          Are you coming?
+        </Title>
+        <div className={style.rsvpAttending}>
           <RadioButton
             id="RadioButton-1"
             name="attending?"
@@ -78,9 +66,11 @@ const Rsvp = (props: FetchContentResult) => {
             value="not attending"
             withBackground={false}
           />
-          <Title tag="h4" size="4" style={{ marginTop: "1rem" }}>
-            Do you have allergies or food intolerances?
-          </Title>
+        </div>
+        <Title tag="h4" size="4">
+          Do you have allergies or food intolerances?
+        </Title>
+        <div className={style.rsvpIntolerance}>
           <Checkbox
             id="Checkbox-1"
             name="allergy"

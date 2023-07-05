@@ -1,5 +1,9 @@
 .container {
   text-align: center;
+  margin: 20px;
+  background-color: #ebf0fa;
+  border-radius: 10px;
+  padding: 5px;
 }
 
 .title {

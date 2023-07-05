@@ -54,7 +54,7 @@ const Event = (props: FetchContentResult) => {
   const [timeLeft] = useState(calculateTimeLeft());
 
   return (
-    <div id="partAnchor_event">
+    <div id="partAnchor_event" className={styles.eventPart}>
       <Title tag="h1" size="2">
         {displayName}
       </Title>
@@ -85,7 +85,6 @@ const Event = (props: FetchContentResult) => {
             </div>
           )}
         </div>
-
         <div className={styles.columnise}>
           <Title tag="h4" size="6">
             Ends at:
@@ -114,13 +113,15 @@ const Event = (props: FetchContentResult) => {
               participants!
             </Text>
           )}
-          <Title tag="h4" size="4">
-            Countdown
-          </Title>
-          <Text>
-            {timeLeft.days} days {timeLeft.hours} hours {timeLeft.minutes}{" "}
-            minutes
-          </Text>
+          <div className={styles.countdownContainer}>
+            <Title tag="h4" size="4" className={styles.countdown}>
+              Countdown
+            </Title>
+            <Text className={styles.countdowntext}>
+              {timeLeft.days} days {timeLeft.hours} hours {timeLeft.minutes}{" "}
+              minutes
+            </Text>
+          </div>
         </div>
       )}
       <Link href={getUrl(_path, meta)}>Back to Events ...</Link>

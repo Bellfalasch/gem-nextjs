@@ -1,6 +1,13 @@
+.eventPart {
+    margin: 0 20px;
+    padding-bottom: 20px;
+}
+
 .container {
     margin-top: 30px;
     margin-bottom: 30px;
+    border-radius: 10px;
+    width: 100%;
 }
 .container > div > div {
     display: flex;
@@ -14,7 +21,7 @@
 }
 
 .columnise {
-    min-width: 250px;
+    min-width: 200px;
 }
 
 .iconAndTextCell {
@@ -25,3 +32,24 @@
 .iconAndTextCell.fullRow {
     margin: 1rem 0;
 }
+
+/* Countdown */
+
+.countdownContainer {
+    text-align: center;
+    background-color: #ebf0fa;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .countdown {
+    font-size: 20px;
+    font-weight: bold;
+    word-spacing: 40px;
+  }
+  
+  .countdowntext {
+    font-size: 15px;
+    word-spacing: 10px;
+    color: #888;
+  }

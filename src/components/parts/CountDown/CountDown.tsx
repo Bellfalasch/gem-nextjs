@@ -18,7 +18,6 @@ const Countdown: React.FC<CountdownProps> = ({ part }) => {
       days: 0,
       hours: 0,
       minutes: 0,
-      seconds: 0,
     };
 
     if (difference > 0) {
@@ -26,7 +25,6 @@ const Countdown: React.FC<CountdownProps> = ({ part }) => {
         days: Math.floor(difference / (1000 * 60 * 60 * 24)),
         hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
         minutes: Math.floor((difference / 1000 / 60) % 60),
-        seconds: Math.floor((difference / 1000) % 60),
       };
     }
 
@@ -47,10 +45,10 @@ const Countdown: React.FC<CountdownProps> = ({ part }) => {
     <div className={styles.container}>
       <h4 className={styles.title}>{title}</h4>
       <div className={styles.countdown}>
-        {timeLeft.days} {timeLeft.hours} {timeLeft.minutes} {timeLeft.seconds}
+        {timeLeft.days} {timeLeft.hours} {timeLeft.minutes}
       </div>
       <div>
-        <p className={styles.countdowntext}>DAGER TIMER MINUTTER SEKUNDER</p>
+        <p className={styles.countdowntext}>DAGER TIMER MINUTTER</p>
       </div>
     </div>
   );

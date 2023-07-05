@@ -8,6 +8,7 @@
 .row :global(> div) {
     flex: 1;
     min-width: 200px;
+    margin: 20px;
 }
 
 .row :global(.xp-page-editor-region-placeholder) {

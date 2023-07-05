@@ -2,6 +2,8 @@ import { PartData } from "@enonic/nextjs-adapter";
 import { Link } from "@gjensidige/nci-core-typography/lib/link";
 import React from "react";
 
+import style from "./Maps.module.css";
+
 export interface MapsProps {
   part: PartData;
 }
@@ -14,12 +16,8 @@ const Maps: React.FC<MapsProps> = ({ part }) => {
   const largeMap = `https://www.openstreetmap.org/?mlat=${latitude}&amp;mlon=${longitude}#map=${zoom}/${latitude}/${longitude}`;
 
   return (
-    <div id="partAnchor_maps">
-      <iframe
-        className="OpenMap"
-        style={{ width: "100%", height: "400px", backgroundColor: "black" }}
-        src={src}
-      ></iframe>
+    <div id="partAnchor_maps" className={style.mapFrame}>
+      <iframe className={style.OpenMap} src={src}></iframe>
       <Link href={largeMap}>Vis større kart</Link>
     </div>
   );
