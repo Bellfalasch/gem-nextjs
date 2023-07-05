@@ -13,7 +13,7 @@ const Rsvp = (props: FetchContentResult) => {
   const [value, setValue] = useState("");
   const { data } = props.data?.get as any;
   if (!data) return;
-  const { openForRegistration, closedForRegistration } = data;
+  const { openForRegistration, closedForRegistration, allergy } = data;
 
   const registrationDate = format(new Date(openForRegistration), "dd.MM.yyyy");
   const registrationTime = format(new Date(openForRegistration), "HH:mm");
