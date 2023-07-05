@@ -3,18 +3,14 @@ import { Default } from "@gjensidige/core-components/lib/alerts/default";
 import { Checkbox } from "@gjensidige/core-components/lib/forms/checkbox";
 import { Input } from "@gjensidige/core-components/lib/forms/input";
 import { RadioButton } from "@gjensidige/core-components/lib/forms/radiobutton";
-import { TextContainer } from "@gjensidige/core-components/lib/text-container";
-import { DateRange } from "@gjensidige/nci-core-icons/lib/date-range";
-import { Valuables } from "@gjensidige/nci-core-icons/lib/products/valuables";
-import { Title, Text } from "@gjensidige/nci-core-typography";
+import { Title } from "@gjensidige/nci-core-typography";
 import { format, getUnixTime } from "date-fns";
 import React, { useState } from "react";
-
-import styles from "./Rsvp.module.css";
 
 const Rsvp = (props: FetchContentResult) => {
   const [value, setValue] = useState("");
   const { data } = props.data?.get as any;
+  if (!data) return;
   const { openForRegistration, closedForRegistration } = data;
 
   const registrationDate = format(new Date(openForRegistration), "dd.MM.yyyy");
