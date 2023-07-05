@@ -15,6 +15,7 @@ query($path:ID!){
           attendees
           openForRegistration
           closedForRegistration
+          allergy
         }
       }
       parent {
