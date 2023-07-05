@@ -1,4 +1,5 @@
 import type { FetchContentResult } from "@enonic/nextjs-adapter";
+import { Default } from "@gjensidige/core-components/lib/alerts/default";
 import { Checkbox } from "@gjensidige/core-components/lib/forms/checkbox";
 import { Input } from "@gjensidige/core-components/lib/forms/input";
 import { RadioButton } from "@gjensidige/core-components/lib/forms/radiobutton";
@@ -40,56 +41,7 @@ const Rsvp = (props: FetchContentResult) => {
 
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-        }}
-      >
-        <TextContainer className={styles.container}>
-          <div className={styles.columnise}>
-            <Title tag="h4" size="6">
-              Registration opens at:
-            </Title>
-            {registrationDate && (
-              <div className={styles.iconAndTextCell}>
-                <DateRange className={styles.icon} />
-                <Text>
-                  <strong>{registrationDate}</strong>
-                </Text>
-              </div>
-            )}
-            {registrationTime && (
-              <div className={styles.iconAndTextCell}>
-                <Valuables className={styles.icon} />
-                <Text>{registrationTime}</Text>
-              </div>
-            )}
-          </div>
-
-          <div className={styles.columnise}>
-            <Title tag="h4" size="6">
-              Closed for registration at:
-            </Title>
-            {closedDate && (
-              <div className={styles.iconAndTextCell}>
-                <DateRange className={styles.icon} />
-                <Text>
-                  <strong>{closedDate}</strong>
-                </Text>
-              </div>
-            )}
-            {closedTime && (
-              <div className={styles.iconAndTextCell}>
-                <Valuables className={styles.icon} />
-                {closedTime && <Text>{closedTime}</Text>}
-              </div>
-            )}
-          </div>
-        </TextContainer>
-      </div>
-      {showForm && (
+      {showForm ? (
         <div
           style={{
             display: "flex",
@@ -97,6 +49,20 @@ const Rsvp = (props: FetchContentResult) => {
             maxWidth: "55%",
           }}
         >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+            }}
+          >
+            <Default
+              closable={false}
+              showIcon={true}
+              text={`Registration will be closing at ${closedDate} - ${closedTime}`}
+              title=""
+            />
+          </div>
           <Title tag="h4" size="4" style={{ marginTop: "1rem" }}>
             Are you coming?
           </Title>
@@ -199,6 +165,17 @@ const Rsvp = (props: FetchContentResult) => {
             value={value}
           />
         </div>
+      ) : (
+        <Default
+          closable={false}
+          showIcon={true}
+          text={
+            timestampNow > timestampCloseForRegistration
+              ? "The registration for the event has ended. Please check out our other events. Thank you for your interest."
+              : `The event registration is not opened yet. Please come back at ${registrationDate} - ${registrationTime} to register for this event.`
+          }
+          title=""
+        />
       )}
     </>
   );

@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@enonic/nextjs-adapter": "^1.0.2",
-    "@gjensidige/core-components": "^5.0.6",
+    "@gjensidige/core-components": "^5.2.0",
     "@gjensidige/eslint-config-core": "11.3.3",
     "@gjensidige/nci-core-typography": "^2.1.2",
     "classnames": "^2.3.2",
