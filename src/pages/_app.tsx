@@ -88,7 +88,11 @@ function MyApp({ Component, pageProps }: AppProps<FetchContentResult>) {
         style={{
           margin: `0 auto`,
           maxWidth: 960,
-          padding: `1rem`,
+          paddingTop:`100px`,
+          paddingLeft:`1rem`,
+          paddingRight:`1rem`,
+          paddingBottom:`1rem`,
+          // padding: `1rem`,
           backgroundColor: `#ffffffee`,
           borderRadius: `10px`,
           boxShadow: `#00000044 0 0 10px`

@@ -1,8 +1,11 @@
 .header {
   background: #090c33;
   margin-bottom: 1.45rem;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
+  z-index: 1000;
 }
-
 .header .wrapper {
   margin: 0 auto;
   max-width: 960px;
