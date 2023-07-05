@@ -9,8 +9,11 @@ import React, { useState } from "react";
 
 import style from "./Rsvp.module.css";
 
-const Rsvp = (props: FetchContentResult) => {
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore force work
+const Rsvp: React.FC = (props: FetchContentResult) => {
   const [value, setValue] = useState("");
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
   const { data } = props.data?.get as any;
   if (!data) return;
   const { openForRegistration, closedForRegistration } = data;

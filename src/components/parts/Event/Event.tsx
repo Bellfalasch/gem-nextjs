@@ -13,7 +13,9 @@ import React, { useState } from "react";
 
 import styles from "./Event.module.css";
 
-const Event = (props: FetchContentResult) => {
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore force work
+const Event: React.FC = (props: FetchContentResult) => {
   /* eslint-disable  @typescript-eslint/no-explicit-any */
   const { displayName, data, parent } = props.data?.get as any;
   if (!data) return;
