@@ -16,6 +16,7 @@ import styles from "./Event.module.css";
 const Event = (props: FetchContentResult) => {
   /* eslint-disable  @typescript-eslint/no-explicit-any */
   const { displayName, data, parent } = props.data?.get as any;
+  if (!data) return;
   const {
     startDateTime,
     endDateTime,
