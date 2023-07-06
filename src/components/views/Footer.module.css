@@ -3,4 +3,8 @@
     border-top: 1px solid #090C33;
     max-width: 960px;
     padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }

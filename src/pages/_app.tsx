@@ -42,64 +42,63 @@ function MyApp({ Component, pageProps }: AppProps<FetchContentResult>) {
         }
       }
     });
-  }
 
-  // Component rendering - for component updates in Content Studio without reloading page
-  if (pageProps.meta) {
-    const meta = pageProps.meta;
-    if (meta.requestType === XP_REQUEST_TYPE.COMPONENT) {
-      return (
-        <StaticContent condition={isEdit}>
-          {meta.renderMode === RENDER_MODE.NEXT ? (
-            // don't wrap it in direct next access because we want to show 1 component on the page
-            <Component {...pageProps} />
-          ) : (
-            <details data-single-component-output="true">
+    // Component rendering - for component updates in Content Studio without reloading page
+    if (pageProps.meta) {
+      const meta = pageProps.meta;
+      if (meta.requestType === XP_REQUEST_TYPE.COMPONENT) {
+        return (
+          <StaticContent condition={isEdit}>
+            {meta.renderMode === RENDER_MODE.NEXT ? (
+              // don't wrap it in direct next access because we want to show 1 component on the page
               <Component {...pageProps} />
-            </details>
-          )}
-        </StaticContent>
-      );
-    } else if (!meta.canRender) {
-      // return empty page, status is set in [[...contentPath.tsx]]
-      return null;
+            ) : (
+              <details data-single-component-output="true">
+                <Component {...pageProps} />
+              </details>
+            )}
+          </StaticContent>
+        );
+      } else if (!meta.canRender) {
+        // return empty page, status is set in [[...contentPath.tsx]]
+        return null;
+      }
     }
-  }
-  const backgroundImage =
-    theme && theme !== "default"
-      ? 'url("' + getUrl(`/images/${theme}.png` + '")', pageProps.meta)
-      : "none";
+    const backgroundImage =
+      theme && theme !== "default"
+        ? 'url("' + getUrl(`/images/${theme}.png` + '")', pageProps.meta)
+        : "none";
 
-  return (
-    <StaticContent
-      className={classNames(styles["background-theme"], styles[theme])}
-      condition={isEdit}
-      style={{
-        backgroundImage,
-      }}
-    >
-      <Header
-        title="🔥 Gjensidige"
-        meta={pageProps.meta}
-        theme={theme}
-        partList={partList}
-      />
-      <main
+    return (
+      <StaticContent
+        className={classNames(styles["background-theme"], styles[theme])}
+        condition={isEdit}
         style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `1rem`,
-          paddingTop: `100px`,
-          backgroundColor: `#ffffffee`,
-          borderRadius: `10px`,
-          boxShadow: `#00000044 0 0 10px`,
+          backgroundImage,
+          paddingTop: `120px`,
         }}
       >
-        <Component {...pageProps} />
-      </main>
-      <Footer />
-    </StaticContent>
-  );
+        <Header
+          title="🔥 Gjensidige"
+          meta={pageProps.meta}
+          theme={theme}
+          partList={partList}
+        />
+        <main
+          style={{
+            margin: `0 auto`,
+            maxWidth: 960,
+            padding: `1rem`,
+            backgroundColor: `#ffffffee`,
+            borderRadius: `10px`,
+            boxShadow: `#00000044 0 0 10px`,
+          }}
+        >
+          <Component {...pageProps} />
+        </main>
+        <Footer />
+      </StaticContent>
+    );
+  }
 }
-
 export default MyApp;
