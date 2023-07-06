@@ -1,7 +1,7 @@
-import { getContentApiUrl } from '@enonic/nextjs-adapter';
-import { NextApiRequest, NextApiResponse } from 'next';
+import { getContentApiUrl } from "@enonic/nextjs-adapter";
+import { NextApiRequest, NextApiResponse } from "next";
 
-import { recursiveFetchChildren } from '../[[...contentPath]]';
+import { recursiveFetchChildren } from "../[[...contentPath]]";
 
 interface ResponseData {
   message: string;
@@ -15,16 +15,16 @@ export default async function handler(
   // Check for secret to confirm this is a valid request
   if (token !== process.env.API_TOKEN) {
     // XP hijacks 401 to show login page, so send 407 instead
-    return res.status(407).json({ message: 'Invalid token' });
+    return res.status(407).json({ message: "Invalid token" });
   }
 
   const contentApiUrl = getContentApiUrl({ req });
 
   try {
     // Return 200 immediately and do revalidate in background
-    res.status(200).json({ message: 'Revalidation started' });
+    res.status(200).json({ message: "Revalidation started" });
     if (!path) {
-      console.info('Started revalidating everything...');
+      console.info("Started revalidating everything...");
       const paths = await getRevalidatePaths(contentApiUrl);
       const promises = paths.map((item) =>
         revalidatePath(res, item.params.contentPath)
@@ -36,20 +36,21 @@ export default async function handler(
       console.info(`Revalidated [${path}]`);
     }
   } catch (err) {
-    console.error(`Revalidation [${path ?? 'everything'}] error: ` + err);
+    console.error(`Revalidation [${path ?? "everything"}] error: ` + err);
   }
 }
 
 async function getRevalidatePaths(contentApiUrl: string) {
-  return recursiveFetchChildren(contentApiUrl, '${site}/', 3);
+  return recursiveFetchChildren(contentApiUrl, "${site}/", 3);
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 async function revalidatePath(res: any, path: string[] | string) {
   let normalPath;
-  if (typeof path === 'string') {
-    normalPath = path.charAt(0) !== '/' ? '/' + path : path;
+  if (typeof path === "string") {
+    normalPath = path.charAt(0) !== "/" ? "/" + path : path;
   } else {
-    normalPath = '/' + path.join('/');
+    normalPath = "/" + path.join("/");
   }
   return res.revalidate(normalPath);
 }
