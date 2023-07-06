@@ -1,5 +1,6 @@
-import { Component } from 'react';
-import { ServerResponse } from 'http';
+import { ServerResponse } from "http";
+
+import { Component } from "react";
 
 type ErrorProps = {
   code?: string;
@@ -13,7 +14,7 @@ export default class Error extends Component<ErrorProps> {
         <h1>
           {this.props.code
             ? `${this.props.code} - Server Error`
-            : 'Client Side Error'}
+            : "Client Side Error"}
         </h1>
         {this.props.message && <p>{this.props.message}</p>}
       </>
@@ -21,8 +22,9 @@ export default class Error extends Component<ErrorProps> {
   }
 
   static async getInitialProps({
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     res,
-    err
+    err,
   }: {
     res: ServerResponse;
     err: ErrorProps;

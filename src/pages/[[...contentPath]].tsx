@@ -1,8 +1,7 @@
 // Register component mappings
-import '@enonic/nextjs-adapter/baseMappings';
-import '../components/_mappings';
+import "@enonic/nextjs-adapter/baseMappings";
+import "../components/_mappings";
 
-import React from 'react';
 import {
   ContentApiBaseBody,
   Context,
@@ -11,14 +10,14 @@ import {
   getContentApiUrl,
   IS_DEV_MODE,
   RENDER_MODE,
-  XP_COMPONENT_TYPE
-} from '@enonic/nextjs-adapter';
+  XP_COMPONENT_TYPE,
+} from "@enonic/nextjs-adapter";
 import {
   PageComponent,
   PageRegion,
-  RegionTree
-} from '@enonic/nextjs-adapter/guillotine/getMetaData';
-import MainView from '@enonic/nextjs-adapter/views/MainView';
+  RegionTree,
+} from "@enonic/nextjs-adapter/guillotine/getMetaData";
+import MainView from "@enonic/nextjs-adapter/views/MainView";
 
 const query = `query($path: ID) {
                   guillotine {
@@ -40,7 +39,7 @@ const query = `query($path: ID) {
 export async function getStaticProps(context: Context) {
   const path = context.params?.contentPath || [];
   console.info(
-    `Accessing static page ${context.preview ? '(preview) ' : ''}at: ${path}`
+    `Accessing static page ${context.preview ? "(preview) " : ""}at: ${path}`
   );
 
   if (context.preview) {
@@ -52,11 +51,11 @@ export async function getStaticProps(context: Context) {
     data = null,
     meta,
     error = null,
-    page = null
+    page = null,
   } = await fetchContent(path, context);
 
   // HTTP 500
-  if (error && error.code === '500') {
+  if (error && error.code === "500") {
     throw error;
   }
 
@@ -73,11 +72,11 @@ export async function getStaticProps(context: Context) {
     data,
     meta,
     error,
-    page
+    page,
   };
 
   const notFound =
-    (error && error.code === '404') ||
+    (error && error.code === "404") ||
     context.res?.statusCode === 404 ||
     canNotRender ||
     catchAllInNextProdMode ||
@@ -86,7 +85,7 @@ export async function getStaticProps(context: Context) {
   return {
     notFound,
     props,
-    revalidate: 3600 // In seconds, meaning every hour
+    revalidate: 3600, // In seconds, meaning every hour
   };
 }
 
@@ -103,11 +102,11 @@ function populateXPHeaders(context: Context) {
 
 export async function getStaticPaths() {
   const contentApiUrl = getContentApiUrl();
-  const paths = await recursiveFetchChildren(contentApiUrl, '${site}/', 4);
+  const paths = await recursiveFetchChildren(contentApiUrl, "${site}/", 4);
 
   return {
     paths: paths,
-    fallback: 'blocking'
+    fallback: "blocking",
   };
 }
 
@@ -119,6 +118,7 @@ export async function recursiveFetchChildren(
   contentApiUrl: string,
   path: string,
   maxLevel = 3,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   filter: (content: any) => boolean = filterUnderscores
 ): Promise<Item[]> {
   return doRecursiveFetch(contentApiUrl, path, maxLevel, filter);
@@ -134,8 +134,8 @@ function collectPageComponentUrls(
       if (comp.type !== XP_COMPONENT_TYPE.LAYOUT) {
         items.push({
           params: {
-            contentPath: `${contentPath}/_/component${comp.path}`.split('/')
-          }
+            contentPath: `${contentPath}/_/component${comp.path}`.split("/"),
+          },
         });
       } else if (comp.regions) {
         const subUrls = collectPageComponentUrls(comp.regions, contentPath);
@@ -152,29 +152,31 @@ async function doRecursiveFetch(
   contentApiUrl: string,
   path: string,
   maxLevel = 0,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   filter?: (content: any) => boolean,
   paths?: Item[],
   currLevel = 1
 ): Promise<Item[]> {
   const body: ContentApiBaseBody = {
     query,
-    variables: { path }
+    variables: { path },
   };
 
   const result = await fetchGuillotine(contentApiUrl, body);
 
   return result?.guillotine?.getChildren.reduce(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     async (prevPromise: Promise<Item[]>, child: any) => {
       let prev = await prevPromise;
       if (filter && !filter(child)) {
         return prev;
       }
 
-      const contentPath = child._path.replace(`/${child.site?._name}/`, '');
+      const contentPath = child._path.replace(`/${child.site?._name}/`, "");
       prev.push({
         params: {
-          contentPath: contentPath.split('/')
-        }
+          contentPath: contentPath.split("/"),
+        },
       });
 
       // also push all the component urls
@@ -190,8 +192,8 @@ async function doRecursiveFetch(
 
       if (
         (maxLevel === 0 || currLevel < maxLevel) &&
-        (child.contentType?.name === 'base:folder' ||
-          child.contentType?.superType === 'base:folder')
+        (child.contentType?.name === "base:folder" ||
+          child.contentType?.superType === "base:folder")
       ) {
         await doRecursiveFetch(
           contentApiUrl,
@@ -207,15 +209,16 @@ async function doRecursiveFetch(
     paths || [
       {
         params: {
-          contentPath: ['']
-        }
-      }
+          contentPath: [""],
+        },
+      },
     ]
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function filterUnderscores(child: any): boolean {
-  return child._name && !child._name.startsWith('_');
+  return child._name && !child._name.startsWith("_");
 }
 
 export default MainView;

@@ -1,12 +1,12 @@
-import { PORTAL_COMPONENT_ATTRIBUTE } from '@enonic/nextjs-adapter';
+import { PORTAL_COMPONENT_ATTRIBUTE } from "@enonic/nextjs-adapter";
 import Document, {
   DocumentContext,
   Head,
   Html,
   Main,
-  NextScript
-} from 'next/document';
-import React from 'react';
+  NextScript,
+} from "next/document";
+import React from "react";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -17,8 +17,8 @@ class MyDocument extends Document {
 
   render() {
     const bodyAttrs: { [key: string]: string } = {
-      className: 'edit',
-      [PORTAL_COMPONENT_ATTRIBUTE]: 'page'
+      className: "edit",
+      [PORTAL_COMPONENT_ATTRIBUTE]: "page",
     };
 
     return (

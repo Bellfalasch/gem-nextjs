@@ -1,15 +1,14 @@
 // Register component mappings
-import '@enonic/nextjs-adapter/baseMappings';
-import '../components/_mappings';
+import "@enonic/nextjs-adapter/baseMappings";
+import "../components/_mappings";
 
-import React from 'react';
 import {
   Context,
   fetchContent,
   IS_DEV_MODE,
-  RENDER_MODE
-} from '@enonic/nextjs-adapter';
-import MainView from '@enonic/nextjs-adapter/views/MainView';
+  RENDER_MODE,
+} from "@enonic/nextjs-adapter";
+import MainView from "@enonic/nextjs-adapter/views/MainView";
 
 // TODO: Components are now handled by [[...contentPath]].tsx
 //  Keeping for backwards compatibility
@@ -22,11 +21,11 @@ export async function getServerSideProps(context: Context) {
     data = null,
     meta,
     error = null,
-    page = null
+    page = null,
   } = await fetchContent(path, context);
 
   // HTTP 500
-  if (error && error.code === '500') {
+  if (error && error.code === "500") {
     throw error;
   }
 
@@ -38,18 +37,18 @@ export async function getServerSideProps(context: Context) {
     data,
     meta,
     error,
-    page
+    page,
   };
 
   const notFound =
-    (error && error.code === '404') ||
+    (error && error.code === "404") ||
     context.res?.statusCode === 404 ||
     catchAllInNextProdMode ||
     undefined;
 
   return {
     notFound,
-    props
+    props,
   };
 }
 

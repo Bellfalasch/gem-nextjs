@@ -1,15 +1,14 @@
 // Register component mappings
-import '@enonic/nextjs-adapter/baseMappings';
-import '../components/_mappings';
+import "@enonic/nextjs-adapter/baseMappings";
+import "../components/_mappings";
 
-import React from 'react';
 import {
   Context,
   fetchContent,
   IS_DEV_MODE,
-  RENDER_MODE
-} from '@enonic/nextjs-adapter';
-import Empty from '@enonic/nextjs-adapter/views/Empty';
+  RENDER_MODE,
+} from "@enonic/nextjs-adapter";
+import Empty from "@enonic/nextjs-adapter/views/Empty";
 
 export async function getServerSideProps(context: Context) {
   const path = context.query.contentPath || [];
@@ -19,7 +18,7 @@ export async function getServerSideProps(context: Context) {
   const { meta, error = null } = await fetchContent(path, context);
 
   // HTTP 500
-  if (error && error.code === '500') {
+  if (error && error.code === "500") {
     throw error;
   }
 
@@ -36,21 +35,21 @@ export async function getServerSideProps(context: Context) {
     meta?.renderMode === RENDER_MODE.NEXT && !IS_DEV_MODE && meta?.catchAll;
 
   const notFound =
-    (error && error.code === '404') ||
+    (error && error.code === "404") ||
     context.res?.statusCode === 404 ||
     catchAllInNextProdMode ||
     undefined;
 
   return {
     notFound,
-    props: {}
+    props: {},
   };
 }
 
 function isRenderableRequestEditMode(context: Context): boolean {
   const method = context.req.method;
-  const mode = context.query['mode'];
-  return method === 'HEAD' && mode === RENDER_MODE.EDIT;
+  const mode = context.query["mode"];
+  return method === "HEAD" && mode === RENDER_MODE.EDIT;
 }
 
 export default Empty;

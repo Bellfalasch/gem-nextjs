@@ -12,8 +12,6 @@ module.exports = {
     "plugin:import/typescript",
   ],
   rules: {
-    // <--! Previous rules come here !-->
-
     // turn on errors for missing imports
     "import/no-unresolved": "error",
     // 'import/no-named-as-default-member': 'off',
