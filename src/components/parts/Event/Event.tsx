@@ -35,14 +35,13 @@ const Event: React.FC = (props: FetchContentResult) => {
   const endTime = format(new Date(endDateTime), "HH:mm");
 
   const calculateTimeLeft = () => {
-    const targetDate = new Date(`${startDate}T${startTime}`).getTime();
+    const targetDate = new Date(startDateTime).getTime();
     const difference = targetDate - new Date().getTime();
     let timeLeft = {
       days: 0,
       hours: 0,
       minutes: 0,
     };
-
     if (difference > 0) {
       timeLeft = {
         days: Math.floor(difference / (1000 * 60 * 60 * 24)),
