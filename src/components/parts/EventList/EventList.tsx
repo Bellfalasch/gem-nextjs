@@ -2,9 +2,9 @@ import { getUrl } from "@enonic/nextjs-adapter";
 import { PartProps } from "@enonic/nextjs-adapter/views/BasePart";
 import React from "react";
 
-import styles from "./ChildList.module.css";
+import styles from "./EventList.module.css";
 
-const ChildList = (props: PartProps) => {
+const EventList = (props: PartProps) => {
   const { data, meta } = props;
   const children = data.get.children;
   if (!children || children.length === 0) {
@@ -39,4 +39,4 @@ const ChildList = (props: PartProps) => {
   );
 };
 
-export default ChildList;
+export default EventList;
