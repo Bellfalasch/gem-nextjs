@@ -79,10 +79,10 @@ function MyApp({ Component, pageProps }: AppProps<FetchContentResult>) {
         }}
       >
         <Header
-          title="🔥 Gjensidige"
           meta={pageProps.meta}
           theme={theme}
           partList={partList}
+          title={""}
         />
         <main
           style={{
