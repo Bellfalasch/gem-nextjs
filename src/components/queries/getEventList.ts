@@ -1,4 +1,4 @@
-const getList = `
+const getEventList = `
   query ($path:ID!, $order:String) {
     guillotine {
       getSite {
@@ -16,4 +16,4 @@ const getList = `
   }
 `;
 
-export default getList;
+export default getEventList;
