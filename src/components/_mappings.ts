@@ -3,9 +3,9 @@ import { ComponentRegistry } from "@enonic/nextjs-adapter/ComponentRegistry";
 
 import ThreeColumnLayout from "./layouts/ThreeColumnLayout";
 import TwoColumnLayout from "./layouts/TwoColumnLayout";
-import ChildList from "./parts/ChildList/ChildList";
 import Countdown from "./parts/CountDown/CountDown";
 import Event from "./parts/Event/Event";
+import EventList from "./parts/EventList/EventList";
 import Faq from "./parts/Faq/Faq";
 import Image from "./parts/Image/Image";
 import Maps from "./parts/Maps/Maps";
@@ -13,8 +13,8 @@ import Rsvp from "./parts/Rsvp/Rsvp";
 import WeatherWidget from "./parts/WeatherWidget/WeatherWidget";
 import { commonQuery, commonVariables } from "./queries/common";
 import getEvent from "./queries/getEvent";
+import getEventList from "./queries/getEventList";
 import getImage from "./queries/getImage";
-import getList from "./queries/getList";
 import MainPage from "../pages/Main";
 
 // You can set common query for all views here
@@ -49,9 +49,9 @@ ComponentRegistry.addLayout(`${APP_NAME}:3-column`, {
 // *********************
 // Part mappings
 // *********************
-ComponentRegistry.addPart(`${APP_NAME}:child-list`, {
-  query: getList,
-  view: ChildList,
+ComponentRegistry.addPart(`${APP_NAME}:eventlist`, {
+  query: getEventList,
+  view: EventList,
 });
 
 ComponentRegistry.addPart(`${APP_NAME}:maps`, {
