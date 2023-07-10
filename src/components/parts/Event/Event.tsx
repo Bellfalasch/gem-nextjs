@@ -26,6 +26,7 @@ const Event: React.FC = (props: FetchContentResult) => {
     location,
     showCountdown,
     attendees,
+    eventPrice,
   } = data;
   const meta = props.meta;
   const { _path } = parent;
@@ -66,6 +67,11 @@ const Event: React.FC = (props: FetchContentResult) => {
           <Earth className={styles.icon} />
           <Text>{location}</Text>
         </div>
+      )}
+      {eventPrice > 0 && (
+        <Text>
+          Egenandel: <strong>{eventPrice}</strong> kr
+        </Text>
       )}
       <TextContainer className={styles.container}>
         <div className={styles.columnise}>

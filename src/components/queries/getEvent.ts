@@ -16,6 +16,7 @@ query($path:ID!){
           openForRegistration
           closedForRegistration
           allergy
+          eventPrice
         }
       }
       parent {
