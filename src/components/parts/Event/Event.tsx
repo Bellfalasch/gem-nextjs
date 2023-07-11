@@ -1,5 +1,6 @@
 import type { FetchContentResult } from "@enonic/nextjs-adapter";
 import { getUrl } from "@enonic/nextjs-adapter";
+import { Badge } from "@gjensidige/core-components/lib/badge";
 import { TextContainer } from "@gjensidige/core-components/lib/text-container";
 import { DateRange } from "@gjensidige/nci-core-icons/lib/date-range";
 import { Earth } from "@gjensidige/nci-core-icons/lib/products/earth";
@@ -68,11 +69,7 @@ const Event: React.FC = (props: FetchContentResult) => {
           <Text>{location}</Text>
         </div>
       )}
-      {eventPrice > 0 && (
-        <Text>
-          Egenandel: <strong>{eventPrice}</strong> kr
-        </Text>
-      )}
+      {eventPrice > 0 && <Badge type="suggestion">{eventPrice}kr</Badge>}
       <TextContainer className={styles.container}>
         <div className={styles.columnise}>
           <Title tag="h4" size="6">
