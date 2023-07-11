@@ -3,7 +3,6 @@ import { ComponentRegistry } from "@enonic/nextjs-adapter/ComponentRegistry";
 
 import ThreeColumnLayout from "./layouts/ThreeColumnLayout";
 import TwoColumnLayout from "./layouts/TwoColumnLayout";
-import Countdown from "./parts/CountDown/CountDown";
 import Event from "./parts/Event/Event";
 import EventList from "./parts/EventList/EventList";
 import Faq from "./parts/Faq/Faq";
@@ -56,10 +55,6 @@ ComponentRegistry.addPart(`${APP_NAME}:eventlist`, {
 
 ComponentRegistry.addPart(`${APP_NAME}:maps`, {
   view: Maps,
-});
-
-ComponentRegistry.addPart(`${APP_NAME}:countdown`, {
-  view: Countdown,
 });
 
 ComponentRegistry.addPart(`${APP_NAME}:weatherwidget`, {
