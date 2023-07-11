@@ -11,6 +11,8 @@ export interface HeaderProps {
   partList: string[]; // Add partList to the props
 }
 
+const abbreviations = ["FAQ", "RSVP"];
+
 const Header = ({ meta, theme, partList }: HeaderProps) => {
   //console.log(partList); //the console.log of partList is resulting [ 'event', 'faq' ]
   return (
@@ -35,7 +37,11 @@ const Header = ({ meta, theme, partList }: HeaderProps) => {
           <ul className={styles.veffectlink}>
             {partList.map((part, index) => (
               <li key={index}>
-                <a href={`#partAnchor_${part}`}>{part}</a>
+                <a href={`#partAnchor_${part}`}>
+                  {abbreviations.includes(part.toUpperCase())
+                    ? part.toUpperCase()
+                    : part[0].toUpperCase() + part.slice(1)}
+                </a>
               </li>
             ))}
           </ul>
