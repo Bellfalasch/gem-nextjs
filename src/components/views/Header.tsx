@@ -31,13 +31,15 @@ const Header = ({ meta, theme, partList }: HeaderProps) => {
             </svg>
           </a>
         </div>
-        <ul className={styles.veffectlink}>
-          {partList.map((part, index) => (
-            <li key={index}>
-              <a href={`#partAnchor_${part}`}>{part}</a>
-            </li>
-          ))}
-        </ul>
+        {meta.path !== "" && (
+          <ul className={styles.veffectlink}>
+            {partList.map((part, index) => (
+              <li key={index}>
+                <a href={`#partAnchor_${part}`}>{part}</a>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
       <div className={classNames(styles["subheader"], styles[theme])}></div>
     </header>
