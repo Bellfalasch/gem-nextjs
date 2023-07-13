@@ -1,5 +1,7 @@
 import { getUrl } from "@enonic/nextjs-adapter";
 import { PartProps } from "@enonic/nextjs-adapter/views/BasePart";
+import { Text } from "@gjensidige/nci-core-typography/lib/text";
+import { format } from "date-fns";
 import React from "react";
 
 import styles from "./EventList.module.css";
@@ -29,10 +31,16 @@ const EventList = (props: PartProps) => {
               <li key={i} className={styles.li}>
                 <a className={styles.a} href={getUrl(child._path, meta)}>
                   {child.displayName}
-                  {console.log(child.data)}
+                  {console.log(child)}
                 </a>
-                <p>{child.data.location}</p>
-                <p>{child.data.attendees}</p>
+                <Text>{child.data.location}</Text>
+                <Text>{child.data.attendees}</Text>
+                <Text>
+                  {format(new Date(child.data.startDateTime), "dd.MM.yyyy")}
+                </Text>
+                <Text>
+                  {format(new Date(child.data.startDateTime), "HH:mm")}
+                </Text>
               </li>
             ))
           }
