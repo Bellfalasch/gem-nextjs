@@ -29,7 +29,10 @@ const EventList = (props: PartProps) => {
               <li key={i} className={styles.li}>
                 <a className={styles.a} href={getUrl(child._path, meta)}>
                   {child.displayName}
+                  {console.log(child.data)}
                 </a>
+                <p>{child.data.location}</p>
+                <p>{child.data.attendees}</p>
               </li>
             ))
           }
