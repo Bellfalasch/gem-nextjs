@@ -38,7 +38,9 @@ const Header = ({ meta, theme, partList }: HeaderProps) => {
             {partList.map((part, index) => (
               <li key={index}>
                 <a href={`#partAnchor_${part}`}>
-                  {abbreviations.includes(part.toUpperCase())
+                  {part === "event"
+                    ? "Start"
+                    : abbreviations.includes(part.toUpperCase())
                     ? part.toUpperCase()
                     : part[0].toUpperCase() + part.slice(1)}
                 </a>
