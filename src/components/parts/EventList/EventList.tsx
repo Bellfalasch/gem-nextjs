@@ -31,16 +31,15 @@ const EventList = (props: PartProps) => {
               <li key={i} className={styles.li}>
                 <a className={styles.a} href={getUrl(child._path, meta)}>
                   {child.displayName}
-                  {console.log(child)}
+                  <Text>{child.data.location}</Text>
+                  <Text>{child.data.attendees}</Text>
+                  <Text>
+                    {format(new Date(child.data.startDateTime), "dd.MM.yyyy")}
+                  </Text>
+                  <Text>
+                    {format(new Date(child.data.startDateTime), "HH:mm")}
+                  </Text>
                 </a>
-                <Text>{child.data.location}</Text>
-                <Text>{child.data.attendees}</Text>
-                <Text>
-                  {format(new Date(child.data.startDateTime), "dd.MM.yyyy")}
-                </Text>
-                <Text>
-                  {format(new Date(child.data.startDateTime), "HH:mm")}
-                </Text>
               </li>
             ))
           }

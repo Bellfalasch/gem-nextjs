@@ -1,21 +1,26 @@
 .container {
+  display: flex;
 }
 
 .ul {
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
   list-style-type: none;
   margin: 0;
   padding: 0;
-  text-align: center;
+  width: 100%;
 }
 
 .ul li {
-  height: 150px;
-  width: 289px;
+  height: 200px;
+  width: 47%;
   margin: 10px;
-  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: #00000044 0 0 10px;
+  text-align: center;
 }
 
 .ul a {
