@@ -15,7 +15,7 @@
 }
 
 .ul li {
-  height: 200px;
+  height: 250px;
   width: 47%;
   margin: 10px;
   border-radius: 10px;
@@ -30,4 +30,32 @@
   position: relative;
   color: black;
   padding: 0.5em 0;
+}
+
+.title {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.month {
+  color: red;
+  text-align: start;
+  margin-left: 15px;
+}
+
+.day {
+  text-align: start;
+  margin-left: 20px;
+}
+
+.location {
+  display: block;
+  font-size: 1em;
+  text-align: end;
+  margin-right: 15px;
+}
+
+.subheader {
+  background-color: azure;
+  height: 65%;
 }

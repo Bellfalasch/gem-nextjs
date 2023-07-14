@@ -29,17 +29,23 @@ const EventList = (props: PartProps) => {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             filteredChildren.map((child: any, i: number) => (
               <li key={i} className={styles.li}>
-                <a className={styles.a} href={getUrl(child._path, meta)}>
-                  {child.displayName}
-                  <Text>{child.data.location}</Text>
-                  <Text>{child.data.attendees}</Text>
-                  <Text>
-                    {format(new Date(child.data.startDateTime), "dd.MM.yyyy")}
+                <div className={styles.subheader}>
+                  <a className={styles.a} href={getUrl(child._path, meta)}>
+                    <Text className={styles.title}>{child.displayName}</Text>
+                  </a>
+                </div>
+                <div className={styles.subHeaderContainer}>
+                  <Text className={styles.month}>
+                    {format(
+                      new Date(child.data.startDateTime),
+                      "MMM"
+                    ).toUpperCase()}
                   </Text>
-                  <Text>
-                    {format(new Date(child.data.startDateTime), "HH:mm")}
+                  <Text className={styles.day}>
+                    {format(new Date(child.data.startDateTime), "dd")}
                   </Text>
-                </a>
+                  <Text className={styles.location}>{child.data.location}</Text>
+                </div>
               </li>
             ))
           }
