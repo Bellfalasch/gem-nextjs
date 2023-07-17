@@ -1,5 +1,6 @@
 import type { FetchContentResult } from "@enonic/nextjs-adapter";
 import { Default } from "@gjensidige/core-components/lib/alerts/default";
+import { Button } from "@gjensidige/core-components/lib/button";
 import { Checkbox } from "@gjensidige/core-components/lib/forms/checkbox";
 import { Input } from "@gjensidige/core-components/lib/forms/input";
 import { RadioButton } from "@gjensidige/core-components/lib/forms/radiobutton";
@@ -8,6 +9,25 @@ import { format, getUnixTime } from "date-fns";
 import React, { useState } from "react";
 
 import style from "./Rsvp.module.css";
+
+function sendForm() {
+  //event.preventDefault();
+  const options = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: '{"eventId":"dung3","name":"Test","email":"tesdt222@example.com","rsvp":"yes","allergy":"No"}',
+  };
+
+  fetch(
+    "http://localhost:8080/admin/site/preview/moviedb/draft/gem/_/service/com.gjensidige.internal.gem/rsvp",
+    options
+  )
+    .then((response) => response.json())
+    .then((response) => console.log(response))
+    .catch((err) => console.error(err));
+
+  //return;
+}
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore force work
@@ -44,141 +64,150 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
     <div id="partAnchor_rsvp" className={style.rsvpPart}>
       {showForm ? (
         <>
-          <Default
-            closable={false}
-            showIcon={true}
-            text={`Registration will be closing at ${closedDate} - ${closedTime}`}
-            title=""
-          />
-          <Title tag="h2" size="2">
-            Are you coming?
-          </Title>
-          <div className={style.rsvpAttending}>
-            <RadioButton
-              id="RadioButton-1"
-              name="attending?"
-              className="visual-test-override"
-              label="Im attending"
-              value="attending"
-              withBackground={false}
+          <form
+            method="post"
+            action="http://localhost:8080/admin/site/preview/moviedb/draft/gem/_/service/com.gjensidige.internal.gem/rsvp"
+            onSubmit={sendForm}
+          >
+            <Default
+              closable={false}
+              showIcon={true}
+              text={`Registration will be closing at ${closedDate} - ${closedTime}`}
+              title=""
             />
-            <RadioButton
-              id="RadioButton-2"
-              name="attending?"
-              className="visual-test-override"
-              label="Not attending"
-              value="not attending"
-              withBackground={false}
-            />
-          </div>
-          {allergy && (
-            <>
-              <Title tag="h4" size="4">
-                Do you have allergies or food intolerances?
-              </Title>
-              <div className={style.rsvpIntolerance}>
-                <Checkbox
-                  id="Checkbox-1"
-                  name="allergy"
-                  label="Nei"
-                  value="Nei"
-                  defaultChecked
-                />
-                <Checkbox
-                  id="Checkbox-2"
-                  name="allergy"
-                  label="Bløtdyr"
-                  value="Bløtdyr"
-                />
-                <Checkbox
-                  id="Checkbox-3"
-                  name="allergy"
-                  label="Egg"
-                  value="Egg"
-                />
-                <Checkbox
-                  id="Checkbox-4"
-                  name="allergy"
-                  label="Fisk"
-                  value="Fisk"
-                />
-                <Checkbox
-                  id="Checkbox-5"
-                  name="allergy"
-                  label="Gluten"
-                  value="Gluten"
-                />
-                <Checkbox
-                  id="Checkbox-6"
-                  name="allergy"
-                  label="Lupin"
-                  value="Lupin"
-                />
-                <Checkbox
-                  id="Checkbox-7"
-                  name="allergy"
-                  label="Melk"
-                  value="Melk"
-                />
-                <Checkbox
-                  id="Checkbox-8"
-                  name="allergy"
-                  label="Nøtter"
-                  value="Nøtter"
-                />
-                <Checkbox
-                  id="Checkbox-9"
-                  name="allergy"
-                  label="Peanøtter"
-                  value="Peanøtter"
-                />
-                <Checkbox
-                  id="Checkbox-10"
-                  name="allergy"
-                  label="Selleri"
-                  value="Selleri"
-                />
-                <Checkbox
-                  id="Checkbox-11"
-                  name="allergy"
-                  label="Sennep"
-                  value="Sennep"
-                />
-                <Checkbox
-                  id="Checkbox-12"
-                  name="allergy"
-                  label="Sesamfrø"
-                  value="Sesamfrø"
-                />
-                <Checkbox
-                  id="Checkbox-13"
-                  name="allergy"
-                  label="Skalldyr"
-                  value="Skalldyr"
-                />
-                <Checkbox
-                  id="Checkbox-14"
-                  name="allergy"
-                  label="Soya"
-                  value="Soya"
-                />
-                <Checkbox
-                  id="Checkbox-15"
-                  name="allergy"
-                  label="Svoveldioksid/sulfitter"
-                  value="Svoveldioksid/sulfitter"
-                />
-                <Input
-                  id="input-1D"
-                  // helpText="If possible we can help"
-                  labelText="Something else we should know about?"
-                  name="annet melding"
-                  onChange={(event) => setValue(event.currentTarget.value)}
-                  value={value}
-                />
-              </div>
-            </>
-          )}
+            <Title tag="h2" size="2">
+              Are you coming?
+            </Title>
+            <div className={style.rsvpAttending}>
+              <RadioButton
+                id="RadioButton-1"
+                name="attending?"
+                className="visual-test-override"
+                label="Im attending"
+                value="attending"
+                withBackground={false}
+              />
+              <RadioButton
+                id="RadioButton-2"
+                name="attending?"
+                className="visual-test-override"
+                label="Not attending"
+                value="not attending"
+                withBackground={false}
+              />
+            </div>
+            {allergy && (
+              <>
+                <Title tag="h4" size="4">
+                  Do you have allergies or food intolerances?
+                </Title>
+                <div className={style.rsvpIntolerance}>
+                  <Checkbox
+                    id="Checkbox-1"
+                    name="allergy"
+                    label="Nei"
+                    value="Nei"
+                    defaultChecked
+                  />
+                  <Checkbox
+                    id="Checkbox-2"
+                    name="allergy"
+                    label="Bløtdyr"
+                    value="Bløtdyr"
+                  />
+                  <Checkbox
+                    id="Checkbox-3"
+                    name="allergy"
+                    label="Egg"
+                    value="Egg"
+                  />
+                  <Checkbox
+                    id="Checkbox-4"
+                    name="allergy"
+                    label="Fisk"
+                    value="Fisk"
+                  />
+                  <Checkbox
+                    id="Checkbox-5"
+                    name="allergy"
+                    label="Gluten"
+                    value="Gluten"
+                  />
+                  <Checkbox
+                    id="Checkbox-6"
+                    name="allergy"
+                    label="Lupin"
+                    value="Lupin"
+                  />
+                  <Checkbox
+                    id="Checkbox-7"
+                    name="allergy"
+                    label="Melk"
+                    value="Melk"
+                  />
+                  <Checkbox
+                    id="Checkbox-8"
+                    name="allergy"
+                    label="Nøtter"
+                    value="Nøtter"
+                  />
+                  <Checkbox
+                    id="Checkbox-9"
+                    name="allergy"
+                    label="Peanøtter"
+                    value="Peanøtter"
+                  />
+                  <Checkbox
+                    id="Checkbox-10"
+                    name="allergy"
+                    label="Selleri"
+                    value="Selleri"
+                  />
+                  <Checkbox
+                    id="Checkbox-11"
+                    name="allergy"
+                    label="Sennep"
+                    value="Sennep"
+                  />
+                  <Checkbox
+                    id="Checkbox-12"
+                    name="allergy"
+                    label="Sesamfrø"
+                    value="Sesamfrø"
+                  />
+                  <Checkbox
+                    id="Checkbox-13"
+                    name="allergy"
+                    label="Skalldyr"
+                    value="Skalldyr"
+                  />
+                  <Checkbox
+                    id="Checkbox-14"
+                    name="allergy"
+                    label="Soya"
+                    value="Soya"
+                  />
+                  <Checkbox
+                    id="Checkbox-15"
+                    name="allergy"
+                    label="Svoveldioksid/sulfitter"
+                    value="Svoveldioksid/sulfitter"
+                  />
+                  <Input
+                    id="input-1D"
+                    // helpText="If possible we can help"
+                    labelText="Something else we should know about?"
+                    name="annet melding"
+                    onChange={(event) => setValue(event.currentTarget.value)}
+                    value={value}
+                  />
+                </div>
+              </>
+            )}
+            <Button variant="primary" flexible type="submit">
+              Send RSVP
+            </Button>
+          </form>
         </>
       ) : (
         <Default
