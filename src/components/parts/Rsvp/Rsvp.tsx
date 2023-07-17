@@ -4,29 +4,39 @@ import { Button } from "@gjensidige/core-components/lib/button";
 import { Checkbox } from "@gjensidige/core-components/lib/forms/checkbox";
 import { Input } from "@gjensidige/core-components/lib/forms/input";
 import { RadioButton } from "@gjensidige/core-components/lib/forms/radiobutton";
+import { Email } from "@gjensidige/nci-core-icons/lib/email";
 import { Title } from "@gjensidige/nci-core-typography";
 import { format, getUnixTime } from "date-fns";
 import React, { useState } from "react";
 
 import style from "./Rsvp.module.css";
 
-function sendForm() {
-  //event.preventDefault();
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+/* @ts-ignore sdfsf */
+function sendForm(e) {
+  e.preventDefault();
+  const form = e.target;
+  const formData = new FormData(form);
+  const formJson = Object.fromEntries(formData.entries());
+
   const options = {
-    method: "POST",
+    method: form.method,
     headers: { "Content-Type": "application/json" },
-    body: '{"eventId":"dung3","name":"Test","email":"tesdt222@example.com","rsvp":"yes","allergy":"No"}',
+    body: JSON.stringify({
+      eventId: formJson.eventId,
+      name: formJson.name,
+      email: formJson.email,
+      rsvp: formJson.rsvp,
+      allergy: formJson.allergy,
+    }),
   };
 
-  fetch(
-    "http://localhost:8080/admin/site/preview/moviedb/draft/gem/_/service/com.gjensidige.internal.gem/rsvp",
-    options
-  )
+  fetch(form.action, options)
     .then((response) => response.json())
     .then((response) => console.log(response))
     .catch((err) => console.error(err));
 
-  //return;
+  console.log(formJson);
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -60,6 +70,9 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
     showForm = false;
   }
 
+  const [valueName, setValueName] = useState("");
+  const [valueEmail, setValueEmail] = useState("");
+
   return (
     <div id="partAnchor_rsvp" className={style.rsvpPart}>
       {showForm ? (
@@ -78,10 +91,32 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
             <Title tag="h2" size="2">
               Are you coming?
             </Title>
+
+            <input
+              type="hidden"
+              name="eventId"
+              value="49355132-4976-4ea8-a817-39f6b7ded5e0"
+            />
+            <Input
+              id="input-name"
+              labelText="Your name"
+              name="name"
+              onChange={(event) => setValueName(event.currentTarget.value)}
+              value={valueName}
+            />
+            <Input
+              id="input-email"
+              labelText="Your e-mail address"
+              name="email"
+              onChange={(e) => setValueEmail(e.currentTarget.value)}
+              postfixIcon={<Email />}
+              value={valueEmail}
+            />
+
             <div className={style.rsvpAttending}>
               <RadioButton
                 id="RadioButton-1"
-                name="attending?"
+                name="rsvp"
                 className="visual-test-override"
                 label="Im attending"
                 value="attending"
@@ -89,7 +124,7 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
               />
               <RadioButton
                 id="RadioButton-2"
-                name="attending?"
+                name="rsvp"
                 className="visual-test-override"
                 label="Not attending"
                 value="not attending"
