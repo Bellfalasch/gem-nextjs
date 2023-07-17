@@ -78,12 +78,7 @@ function MyApp({ Component, pageProps }: AppProps<FetchContentResult>) {
           paddingTop: `120px`,
         }}
       >
-        <Header
-          meta={pageProps.meta}
-          theme={theme}
-          partList={partList}
-          title={""}
-        />
+        <Header meta={pageProps.meta} theme={theme} partList={partList} />
         <main
           style={{
             margin: `0 auto`,

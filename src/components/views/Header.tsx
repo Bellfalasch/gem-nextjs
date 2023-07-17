@@ -5,7 +5,6 @@ import React from "react";
 import styles from "./Header.module.css";
 
 export interface HeaderProps {
-  title: string;
   meta: MetaData;
   theme: string;
   partList: string[]; // Add partList to the props
