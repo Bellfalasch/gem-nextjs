@@ -36,13 +36,17 @@ const EventList = (props: PartProps) => {
                 </div>
                 <div className={styles.subHeaderContainer}>
                   <Text className={styles.month}>
-                    {format(
-                      new Date(child.data.startDateTime),
-                      "MMM"
-                    ).toUpperCase()}
+                    {child.data.startDateTime
+                      ? format(
+                          new Date(child.data.startDateTime),
+                          "MMM"
+                        ).toUpperCase()
+                      : null}
                   </Text>
                   <Text className={styles.day}>
-                    {format(new Date(child.data.startDateTime), "dd")}
+                    {child.data.startDateTime
+                      ? format(new Date(child.data.startDateTime), "dd")
+                      : null}
                   </Text>
                   <Text className={styles.location}>{child.data.location}</Text>
                 </div>
