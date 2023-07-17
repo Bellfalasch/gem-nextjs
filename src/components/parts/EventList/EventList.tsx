@@ -1,5 +1,7 @@
 import { getUrl } from "@enonic/nextjs-adapter";
 import { PartProps } from "@enonic/nextjs-adapter/views/BasePart";
+import { Text } from "@gjensidige/nci-core-typography/lib/text";
+import { format } from "date-fns";
 import React from "react";
 
 import styles from "./EventList.module.css";
@@ -27,9 +29,23 @@ const EventList = (props: PartProps) => {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             filteredChildren.map((child: any, i: number) => (
               <li key={i} className={styles.li}>
-                <a className={styles.a} href={getUrl(child._path, meta)}>
-                  {child.displayName}
-                </a>
+                <div className={styles.subheader}>
+                  <a className={styles.a} href={getUrl(child._path, meta)}>
+                    <Text className={styles.title}>{child.displayName}</Text>
+                  </a>
+                </div>
+                <div className={styles.subHeaderContainer}>
+                  <Text className={styles.month}>
+                    {format(
+                      new Date(child.data.startDateTime),
+                      "MMM"
+                    ).toUpperCase()}
+                  </Text>
+                  <Text className={styles.day}>
+                    {format(new Date(child.data.startDateTime), "dd")}
+                  </Text>
+                  <Text className={styles.location}>{child.data.location}</Text>
+                </div>
               </li>
             ))
           }

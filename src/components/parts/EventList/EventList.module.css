@@ -1,46 +1,61 @@
 .container {
   display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
   list-style-type: none;
   margin: 0;
   padding: 0;
-  text-align: center;
+  width: 100%;
 }
 
 .ul li {
-  min-width: 5em;
-  margin: 0 0.5em;
+  height: 250px;
+  width: 47%;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: #00000044 0 0 10px;
+  text-align: center;
 }
 
 .ul a {
   text-decoration: none;
   display: block;
-  font-family:Arial;
+  font-family: Arial;
   position: relative;
   color: black;
-  padding:.5em 0
+  padding: 0.5em 0;
 }
 
-.ul a:hover {
-  color: #c69f73;
+.title {
+  font-size: 1.5em;
+  text-align: center;
 }
 
-.ul a:hover::before {
-  left: 0;
-  width: 100%;
+.month {
+  color: red;
+  text-align: start;
+  margin-left: 15px;
 }
 
-.ul a::before {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: .5px;
-  background-color: #c69f73;
-  bottom: calc(-1px);
-  right: 0;
-  transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+.day {
+  text-align: start;
+  margin-left: 20px;
+}
+
+.location {
+  display: block;
+  font-size: 1em;
+  text-align: end;
+  margin-right: 15px;
+}
+
+.subheader {
+  background-color: azure;
+  height: 65%;
 }
