@@ -1,0 +1,61 @@
+.container {
+  display: flex;
+}
+
+.ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.ul li {
+  height: 250px;
+  width: 47%;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: #00000044 0 0 10px;
+  text-align: center;
+}
+
+.ul a {
+  text-decoration: none;
+  display: block;
+  font-family: Arial;
+  position: relative;
+  color: black;
+  padding: 0.5em 0;
+}
+
+.title {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.month {
+  color: red;
+  text-align: start;
+  margin-left: 15px;
+}
+
+.day {
+  text-align: start;
+  margin-left: 20px;
+}
+
+.location {
+  display: block;
+  font-size: 1em;
+  text-align: end;
+  margin-right: 15px;
+}
+
+.subheader {
+  background-color: azure;
+  height: 65%;
+}
