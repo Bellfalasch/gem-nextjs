@@ -14,6 +14,7 @@ const getEventList = `
             displayName
             ... on ${APP_NAME_UNDERSCORED}_Event {
               data {
+                image
                 description
                 location
                 startDateTime

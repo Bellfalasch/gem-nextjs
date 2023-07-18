@@ -7,6 +7,7 @@ query($path:ID!){
       displayName
       ... on ${APP_NAME_UNDERSCORED}_Event {
         data {
+          image
           theme
           description
           location
