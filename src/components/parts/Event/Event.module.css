@@ -1,6 +1,7 @@
 .eventPart {
     margin: 0 20px;
     padding-bottom: 20px;
+    color: rgb(0, 0, 0);
 }
 
 .container {
@@ -9,6 +10,11 @@
     border-radius: 10px;
     width: 100%;
 }
+
+.eventPart .container {
+    max-width: unset;
+}
+
 .container > div > div {
     display: flex;
     justify-content: space-between;

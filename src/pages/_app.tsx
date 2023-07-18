@@ -84,7 +84,8 @@ function MyApp({ Component, pageProps }: AppProps<FetchContentResult>) {
             margin: `0 auto`,
             maxWidth: 960,
             padding: `1rem`,
-            backgroundColor: `#ffffffee`,
+            background: `linear-gradient(to bottom, lightblue, rgb(232, 232, 232) 50%, white)
+            `,
             borderRadius: `10px`,
             boxShadow: `#00000044 0 0 10px`,
           }}

@@ -1,11 +1,11 @@
 import type { FetchContentResult } from "@enonic/nextjs-adapter";
 import { getUrl } from "@enonic/nextjs-adapter";
 import { Badge } from "@gjensidige/core-components/lib/badge";
+import { Button } from "@gjensidige/core-components/lib/button";
 import { TextContainer } from "@gjensidige/core-components/lib/text-container";
 import { DateRange } from "@gjensidige/nci-core-icons/lib/date-range";
 import { Earth } from "@gjensidige/nci-core-icons/lib/products/earth";
 import { Valuables } from "@gjensidige/nci-core-icons/lib/products/valuables";
-import { Link } from "@gjensidige/nci-core-typography/lib/link";
 import { Text } from "@gjensidige/nci-core-typography/lib/text";
 import { Title } from "@gjensidige/nci-core-typography/lib/title";
 import classNames from "classnames";
@@ -59,14 +59,16 @@ const Event: React.FC = (props: FetchContentResult) => {
 
   return (
     <div id="partAnchor_event" className={styles.eventPart}>
-      <Title tag="h1" size="2">
+      <Title tag="h1" size="2" className={styles.title}>
         {displayName}
       </Title>
-      <Text>{description}</Text>
       {location && (
         <div className={classNames([styles.iconAndTextCell, styles.fullRow])}>
           <Earth className={styles.icon} />
-          <Text>{location}</Text>
+          <Text className={styles.location}>
+            <strong>Location: </strong>
+            {location}
+          </Text>
         </div>
       )}
       {eventPrice > 0 && <Badge type="suggestion">{eventPrice}kr</Badge>}
@@ -129,7 +131,10 @@ const Event: React.FC = (props: FetchContentResult) => {
           </div>
         </div>
       )}
-      <Link href={getUrl(_path, meta)}>Back to Events ...</Link>
+      <Text>{description}</Text>
+      <Button variant="secondary" href={getUrl(_path, meta)}>
+        Back to Events
+      </Button>
     </div>
   );
 };
