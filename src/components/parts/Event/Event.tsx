@@ -1,11 +1,11 @@
 import type { FetchContentResult } from "@enonic/nextjs-adapter";
 import { getUrl } from "@enonic/nextjs-adapter";
 import { Badge } from "@gjensidige/core-components/lib/badge";
+import { Button } from "@gjensidige/core-components/lib/button";
 import { TextContainer } from "@gjensidige/core-components/lib/text-container";
 import { DateRange } from "@gjensidige/nci-core-icons/lib/date-range";
 import { Earth } from "@gjensidige/nci-core-icons/lib/products/earth";
 import { Valuables } from "@gjensidige/nci-core-icons/lib/products/valuables";
-import { Link } from "@gjensidige/nci-core-typography/lib/link";
 import { Text } from "@gjensidige/nci-core-typography/lib/text";
 import { Title } from "@gjensidige/nci-core-typography/lib/title";
 import classNames from "classnames";
@@ -21,6 +21,7 @@ const Event: React.FC = (props: FetchContentResult) => {
   const { displayName, data, parent } = props.data?.get as any;
   if (!data) return;
   const {
+    theme,
     startDateTime,
     endDateTime,
     description,
@@ -58,79 +59,88 @@ const Event: React.FC = (props: FetchContentResult) => {
   const [timeLeft] = useState(calculateTimeLeft());
 
   return (
-    <div id="partAnchor_event" className={styles.eventPart}>
-      <Title tag="h1" size="2">
-        {displayName}
-      </Title>
-      <Text>{description}</Text>
-      {location && (
-        <div className={classNames([styles.iconAndTextCell, styles.fullRow])}>
-          <Earth className={styles.icon} />
-          <Text>{location}</Text>
-        </div>
-      )}
-      {eventPrice > 0 && <Badge type="suggestion">{eventPrice}kr</Badge>}
-      <TextContainer className={styles.container}>
-        <div className={styles.columnise}>
-          <Title tag="h4" size="6">
-            Begins at:
-          </Title>
-          {startDate && (
-            <div className={styles.iconAndTextCell}>
-              <DateRange className={styles.icon} />
-              <Text>
-                <strong>{format(new Date(startDateTime), "dd.MM.yyyy")}</strong>
-              </Text>
-            </div>
-          )}
-          {startTime && (
-            <div className={styles.iconAndTextCell}>
-              <Valuables className={styles.icon} />
-              <Text>{startTime}</Text>
-            </div>
-          )}
-        </div>
-        <div className={styles.columnise}>
-          <Title tag="h4" size="6">
-            Ends at:
-          </Title>
-          {endDate && (
-            <div className={styles.iconAndTextCell}>
-              <DateRange className={styles.icon} />
-              <Text>
-                <strong>{format(new Date(endDateTime), "dd.MM.yyyy")}</strong>
-              </Text>
-            </div>
-          )}
-          {endTime && (
-            <div className={styles.iconAndTextCell}>
-              <Valuables className={styles.icon} />
-              {endTime && <Text>{endTime}</Text>}
-            </div>
-          )}
-        </div>
-      </TextContainer>
-      {startDate && startTime && showCountdown && (
-        <div>
-          {attendees > 0 && (
-            <Text>
-              This event is limited to <strong>{attendees}</strong>{" "}
-              participants!
-            </Text>
-          )}
-          <div className={styles.countdownContainer}>
-            <Title tag="h4" size="4" className={styles.countdown}>
-              Countdown
-            </Title>
-            <Text className={styles.countdowntext}>
-              {timeLeft.days} days {timeLeft.hours} hours {timeLeft.minutes}{" "}
-              minutes
+    <header className={classNames(styles["background"], styles[theme])}>
+      <div id="partAnchor_event" className={styles.eventPart}>
+        <Title tag="h1" size="2" className={styles.title}>
+          {displayName}
+        </Title>
+        {location && (
+          <div className={classNames([styles.iconAndTextCell, styles.fullRow])}>
+            <Earth className={styles.icon} />
+            <Text className={styles.location}>
+              <strong>Location: </strong>
+              {location}
             </Text>
           </div>
-        </div>
-      )}
-      <Link href={getUrl(_path, meta)}>Back to Events ...</Link>
-    </div>
+        )}
+        {eventPrice > 0 && <Badge type="suggestion">{eventPrice}kr</Badge>}
+        <TextContainer className={styles.container}>
+          <div className={styles.columnise}>
+            <Title tag="h4" size="6">
+              Begins at:
+            </Title>
+            {startDate && (
+              <div className={styles.iconAndTextCell}>
+                <DateRange className={styles.icon} />
+                <Text>
+                  <strong>
+                    {format(new Date(startDateTime), "dd.MM.yyyy")}
+                  </strong>
+                </Text>
+              </div>
+            )}
+            {startTime && (
+              <div className={styles.iconAndTextCell}>
+                <Valuables className={styles.icon} />
+                <Text>{startTime}</Text>
+              </div>
+            )}
+          </div>
+          <div className={styles.columnise}>
+            <Title tag="h4" size="6">
+              Ends at:
+            </Title>
+            {endDate && (
+              <div className={styles.iconAndTextCell}>
+                <DateRange className={styles.icon} />
+                <Text>
+                  <strong>{format(new Date(endDateTime), "dd.MM.yyyy")}</strong>
+                </Text>
+              </div>
+            )}
+            {endTime && (
+              <div className={styles.iconAndTextCell}>
+                <Valuables className={styles.icon} />
+                {endTime && <Text>{endTime}</Text>}
+              </div>
+            )}
+          </div>
+        </TextContainer>
+        {startDate && startTime && showCountdown && (
+          <div>
+            {attendees > 0 && (
+              <Text className={styles.information}>
+                This event is limited to <strong>{attendees}</strong>{" "}
+                participants!
+              </Text>
+            )}
+            <div className={styles.countdownContainer}>
+              <Title tag="h4" size="4" className={styles.countdown}>
+                Countdown
+              </Title>
+              <Text className={styles.countdowntext}>
+                {timeLeft.days} days {timeLeft.hours} hours {timeLeft.minutes}{" "}
+                minutes
+              </Text>
+            </div>
+          </div>
+        )}
+        <Text className={styles.information}>{description}</Text>
+        <Button variant="secondary" href={getUrl(_path, meta)}>
+          Back to Events
+        </Button>
+      </div>
+    </header>
   );
 };
 
