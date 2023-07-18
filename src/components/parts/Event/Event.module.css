@@ -1,7 +1,7 @@
 .eventPart {
     margin: 0 20px;
     padding-bottom: 20px;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
 }
 
 .container {
@@ -47,6 +47,7 @@
     background-color: #ebf0fa;
     border-radius: 10px;
     margin-bottom: 20px;
+    box-shadow: #00000044 0 0 10px;
   }
   
   .countdown {
@@ -59,4 +60,29 @@
     font-size: 15px;
     word-spacing: 10px;
     color: #888;
+  }
+
+  /* Different themes */
+
+.background {
+    background-color: rgb(36, 185, 135);
+    padding: 15px;
+    margin: -16px;
+    border-radius: 10px;
+  }
+  
+  .christmas {
+    background-color: #34A65F;
+  }
+  
+  .newyear {
+    background-color: #ffdd81;
+  }
+  
+  .summer {
+    background-color: #82eaffc9;
+  }
+  
+  .pride {
+    background-color: #ff9cf3;
   }
