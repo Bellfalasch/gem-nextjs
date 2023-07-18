@@ -18,7 +18,25 @@ function sendForm(e) {
   const form = e.target;
   const formData = new FormData(form);
   const formJson = Object.fromEntries(formData.entries());
+  //console.log(form);
+  //console.log(formData);
+  console.log(formData.values());
+  console.log(formJson["allergy[]"]);
+  /*
+  const allergies: HTMLFormElement = document.getElementsByName("allergy");
+  for (let i = 0; i < allergies.length; ++i) {
+    if (allergies[i].checked) {
+      checkedValue = allergies[i].value();
+      break;
+    }
+  }
 
+  console.log(
+    document.getElementsByName("allergy").checked
+    //.forEach((elem) => console.log(elem.))
+  );
+  */
+  console.log(formJson);
   const options = {
     method: form.method,
     headers: { "Content-Type": "application/json" },
@@ -35,8 +53,6 @@ function sendForm(e) {
     .then((response) => response.json())
     .then((response) => console.log(response))
     .catch((err) => console.error(err));
-
-  console.log(formJson);
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -103,7 +119,6 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
               <RadioButton
                 id="RadioButton-1"
                 name="rsvp"
-                className="visual-test-override"
                 label="Yes! I'm attending"
                 value="attending"
                 withBackground={false}
@@ -111,7 +126,6 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
               <RadioButton
                 id="RadioButton-2"
                 name="rsvp"
-                className="visual-test-override"
                 label="Sorry, I will not be attending"
                 value="not attending"
                 withBackground={false}
@@ -142,92 +156,92 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
                 <div className={style.rsvpIntolerance}>
                   <Checkbox
                     id="Checkbox-1"
-                    name="allergy"
+                    name="allergy[]"
                     label="Nei"
                     value="Nei"
                     defaultChecked
                   />
                   <Checkbox
                     id="Checkbox-2"
-                    name="allergy"
+                    name="allergy[]"
                     label="Bløtdyr"
                     value="Bløtdyr"
                   />
                   <Checkbox
                     id="Checkbox-3"
-                    name="allergy"
+                    name="allergy[]"
                     label="Egg"
                     value="Egg"
                   />
                   <Checkbox
                     id="Checkbox-4"
-                    name="allergy"
+                    name="allergy[]"
                     label="Fisk"
                     value="Fisk"
                   />
                   <Checkbox
                     id="Checkbox-5"
-                    name="allergy"
+                    name="allergy[]"
                     label="Gluten"
                     value="Gluten"
                   />
                   <Checkbox
                     id="Checkbox-6"
-                    name="allergy"
+                    name="allergy[]"
                     label="Lupin"
                     value="Lupin"
                   />
                   <Checkbox
                     id="Checkbox-7"
-                    name="allergy"
+                    name="allergy[]"
                     label="Melk"
                     value="Melk"
                   />
                   <Checkbox
                     id="Checkbox-8"
-                    name="allergy"
+                    name="allergy[]"
                     label="Nøtter"
                     value="Nøtter"
                   />
                   <Checkbox
                     id="Checkbox-9"
-                    name="allergy"
+                    name="allergy[]"
                     label="Peanøtter"
                     value="Peanøtter"
                   />
                   <Checkbox
                     id="Checkbox-10"
-                    name="allergy"
+                    name="allergy[]"
                     label="Selleri"
                     value="Selleri"
                   />
                   <Checkbox
                     id="Checkbox-11"
-                    name="allergy"
+                    name="allergy[]"
                     label="Sennep"
                     value="Sennep"
                   />
                   <Checkbox
                     id="Checkbox-12"
-                    name="allergy"
+                    name="allergy[]"
                     label="Sesamfrø"
                     value="Sesamfrø"
                   />
                   <Checkbox
                     id="Checkbox-13"
-                    name="allergy"
+                    name="allergy[]"
                     label="Skalldyr"
                     value="Skalldyr"
                   />
                   <Checkbox
                     id="Checkbox-14"
-                    name="allergy"
+                    name="allergy[]"
                     label="Soya"
                     value="Soya"
                   />
                   <Checkbox
                     id="Checkbox-15"
-                    name="allergy"
+                    name="allergy[]"
                     label="Svoveldioksid/sulfitter"
                     value="Svoveldioksid/sulfitter"
                   />
