@@ -18,25 +18,7 @@ function sendForm(e) {
   const form = e.target;
   const formData = new FormData(form);
   const formJson = Object.fromEntries(formData.entries());
-  //console.log(form);
-  //console.log(formData);
-  console.log(formData.values());
-  console.log(formJson["allergy[]"]);
-  /*
-  const allergies: HTMLFormElement = document.getElementsByName("allergy");
-  for (let i = 0; i < allergies.length; ++i) {
-    if (allergies[i].checked) {
-      checkedValue = allergies[i].value();
-      break;
-    }
-  }
 
-  console.log(
-    document.getElementsByName("allergy").checked
-    //.forEach((elem) => console.log(elem.))
-  );
-  */
-  console.log(formJson);
   const options = {
     method: form.method,
     headers: { "Content-Type": "application/json" },
@@ -96,6 +78,34 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
     showForm = false;
   }
 
+  const allergyList = [
+    { name: "Nei", checked: true },
+    { name: "Bløtdyr", checked: false },
+    { name: "Egg", checked: false },
+    { name: "Fisk", checked: false },
+    { name: "Gluten", checked: false },
+    { name: "Lupin", checked: false },
+    { name: "Melk", checked: false },
+    { name: "Nøtter", checked: false },
+    { name: "Peanøtter", checked: false },
+    { name: "Selleri", checked: false },
+    { name: "Sennep", checked: false },
+    { name: "Sesamfrø", checked: false },
+    { name: "Skalldyr", checked: false },
+    { name: "Soya", checked: false },
+    { name: "Svoveldioksid / sulfitter", checked: false },
+  ];
+  const [allergies, setAllergy] = useState(allergyList);
+  const updateCheckStatus = (index: number) => {
+    setAllergy(
+      allergies.map((allergy, currentIndex) =>
+        currentIndex === index
+          ? { ...allergy, checked: !allergy.checked }
+          : allergy
+      )
+    );
+  };
+
   return (
     <div id="partAnchor_rsvp" className={style.rsvpPart}>
       {showForm ? (
@@ -107,6 +117,14 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
             onSubmit={sendForm}
           >
             <input type="hidden" name="eventId" value={eventId} />
+            <input
+              type="hidden"
+              name="allergy"
+              value={allergies
+                .filter((allergy) => allergy.checked)
+                .map((allergy) => allergy.name)
+                .join(",")}
+            />
 
             <Default
               closable={false}
@@ -154,97 +172,16 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
                   Do you have allergies or food intolerances?
                 </Title>
                 <div className={style.rsvpIntolerance}>
-                  <Checkbox
-                    id="Checkbox-1"
-                    name="allergy[]"
-                    label="Nei"
-                    value="Nei"
-                    defaultChecked
-                  />
-                  <Checkbox
-                    id="Checkbox-2"
-                    name="allergy[]"
-                    label="Bløtdyr"
-                    value="Bløtdyr"
-                  />
-                  <Checkbox
-                    id="Checkbox-3"
-                    name="allergy[]"
-                    label="Egg"
-                    value="Egg"
-                  />
-                  <Checkbox
-                    id="Checkbox-4"
-                    name="allergy[]"
-                    label="Fisk"
-                    value="Fisk"
-                  />
-                  <Checkbox
-                    id="Checkbox-5"
-                    name="allergy[]"
-                    label="Gluten"
-                    value="Gluten"
-                  />
-                  <Checkbox
-                    id="Checkbox-6"
-                    name="allergy[]"
-                    label="Lupin"
-                    value="Lupin"
-                  />
-                  <Checkbox
-                    id="Checkbox-7"
-                    name="allergy[]"
-                    label="Melk"
-                    value="Melk"
-                  />
-                  <Checkbox
-                    id="Checkbox-8"
-                    name="allergy[]"
-                    label="Nøtter"
-                    value="Nøtter"
-                  />
-                  <Checkbox
-                    id="Checkbox-9"
-                    name="allergy[]"
-                    label="Peanøtter"
-                    value="Peanøtter"
-                  />
-                  <Checkbox
-                    id="Checkbox-10"
-                    name="allergy[]"
-                    label="Selleri"
-                    value="Selleri"
-                  />
-                  <Checkbox
-                    id="Checkbox-11"
-                    name="allergy[]"
-                    label="Sennep"
-                    value="Sennep"
-                  />
-                  <Checkbox
-                    id="Checkbox-12"
-                    name="allergy[]"
-                    label="Sesamfrø"
-                    value="Sesamfrø"
-                  />
-                  <Checkbox
-                    id="Checkbox-13"
-                    name="allergy[]"
-                    label="Skalldyr"
-                    value="Skalldyr"
-                  />
-                  <Checkbox
-                    id="Checkbox-14"
-                    name="allergy[]"
-                    label="Soya"
-                    value="Soya"
-                  />
-                  <Checkbox
-                    id="Checkbox-15"
-                    name="allergy[]"
-                    label="Svoveldioksid/sulfitter"
-                    value="Svoveldioksid/sulfitter"
-                  />
+                  {allergies.map((allergy, index) => (
+                    <Checkbox
+                      id={`allergy_${index}`}
+                      name="allergy[]"
+                      label={allergy.name}
+                      value={allergy.name.toLowerCase()}
+                      checked={allergy.checked}
+                      onChange={() => updateCheckStatus(index)}
+                    />
+                  ))}
 
                   <Input
                     id="input-1D"
