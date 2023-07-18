@@ -47,6 +47,7 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
   const { data } = props.data?.get as any;
   if (!data) return;
   const { openForRegistration, closedForRegistration, allergy } = data;
+  const eventId = props.common.id;
 
   const registrationDate = format(new Date(openForRegistration), "dd.MM.yyyy");
   const registrationTime = format(new Date(openForRegistration), "HH:mm");
@@ -88,9 +89,7 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
               text={`Registration will be closing at ${closedDate} - ${closedTime}`}
               title=""
             />
-            <Title tag="h2" size="2">
-              Are you coming?
-            </Title>
+            <Title tag="h2">Are you coming?</Title>
 
             <input
               type="hidden"
@@ -133,7 +132,7 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
             </div>
             {allergy && (
               <>
-                <Title tag="h4" size="4">
+                <Title tag="h3">
                   Do you have allergies or food intolerances?
                 </Title>
                 <div className={style.rsvpIntolerance}>
