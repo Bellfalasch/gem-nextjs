@@ -18,10 +18,6 @@ query($path:ID!){
           closedForRegistration
           allergy
           eventPrice
-          image {
-            ... on media_Image {
-              imageUrl(type: absolute, scale: "width(200)")
-            }
         }
       }
       parent {
