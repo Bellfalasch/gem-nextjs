@@ -78,27 +78,43 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
     <div id="partAnchor_rsvp" className={style.rsvpPart}>
       {showForm ? (
         <>
+          <Title tag="h2">Are you coming?</Title>
           <form
             method="post"
             action="http://localhost:8080/admin/site/preview/moviedb/draft/gem/_/service/com.gjensidige.internal.gem/rsvp"
             onSubmit={sendForm}
           >
+            <input type="hidden" name="eventId" value={eventId} />
+
             <Default
               closable={false}
               showIcon={true}
               text={`Registration will be closing at ${closedDate} - ${closedTime}`}
               title=""
             />
-            <Title tag="h2">Are you coming?</Title>
 
-            <input
-              type="hidden"
-              name="eventId"
-              value="49355132-4976-4ea8-a817-39f6b7ded5e0"
-            />
+            <div className={style.rsvpAttending}>
+              <RadioButton
+                id="RadioButton-1"
+                name="rsvp"
+                className="visual-test-override"
+                label="Yes! I'm attending"
+                value="attending"
+                withBackground={false}
+              />
+              <RadioButton
+                id="RadioButton-2"
+                name="rsvp"
+                className="visual-test-override"
+                label="Sorry, I will not be attending"
+                value="not attending"
+                withBackground={false}
+              />
+            </div>
+
             <Input
               id="input-name"
-              labelText="Your name"
+              labelText="Your name (first and last)"
               name="name"
               onChange={(event) => setValueName(event.currentTarget.value)}
               value={valueName}
@@ -112,27 +128,9 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
               value={valueEmail}
             />
 
-            <div className={style.rsvpAttending}>
-              <RadioButton
-                id="RadioButton-1"
-                name="rsvp"
-                className="visual-test-override"
-                label="Im attending"
-                value="attending"
-                withBackground={false}
-              />
-              <RadioButton
-                id="RadioButton-2"
-                name="rsvp"
-                className="visual-test-override"
-                label="Not attending"
-                value="not attending"
-                withBackground={false}
-              />
-            </div>
             {allergy && (
               <>
-                <Title tag="h3">
+                <Title tag="h3" size="5">
                   Do you have allergies or food intolerances?
                 </Title>
                 <div className={style.rsvpIntolerance}>
