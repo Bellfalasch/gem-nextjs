@@ -119,7 +119,7 @@ const Event: React.FC = (props: FetchContentResult) => {
         {startDate && startTime && showCountdown && (
           <div>
             {attendees > 0 && (
-              <Text>
+              <Text className={styles.attendees}>
                 This event is limited to <strong>{attendees}</strong>{" "}
                 participants!
               </Text>
@@ -135,7 +135,7 @@ const Event: React.FC = (props: FetchContentResult) => {
             </div>
           </div>
         )}
-        <Text>{description}</Text>
+        <Text className={styles.description}>{description}</Text>
         <Button variant="secondary" href={getUrl(_path, meta)}>
           Back to Events
         </Button>
