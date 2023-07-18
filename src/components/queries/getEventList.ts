@@ -14,7 +14,6 @@ const getEventList = `
             displayName
             ... on ${APP_NAME_UNDERSCORED}_Event {
               data {
-                image
                 description
                 location
                 startDateTime
@@ -25,6 +24,10 @@ const getEventList = `
                 closedForRegistration
                 allergy
                 eventPrice
+                image {
+                  ... on media_Image {
+                    imageUrl(type: absolute, scale: "width(200)")
+                  }
               }
             }
             parent {

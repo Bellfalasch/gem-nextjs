@@ -7,7 +7,6 @@ query($path:ID!){
       displayName
       ... on ${APP_NAME_UNDERSCORED}_Event {
         data {
-          image
           theme
           description
           location
@@ -19,6 +18,10 @@ query($path:ID!){
           closedForRegistration
           allergy
           eventPrice
+          image {
+            ... on media_Image {
+              imageUrl(type: absolute, scale: "width(200)")
+            }
         }
       }
       parent {
