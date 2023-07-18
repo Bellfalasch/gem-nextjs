@@ -9,6 +9,7 @@
     margin-bottom: 30px;
     border-radius: 10px;
     width: 100%;
+    box-shadow: #00000044 0 0 10px;
 }
 
 .eventPart .container {
