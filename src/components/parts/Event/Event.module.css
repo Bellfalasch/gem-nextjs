@@ -77,17 +77,17 @@
 }
 
 .christmas {
-  background: linear-gradient(to bottom, #34a65f, white);
+  background: linear-gradient(to bottom, #34a65f, transparent);
 }
 
 .newyear {
-  background: linear-gradient(to bottom, #ecc863, white);
+  background: linear-gradient(to bottom, #ecc863, transparent);
 }
 
 .summer {
-  background: linear-gradient(to bottom, #34b8d2c9, white);
+  background: linear-gradient(to bottom, #34b8d2c9, transparent);
 }
 
 .pride {
-  background: linear-gradient(to bottom, #d174c6, white);
+  background: linear-gradient(to bottom, #d174c6, transparent);
 }
