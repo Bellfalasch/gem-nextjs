@@ -1,8 +1,10 @@
 import type { FetchContentResult } from "@enonic/nextjs-adapter";
 import { Default } from "@gjensidige/core-components/lib/alerts/default";
+import { Button } from "@gjensidige/core-components/lib/button";
 import { Checkbox } from "@gjensidige/core-components/lib/forms/checkbox";
 import { Input } from "@gjensidige/core-components/lib/forms/input";
 import { RadioButton } from "@gjensidige/core-components/lib/forms/radiobutton";
+import { Email } from "@gjensidige/nci-core-icons/lib/email";
 import { Title } from "@gjensidige/nci-core-typography";
 import { format, getUnixTime } from "date-fns";
 import React, { useState } from "react";
@@ -10,14 +12,50 @@ import React, { useState } from "react";
 import style from "./Rsvp.module.css";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+/* @ts-ignore sdfsf */
+function sendForm(e) {
+  e.preventDefault();
+  const form = e.target;
+  const formData = new FormData(form);
+  const formJson = Object.fromEntries(formData.entries());
+
+  const options = {
+    method: form.method,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      eventId: formJson.eventId,
+      name: formJson.name,
+      email: formJson.email,
+      rsvp: formJson.rsvp,
+      allergy: formJson.allergy,
+    }),
+  };
+
+  fetch(form.action, options)
+    .then((response) => response.json())
+    .then((response) => console.log(response))
+    .catch((err) => console.error(err));
+}
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore force work
 const Rsvp: React.FC = (props: FetchContentResult) => {
-  const [value, setValue] = useState("");
+  const [valueOther, setValueOther] = useState("");
+  const [valueName, setValueName] = useState("");
+  const [valueEmail, setValueEmail] = useState("");
+
+  // We must have eventId (content _id from XP) to be able to store RSVPs properly. Also hides form if not onevent.
+  const eventId =
+    props?.common?.get.type === "com.gjensidige.internal.gem:event"
+      ? props?.common?.get._id
+      : undefined;
+  if (!eventId) return;
+
   /* eslint-disable  @typescript-eslint/no-explicit-any */
   const { data } = props.data?.get as any;
   if (!data) return;
-  const { openForRegistration, closedForRegistration, allergy } = data;
 
+  const { openForRegistration, closedForRegistration, allergy } = data;
   const registrationDate = format(new Date(openForRegistration), "dd.MM.yyyy");
   const registrationTime = format(new Date(openForRegistration), "HH:mm");
   const closedDate = format(new Date(closedForRegistration), "dd.MM.yyyy");
@@ -40,145 +78,136 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
     showForm = false;
   }
 
+  // Array of objects with name and default checked state on all allergies we have.
+  // This is later used in variable "allergies" to set current state, changed based on input.
+  const allergyList = [
+    { name: "Nei", checked: true },
+    { name: "Bløtdyr", checked: false },
+    { name: "Egg", checked: false },
+    { name: "Fisk", checked: false },
+    { name: "Gluten", checked: false },
+    { name: "Lupin", checked: false },
+    { name: "Melk", checked: false },
+    { name: "Nøtter", checked: false },
+    { name: "Peanøtter", checked: false },
+    { name: "Selleri", checked: false },
+    { name: "Sennep", checked: false },
+    { name: "Sesamfrø", checked: false },
+    { name: "Skalldyr", checked: false },
+    { name: "Soya", checked: false },
+    { name: "Svoveldioksid / sulfitter", checked: false },
+  ];
+  // Base state on above list, but store in variable "allergies"
+  const [allergies, setAllergy] = useState(allergyList);
+  // Every Checkbox have a "onChange" triggering this function
+  const updateCheckStatus = (index: number) => {
+    setAllergy(
+      allergies.map(
+        (
+          allergy,
+          currentIndex // Map over the state-bound var "allergies"
+        ) =>
+          currentIndex === index // If currentIndex clicked is same as index in array ...
+            ? { ...allergy, checked: !allergy.checked } // Spread existing values (to keep them) but overwrite checked by reversing its value (was true then it becomes false, and vice versa).
+            : allergy // Otherwise just return object unchanged
+      )
+    );
+  };
+
   return (
     <div id="partAnchor_rsvp" className={style.rsvpPart}>
       {showForm ? (
         <>
-          <Default
-            closable={false}
-            showIcon={true}
-            text={`Registration will be closing at ${closedDate} - ${closedTime}`}
-            title=""
-          />
-          <Title tag="h2" size="2">
-            Are you coming?
-          </Title>
-          <div className={style.rsvpAttending}>
-            <RadioButton
-              id="RadioButton-1"
-              name="attending?"
-              className="visual-test-override"
-              label="Im attending"
-              value="attending"
-              withBackground={false}
+          <Title tag="h2">Are you coming?</Title>
+          <form
+            method="post"
+            action="http://localhost:8080/admin/site/preview/moviedb/draft/gem/_/service/com.gjensidige.internal.gem/rsvp"
+            onSubmit={sendForm}
+          >
+            <input type="hidden" name="eventId" value={eventId} />
+            <input
+              type="hidden"
+              name="allergy"
+              value={allergies
+                .filter((allergy) => allergy.checked) // The .filter will removing everything from allergyList not set to checked=true
+                .map((allergy) => allergy.name) // The .map will for the remaining items return the allergyList.name
+                .join(",")} // Then join them, separated with a ","
             />
-            <RadioButton
-              id="RadioButton-2"
-              name="attending?"
-              className="visual-test-override"
-              label="Not attending"
-              value="not attending"
-              withBackground={false}
+
+            <Default
+              closable={false}
+              showIcon={true}
+              text={`Registration will be closing at ${closedDate} - ${closedTime}`}
+              title=""
             />
-          </div>
-          {allergy && (
-            <>
-              <Title tag="h4" size="4">
-                Do you have allergies or food intolerances?
-              </Title>
-              <div className={style.rsvpIntolerance}>
-                <Checkbox
-                  id="Checkbox-1"
-                  name="allergy"
-                  label="Nei"
-                  value="Nei"
-                  defaultChecked
-                />
-                <Checkbox
-                  id="Checkbox-2"
-                  name="allergy"
-                  label="Bløtdyr"
-                  value="Bløtdyr"
-                />
-                <Checkbox
-                  id="Checkbox-3"
-                  name="allergy"
-                  label="Egg"
-                  value="Egg"
-                />
-                <Checkbox
-                  id="Checkbox-4"
-                  name="allergy"
-                  label="Fisk"
-                  value="Fisk"
-                />
-                <Checkbox
-                  id="Checkbox-5"
-                  name="allergy"
-                  label="Gluten"
-                  value="Gluten"
-                />
-                <Checkbox
-                  id="Checkbox-6"
-                  name="allergy"
-                  label="Lupin"
-                  value="Lupin"
-                />
-                <Checkbox
-                  id="Checkbox-7"
-                  name="allergy"
-                  label="Melk"
-                  value="Melk"
-                />
-                <Checkbox
-                  id="Checkbox-8"
-                  name="allergy"
-                  label="Nøtter"
-                  value="Nøtter"
-                />
-                <Checkbox
-                  id="Checkbox-9"
-                  name="allergy"
-                  label="Peanøtter"
-                  value="Peanøtter"
-                />
-                <Checkbox
-                  id="Checkbox-10"
-                  name="allergy"
-                  label="Selleri"
-                  value="Selleri"
-                />
-                <Checkbox
-                  id="Checkbox-11"
-                  name="allergy"
-                  label="Sennep"
-                  value="Sennep"
-                />
-                <Checkbox
-                  id="Checkbox-12"
-                  name="allergy"
-                  label="Sesamfrø"
-                  value="Sesamfrø"
-                />
-                <Checkbox
-                  id="Checkbox-13"
-                  name="allergy"
-                  label="Skalldyr"
-                  value="Skalldyr"
-                />
-                <Checkbox
-                  id="Checkbox-14"
-                  name="allergy"
-                  label="Soya"
-                  value="Soya"
-                />
-                <Checkbox
-                  id="Checkbox-15"
-                  name="allergy"
-                  label="Svoveldioksid/sulfitter"
-                  value="Svoveldioksid/sulfitter"
-                />
-                <Input
-                  id="input-1D"
-                  // helpText="If possible we can help"
-                  labelText="Something else we should know about?"
-                  name="annet melding"
-                  onChange={(event) => setValue(event.currentTarget.value)}
-                  value={value}
-                />
-              </div>
-            </>
-          )}
+
+            <div className={style.rsvpAttending}>
+              <RadioButton
+                id="RadioButton-1"
+                name="rsvp"
+                label="Yes! I'm attending"
+                value="attending"
+                withBackground={false}
+              />
+              <RadioButton
+                id="RadioButton-2"
+                name="rsvp"
+                label="Sorry, I will not be attending"
+                value="not attending"
+                withBackground={false}
+              />
+            </div>
+
+            <Input
+              id="input-name"
+              labelText="Your name (first and last)"
+              name="name"
+              onChange={(event) => setValueName(event.currentTarget.value)}
+              value={valueName}
+            />
+            <Input
+              id="input-email"
+              labelText="Your e-mail address"
+              name="email"
+              onChange={(e) => setValueEmail(e.currentTarget.value)}
+              postfixIcon={<Email />}
+              value={valueEmail}
+            />
+
+            {allergy && (
+              <>
+                <Title tag="h3" size="5">
+                  Do you have allergies or food intolerances?
+                </Title>
+                <div className={style.rsvpIntolerance}>
+                  {allergies.map((allergy, index) => (
+                    <Checkbox
+                      id={`allergy_${index}`}
+                      name="allergy[]"
+                      label={allergy.name}
+                      value={allergy.name.toLowerCase()}
+                      checked={allergy.checked}
+                      onChange={() => updateCheckStatus(index)}
+                    />
+                  ))}
+
+                  <Input
+                    id="input-1D"
+                    // helpText="If possible we can help"
+                    labelText="Something else we should know about?"
+                    name="other"
+                    onChange={(event) =>
+                      setValueOther(event.currentTarget.value)
+                    }
+                    value={valueOther}
+                  />
+                </div>
+              </>
+            )}
+            <Button variant="primary" flexible type="submit">
+              Send RSVP
+            </Button>
+          </form>
         </>
       ) : (
         <Default
