@@ -42,13 +42,22 @@ function sendForm(e) {
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore force work
 const Rsvp: React.FC = (props: FetchContentResult) => {
-  const [value, setValue] = useState("");
+  const [valueOther, setValueOther] = useState("");
+  const [valueName, setValueName] = useState("");
+  const [valueEmail, setValueEmail] = useState("");
+
+  // We must have eventId (content _id from XP) to be able to store RSVPs properly. Also hides form if not onevent.
+  const eventId =
+    props?.common?.get.type === "com.gjensidige.internal.gem:event"
+      ? props?.common?.get._id
+      : undefined;
+  if (!eventId) return;
+
   /* eslint-disable  @typescript-eslint/no-explicit-any */
   const { data } = props.data?.get as any;
   if (!data) return;
-  const { openForRegistration, closedForRegistration, allergy } = data;
-  const eventId = props.common.id;
 
+  const { openForRegistration, closedForRegistration, allergy } = data;
   const registrationDate = format(new Date(openForRegistration), "dd.MM.yyyy");
   const registrationTime = format(new Date(openForRegistration), "HH:mm");
   const closedDate = format(new Date(closedForRegistration), "dd.MM.yyyy");
@@ -70,9 +79,6 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
   ) {
     showForm = false;
   }
-
-  const [valueName, setValueName] = useState("");
-  const [valueEmail, setValueEmail] = useState("");
 
   return (
     <div id="partAnchor_rsvp" className={style.rsvpPart}>
@@ -225,13 +231,16 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
                     label="Svoveldioksid/sulfitter"
                     value="Svoveldioksid/sulfitter"
                   />
+
                   <Input
                     id="input-1D"
                     // helpText="If possible we can help"
                     labelText="Something else we should know about?"
-                    name="annet melding"
-                    onChange={(event) => setValue(event.currentTarget.value)}
-                    value={value}
+                    name="other"
+                    onChange={(event) =>
+                      setValueOther(event.currentTarget.value)
+                    }
+                    value={valueOther}
                   />
                 </div>
               </>
