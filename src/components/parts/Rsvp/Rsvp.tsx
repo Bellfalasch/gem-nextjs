@@ -78,6 +78,8 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
     showForm = false;
   }
 
+  // Array of objects with name and default checked state on all allergies we have.
+  // This is later used in variable "allergies" to set current state, changed based on input.
   const allergyList = [
     { name: "Nei", checked: true },
     { name: "Bløtdyr", checked: false },
@@ -95,13 +97,19 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
     { name: "Soya", checked: false },
     { name: "Svoveldioksid / sulfitter", checked: false },
   ];
+  // Base state on above list, but store in variable "allergies"
   const [allergies, setAllergy] = useState(allergyList);
+  // Every Checkbox have a "onChange" triggering this function
   const updateCheckStatus = (index: number) => {
     setAllergy(
-      allergies.map((allergy, currentIndex) =>
-        currentIndex === index
-          ? { ...allergy, checked: !allergy.checked }
-          : allergy
+      allergies.map(
+        (
+          allergy,
+          currentIndex // Map over the state-bound var "allergies"
+        ) =>
+          currentIndex === index // If currentIndex clicked is same as index in array ...
+            ? { ...allergy, checked: !allergy.checked } // Spread existing values (to keep them) but overwrite checked by reversing its value (was true then it becomes false, and vice versa).
+            : allergy // Otherwise just return object unchanged
       )
     );
   };
@@ -121,9 +129,9 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
               type="hidden"
               name="allergy"
               value={allergies
-                .filter((allergy) => allergy.checked)
-                .map((allergy) => allergy.name)
-                .join(",")}
+                .filter((allergy) => allergy.checked) // The .filter will removing everything from allergyList not set to checked=true
+                .map((allergy) => allergy.name) // The .map will for the remaining items return the allergyList.name
+                .join(",")} // Then join them, separated with a ","
             />
 
             <Default
