@@ -18,43 +18,38 @@ const EventList = (props: PartProps) => {
   const filteredChildren = children.filter((child: any) => {
     return child.type === "com.gjensidige.internal.gem:event";
   });
+  if (filteredChildren.length < 1) return;
 
   return (
-    <main className={styles.container}>
-      {filteredChildren.length > 0 && (
-        <ul className={styles.ul}>
-          {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            filteredChildren.map((child: any, i: number) => (
-              <li key={i}>
-                <div className={styles.subheader}>
-                  <a href={getUrl(child._path, meta)}>
-                    <Text className={styles.title}>{child.displayName}</Text>
-                  </a>
-                </div>
-                <div className={styles.subHeaderContainer}>
-                  {child.data?.startDateTime && (
-                    <>
-                      <Text className={styles.month}>
-                        {format(new Date(child.data.startDateTime), "MMM")}
-                      </Text>
-                      <Text className={styles.day}>
-                        {format(new Date(child.data.startDateTime), "dd")}
-                      </Text>
-                    </>
-                  )}
-                  {child.data?.location && (
-                    <Text className={styles.location}>
-                      {child.data.location}
-                    </Text>
-                  )}
-                </div>
-              </li>
-            ))
-          }
-        </ul>
-      )}
-    </main>
+    <ul className={styles.ul}>
+      {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        filteredChildren.map((child: any, i: number) => (
+          <li key={i}>
+            <div className={styles.subheader}>
+              <a href={getUrl(child._path, meta)}>
+                <Text className={styles.title}>{child.displayName}</Text>
+              </a>
+            </div>
+            <div className={styles.subHeaderContainer}>
+              {child.data?.startDateTime && (
+                <>
+                  <Text className={styles.month}>
+                    {format(new Date(child.data.startDateTime), "MMM")}
+                  </Text>
+                  <Text className={styles.day}>
+                    {format(new Date(child.data.startDateTime), "dd")}
+                  </Text>
+                </>
+              )}
+              {child.data?.location && (
+                <Text className={styles.location}>{child.data.location}</Text>
+              )}
+            </div>
+          </li>
+        ))
+      }
+    </ul>
   );
 };
 
