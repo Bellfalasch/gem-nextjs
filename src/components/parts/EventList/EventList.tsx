@@ -13,12 +13,10 @@ const EventList = (props: PartProps) => {
     return null;
   }
 
-  // Filter out image files
+  // Only keep Event-types of contents.
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const filteredChildren = children.filter((child: any) => {
-    const fileExtension = child._path.split(".").pop()?.toLowerCase();
-    const imageExtensions = ["jpg", "jpeg", "png", "gif"];
-    return !imageExtensions.includes(fileExtension);
+    return child.type === "com.gjensidige.internal.gem:event";
   });
 
   return (

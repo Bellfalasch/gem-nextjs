@@ -11,6 +11,7 @@ const getEventList = `
         children(sort: $order) {
           _path(type: siteRelative)
           _id
+          type
           displayName
           ... on ${APP_NAME_UNDERSCORED}_Event {
             data {
