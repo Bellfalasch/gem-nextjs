@@ -41,6 +41,7 @@
   color: red;
   text-align: start;
   margin-left: 15px;
+  text-transform: uppercase;
 }
 
 .day {
