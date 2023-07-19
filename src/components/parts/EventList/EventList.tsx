@@ -26,9 +26,9 @@ const EventList = (props: PartProps) => {
           {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             filteredChildren.map((child: any, i: number) => (
-              <li key={i} className={styles.li}>
+              <li key={i}>
                 <div className={styles.subheader}>
-                  <a className={styles.a} href={getUrl(child._path, meta)}>
+                  <a href={getUrl(child._path, meta)}>
                     <Text className={styles.title}>{child.displayName}</Text>
                   </a>
                 </div>
