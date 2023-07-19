@@ -33,19 +33,21 @@ const EventList = (props: PartProps) => {
                   </a>
                 </div>
                 <div className={styles.subHeaderContainer}>
-                  <Text className={styles.month}>
-                    {child.data?.startDateTime
-                      ? format(new Date(child.data.startDateTime), "MMM")
-                      : null}
-                  </Text>
-                  <Text className={styles.day}>
-                    {child.data?.startDateTime
-                      ? format(new Date(child.data.startDateTime), "dd")
-                      : null}
-                  </Text>
-                  <Text className={styles.location}>
-                    {child.data?.location}
-                  </Text>
+                  {child.data?.startDateTime && (
+                    <>
+                      <Text className={styles.month}>
+                        {format(new Date(child.data.startDateTime), "MMM")}
+                      </Text>
+                      <Text className={styles.day}>
+                        {format(new Date(child.data.startDateTime), "dd")}
+                      </Text>
+                    </>
+                  )}
+                  {child.data?.location && (
+                    <Text className={styles.location}>
+                      {child.data.location}
+                    </Text>
+                  )}
                 </div>
               </li>
             ))
