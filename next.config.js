@@ -30,16 +30,6 @@ const config = {
   reactStrictMode: true,
   webpack: getEnonicWebpackConfig,
   headers: getEnonicHeaders,
-  images: {
-    remotePatterns: [
-      {
-        protocol: "http",
-        hostname: "127.0.0.1",
-        port: "8080",
-        pathname: "**",
-      },
-    ],
-  },
 };
 
 module.exports = withTM(withEnonicCache(config));
