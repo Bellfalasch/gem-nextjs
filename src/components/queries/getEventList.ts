@@ -27,7 +27,7 @@ const getEventList = `
               eventPrice
               image {
                 ... on media_Image {
-                  imageUrl(type: absolute, scale: "width(200)")
+                  imageUrl(type: absolute, scale: "width(1000)")
                 }
               }
             }

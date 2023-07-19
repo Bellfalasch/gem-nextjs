@@ -1,3 +1,11 @@
+.eventImage img {
+  height: 165px;
+  width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  object-fit: cover;
+}
+
 .ul {
   display: flex;
   justify-content: center;
@@ -29,8 +37,14 @@
 }
 
 .title {
+  position: absolute;
   font-size: 1.5em;
-  text-align: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .month {
@@ -46,13 +60,14 @@
 }
 
 .location {
-  display: block;
+  position: absolute;
   font-size: 1em;
   text-align: end;
-  margin-right: 15px;
+  margin-left: 330px;
 }
 
 .subheader {
   background-color: azure;
+  border-radius: 10px;
   height: 65%;
 }

@@ -30,6 +30,11 @@ const EventList: React.FC = (props: FetchContentResult) => {
         filteredChildren.map((child: any, i: number) => (
           <li key={i}>
             <div className={styles.subheader}>
+              <div className={styles.eventImage}>
+                {child.data.image?.imageUrl && (
+                  <img src={getUrl(child.data.image.imageUrl, meta)} alt="" />
+                )}
+              </div>
               <a href={getUrl(child._path, meta)}>
                 <Text className={styles.title}>{child.displayName}</Text>
               </a>
