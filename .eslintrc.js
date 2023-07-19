@@ -6,6 +6,7 @@ module.exports = {
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
+    "plugin:@next/next/recommended",
 
     // Extends two more configuration from "import" plugin
     "plugin:import/recommended",
