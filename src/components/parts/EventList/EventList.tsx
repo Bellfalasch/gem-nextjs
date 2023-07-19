@@ -1,13 +1,16 @@
 import { getUrl } from "@enonic/nextjs-adapter";
-import { PartProps } from "@enonic/nextjs-adapter/views/BasePart";
+import type { FetchContentResult } from "@enonic/nextjs-adapter";
 import { Text } from "@gjensidige/nci-core-typography/lib/text";
 import { format } from "date-fns";
 import React from "react";
 
 import styles from "./EventList.module.css";
 
-const EventList = (props: PartProps) => {
-  const { data, meta } = props;
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore force work
+const EventList: React.FC = (props: FetchContentResult) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { data, meta } = props as any;
   const children = data.get.children;
   if (!children || children.length === 0) {
     return null;
