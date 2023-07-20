@@ -32,7 +32,7 @@ const Header = ({ meta, theme, partList }: HeaderProps) => {
             </svg>
           </a>
         </div>
-        {meta.path !== "" && (
+        {partList?.length && meta.path !== "" && (
           <ul className={styles.veffectlink}>
             {partList.map((part, index) => (
               <li key={index}>

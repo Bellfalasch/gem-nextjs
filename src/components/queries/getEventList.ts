@@ -9,26 +9,33 @@ const getEventList = `
       get(key:$path) {
         displayName
         children(sort: $order) {
-            _path(type: siteRelative)
-            _id
-            displayName
-            ... on ${APP_NAME_UNDERSCORED}_Event {
-              data {
-                description
-                location
-                startDateTime
-                endDateTime
-                showCountdown
-                attendees
-                openForRegistration
-                closedForRegistration
-                allergy
-                eventPrice
+          _path(type: siteRelative)
+          _id
+          type
+          displayName
+          ... on ${APP_NAME_UNDERSCORED}_Event {
+            data {
+              theme
+              description
+              location
+              startDateTime
+              endDateTime
+              showCountdown
+              attendees
+              openForRegistration
+              closedForRegistration
+              allergy
+              eventPrice
+              image {
+                ... on media_Image {
+                  imageUrl(type: absolute, scale: "width(1000)")
+                }
               }
             }
-            parent {
-              _path(type: siteRelative)                                                           
-            }
+          }
+          parent {
+            _path(type: siteRelative)                                                           
+          }
         }
       }
     }
