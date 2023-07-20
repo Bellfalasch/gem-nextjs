@@ -29,17 +29,18 @@ const EventList: React.FC = (props: FetchContentResult) => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         filteredChildren.map((child: any, i: number) => (
           <li key={i}>
-            <div className={styles.subheader}>
-              <div className={styles.eventImage}>
-                {child.data.image?.imageUrl && (
-                  <img src={getUrl(child.data.image.imageUrl, meta)} alt="" />
-                )}
-              </div>
+            <div className={styles.eventImage}>
+              {child.data.image?.imageUrl && (
+                <img src={getUrl(child.data.image.imageUrl, meta)} alt="" />
+              )}
+            </div>
+            <div className={styles.wrapper}>
               <a href={getUrl(child._path, meta)}>
                 <Text className={styles.title}>{child.displayName}</Text>
               </a>
-            </div>
-            <div className={styles.subHeaderContainer}>
+              {child.data?.location && (
+                <Text className={styles.location}>{child.data.location}</Text>
+              )}
               {child.data?.startDateTime && (
                 <>
                   <Text className={styles.month}>
@@ -49,9 +50,6 @@ const EventList: React.FC = (props: FetchContentResult) => {
                     {format(new Date(child.data.startDateTime), "dd")}
                   </Text>
                 </>
-              )}
-              {child.data?.location && (
-                <Text className={styles.location}>{child.data.location}</Text>
               )}
             </div>
           </li>
