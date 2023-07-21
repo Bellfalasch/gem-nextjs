@@ -20,12 +20,6 @@ const getEventList = `
               location
               startDateTime
               endDateTime
-              showCountdown
-              attendees
-              openForRegistration
-              closedForRegistration
-              allergy
-              eventPrice
               image {
                 ... on media_Image {
                   imageUrl(type: absolute, scale: "width(1000)")
