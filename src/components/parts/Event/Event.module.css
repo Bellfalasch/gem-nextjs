@@ -39,8 +39,12 @@
 .iconAndTextCell.fullRow {
   margin: 1rem 0;
 }
-
-.information {
+.description {
+  font-size: 1rem;
+  font-style: italic;
+}
+.fullBody {
+  font-size: 1.25rem;
   color: black;
 }
 
