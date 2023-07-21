@@ -25,6 +25,7 @@ const Event: React.FC = (props: FetchContentResult) => {
     startDateTime,
     endDateTime,
     description,
+    body,
     location,
     showCountdown,
     attendees,
@@ -64,6 +65,7 @@ const Event: React.FC = (props: FetchContentResult) => {
         <Title tag="h1" size="2" className={styles.title}>
           {displayName}
         </Title>
+        {description && <p className={styles.description}>{description}</p>}
         {location && (
           <div className={classNames([styles.iconAndTextCell, styles.fullRow])}>
             <Earth className={styles.icon} />
@@ -135,7 +137,12 @@ const Event: React.FC = (props: FetchContentResult) => {
             </div>
           </div>
         )}
-        <Text className={styles.information}>{description}</Text>
+        {body?.processedHtml && (
+          <div
+            className={styles.fullBody}
+            dangerouslySetInnerHTML={{ __html: body.processedHtml }}
+          ></div>
+        )}
         <Button variant="secondary" href={getUrl(_path, meta)}>
           Back to Events
         </Button>

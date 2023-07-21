@@ -9,6 +9,9 @@ query($path:ID!){
         data {
           theme
           description
+          body(processHtml:{type:absolute}) {
+             processedHtml
+          }
           location
           startDateTime
           endDateTime
