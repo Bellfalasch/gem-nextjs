@@ -64,14 +64,6 @@
   color: black;
 }
 
-.title {
-  position: absolute;
-  font-size: 2em;
-  left: 0;
-  right: 0;
-  top: 10px;
-}
-
 .month {
   position: absolute;
   color: red;
@@ -88,8 +80,7 @@
 }
 
 .location {
-  position: absolute;
-  font-size: 0.8em;
-  right: 10px;
-  top: 10px;
+  display: inline;
+  font-size: 0.9rem;
+  color: gray;
 }

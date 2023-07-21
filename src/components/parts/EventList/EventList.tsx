@@ -42,9 +42,9 @@ const EventList: React.FC = (props: FetchContentResult) => {
                 )}
               </div>
               <div className={styles.wrapper}>
-                <Text className={styles.title}>{child.displayName}</Text>
+                <Text>{child.displayName}</Text>
                 {child.data?.location && (
-                  <Text className={styles.location}>{child.data.location}</Text>
+                  <p className={styles.location}>{child.data.location}</p>
                 )}
                 {child.data?.startDateTime && (
                   <div>
