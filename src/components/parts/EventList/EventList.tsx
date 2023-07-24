@@ -1,5 +1,6 @@
 import { getUrl } from "@enonic/nextjs-adapter";
 import type { FetchContentResult } from "@enonic/nextjs-adapter";
+import { ToggleTabs } from "@gjensidige/core-components/lib/toggle";
 import { Text } from "@gjensidige/nci-core-typography/lib/text";
 import classNames from "classnames";
 import { format } from "date-fns";
