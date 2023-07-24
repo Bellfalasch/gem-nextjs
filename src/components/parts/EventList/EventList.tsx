@@ -74,16 +74,18 @@ const EventList: React.FC = (props: FetchContentResult) => {
   );
 
   return (
-    <ToggleTabsContext selectedTab={selectedTab} setSelectedTab={handleClick}>
-      <ToggleTabs>
-        <ToggleTab label="Upcoming" index={0} />
-        <ToggleTab label="Ongoing" index={1} />
-        <ToggleTab label="Past" index={2} />
-      </ToggleTabs>
-      <ToggleTabPane index={0}>{eventList}</ToggleTabPane>
-      <ToggleTabPane index={1}>{eventList}</ToggleTabPane>
-      <ToggleTabPane index={2}>{eventList}</ToggleTabPane>
-    </ToggleTabsContext>
+    <div className={styles.container}>
+      <ToggleTabsContext selectedTab={selectedTab} setSelectedTab={handleClick}>
+        <ToggleTabs>
+          <ToggleTab label="Upcoming" index={0} />
+          <ToggleTab label="Ongoing" index={1} />
+          <ToggleTab label="Past" index={2} />
+        </ToggleTabs>
+        <ToggleTabPane index={0}>{eventList}</ToggleTabPane>
+        <ToggleTabPane index={1}>{eventList}</ToggleTabPane>
+        <ToggleTabPane index={2}>{eventList}</ToggleTabPane>
+      </ToggleTabsContext>
+    </div>
   );
 };
 
