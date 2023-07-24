@@ -75,7 +75,12 @@ const Event: React.FC = (props: FetchContentResult) => {
             </Text>
           </div>
         )}
-        {eventPrice > 0 && <Badge type="suggestion">{eventPrice}kr</Badge>}
+        {eventPrice > 0 && (
+          <div>
+            <Text>For this event, a deductible payment is required:</Text>
+            <Badge type="suggestion">{eventPrice}kr</Badge>
+          </div>
+        )}
         <TextContainer className={styles.container}>
           <div className={styles.columnise}>
             <Title tag="h4" size="6">
