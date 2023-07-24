@@ -33,6 +33,7 @@ const EventList: React.FC = (props: FetchContentResult) => {
 
   const [selectedTab, setSelectedTab] = useState(0);
   const handleClick = (index: number) => setSelectedTab(index);
+  const [activePage, setActivePage] = useState(1);
 
   const eventList = (
     <ul className={styles.ul}>
@@ -86,6 +87,11 @@ const EventList: React.FC = (props: FetchContentResult) => {
         <ToggleTabPane index={1}>{eventList}</ToggleTabPane>
         <ToggleTabPane index={2}>{eventList}</ToggleTabPane>
       </ToggleTabsContext>
+      <Pagination
+        activePage={activePage}
+        totalPages={10}
+        setActivePage={setActivePage}
+      />
     </div>
   );
 };
