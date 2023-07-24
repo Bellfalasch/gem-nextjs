@@ -3,6 +3,7 @@ import { getUrl } from "@enonic/nextjs-adapter";
 import { Badge } from "@gjensidige/core-components/lib/badge";
 import { Button } from "@gjensidige/core-components/lib/button";
 import { TextContainer } from "@gjensidige/core-components/lib/text-container";
+import { Tooltip } from "@gjensidige/core-components/lib/tooltip";
 import { DateRange } from "@gjensidige/nci-core-icons/lib/date-range";
 import { Earth } from "@gjensidige/nci-core-icons/lib/products/earth";
 import { Valuables } from "@gjensidige/nci-core-icons/lib/products/valuables";
@@ -75,7 +76,33 @@ const Event: React.FC = (props: FetchContentResult) => {
             </Text>
           </div>
         )}
-        {eventPrice > 0 && <Badge type="suggestion">{eventPrice}kr</Badge>}
+        {eventPrice > 0 && (
+          <>
+            <div>
+              For this event, a{" "}
+              <Tooltip
+                data-testid="tooltip"
+                color="blue"
+                size="sm"
+                arrow="left"
+                place="bottom"
+                content={
+                  <p>
+                    A deductible payment is required to secure your
+                    participation. Don't worry, we've got you covered for the
+                    rest of the expenses!
+                  </p>
+                }
+              >
+                deductible
+              </Tooltip>{" "}
+              payment is required:
+            </div>
+            <div>
+              <Badge type="suggestion">{eventPrice}kr</Badge>
+            </div>
+          </>
+        )}
         <TextContainer className={styles.container}>
           <div className={styles.columnise}>
             <Title tag="h4" size="6">
