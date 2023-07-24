@@ -1,5 +1,6 @@
 import { getUrl } from "@enonic/nextjs-adapter";
 import type { FetchContentResult } from "@enonic/nextjs-adapter";
+import { Pagination } from "@gjensidige/core-components/lib/pagination";
 import {
   ToggleTab,
   ToggleTabPane,
