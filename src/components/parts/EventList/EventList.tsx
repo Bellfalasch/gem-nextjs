@@ -24,16 +24,16 @@ const EventList: React.FC = (props: FetchContentResult) => {
     return null;
   }
 
+  const [selectedTab, setSelectedTab] = useState(0);
+  const handleClick = (index: number) => setSelectedTab(index);
+  const [activePage, setActivePage] = useState(1);
+
   // Only keep Event-types of contents.
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const filteredChildren = children.filter((child: any) => {
     return child.type === "com.gjensidige.internal.gem:event";
   });
   if (filteredChildren.length < 1) return;
-
-  const [selectedTab, setSelectedTab] = useState(0);
-  const handleClick = (index: number) => setSelectedTab(index);
-  const [activePage, setActivePage] = useState(1);
 
   const eventList = (
     <ul className={styles.ul}>
