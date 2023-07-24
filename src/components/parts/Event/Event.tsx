@@ -1,7 +1,5 @@
 import type { FetchContentResult } from "@enonic/nextjs-adapter";
-import { getUrl } from "@enonic/nextjs-adapter";
 import { Badge } from "@gjensidige/core-components/lib/badge";
-import { Button } from "@gjensidige/core-components/lib/button";
 import { TextContainer } from "@gjensidige/core-components/lib/text-container";
 import { Tooltip } from "@gjensidige/core-components/lib/tooltip";
 import { DateRange } from "@gjensidige/nci-core-icons/lib/date-range";
@@ -170,9 +168,6 @@ const Event: React.FC = (props: FetchContentResult) => {
             dangerouslySetInnerHTML={{ __html: body.processedHtml }}
           ></div>
         )}
-        <Button variant="secondary" href={getUrl(_path, meta)}>
-          Back to Events
-        </Button>
       </div>
     </header>
   );
