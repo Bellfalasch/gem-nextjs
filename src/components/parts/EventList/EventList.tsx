@@ -35,13 +35,29 @@ const EventList: React.FC = (props: FetchContentResult) => {
   });
   if (filteredChildren.length < 1) return;
 
-  const eventList = (
+  const currentDate = new Date();
+
+  const upcomingEvents = filteredChildren.filter(
+    (child: any) => new Date(child.data.startDateTime) > currentDate
+  );
+
+  const ongoingEvents = filteredChildren.filter(
+    (child: any) =>
+      new Date(child.data.startDateTime) <= currentDate &&
+      new Date(child.data.endDateTime) >= currentDate
+  );
+
+  const pastEvents = filteredChildren.filter(
+    (child: any) => new Date(child.data.endDateTime) < currentDate
+  );
+
+  const renderEventList = (events: any[]) => (
     <ul className={styles.ul}>
       {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        filteredChildren.map((child: any, i: number) => (
-          <a href={getUrl(child._path, meta)}>
-            <li key={i}>
+        events.map((child: any, i: number) => (
+          <a href={getUrl(child._path, meta)} key={i}>
+            <li>
               <div
                 className={classNames(
                   styles["eventImage"],
@@ -83,9 +99,13 @@ const EventList: React.FC = (props: FetchContentResult) => {
           <ToggleTab label="Ongoing" index={1} />
           <ToggleTab label="Past" index={2} />
         </ToggleTabs>
-        <ToggleTabPane index={0}>{eventList}</ToggleTabPane>
-        <ToggleTabPane index={1}>{eventList}</ToggleTabPane>
-        <ToggleTabPane index={2}>{eventList}</ToggleTabPane>
+        <ToggleTabPane index={0}>
+          {renderEventList(upcomingEvents)}
+        </ToggleTabPane>
+        <ToggleTabPane index={1}>
+          {renderEventList(ongoingEvents)}
+        </ToggleTabPane>
+        <ToggleTabPane index={2}>{renderEventList(pastEvents)}</ToggleTabPane>
       </ToggleTabsContext>
       <Pagination
         activePage={activePage}
