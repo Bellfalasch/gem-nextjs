@@ -6,6 +6,7 @@ import TwoColumnLayout from "./layouts/TwoColumnLayout";
 import Event from "./parts/Event/Event";
 import EventList from "./parts/EventList/EventList";
 import Faq from "./parts/Faq/Faq";
+import Geomaps from "./parts/Geomaps/Geomaps";
 import Image from "./parts/Image/Image";
 import Maps from "./parts/Maps/Maps";
 import Rsvp from "./parts/Rsvp/Rsvp";
@@ -55,6 +56,11 @@ ComponentRegistry.addPart(`${APP_NAME}:eventlist`, {
 
 ComponentRegistry.addPart(`${APP_NAME}:maps`, {
   view: Maps,
+});
+
+ComponentRegistry.addPart(`${APP_NAME}:geomaps`, {
+  query: getEvent,
+  view: Geomaps,
 });
 
 ComponentRegistry.addPart(`${APP_NAME}:weatherwidget`, {
