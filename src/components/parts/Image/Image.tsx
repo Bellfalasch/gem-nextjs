@@ -8,9 +8,14 @@ interface ImageProps extends PartProps {
 
 const Image: React.FC<ImageProps> = ({ part, meta }) => {
   const headerImgUrl = part?.config?.image?.imageUrl;
+  const caption = part?.config?.captionText;
+  const altText = part?.config?.altText;
 
   return (
-    <div>{headerImgUrl && <img src={getUrl(headerImgUrl, meta)} alt="" />}</div>
+    <div>
+      {headerImgUrl && <img src={getUrl(headerImgUrl, meta)} alt={altText} />}
+      {caption && <p>Bildetekst:{caption}</p>}
+    </div>
   );
 };
 
