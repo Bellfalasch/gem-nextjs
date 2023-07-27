@@ -25,8 +25,9 @@ const EventList: React.FC = (props: FetchContentResult) => {
   }
 
   const [selectedTab, setSelectedTab] = useState(0);
-  const handleClick = (index: number) => setSelectedTab(index);
+  const handleClick = (i: number) => setSelectedTab(i);
   const [activePage, setActivePage] = useState(1);
+  const [postPerPage, setpostPerPage] = useState(4);
 
   // Only keep Event-types of contents.
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -91,6 +92,25 @@ const EventList: React.FC = (props: FetchContentResult) => {
     </ul>
   );
 
+  const lastPostIndex = activePage * postPerPage;
+  const firstPostIndex = lastPostIndex - postPerPage;
+
+  const upComingEventsPosts = upcomingEvents.slice(
+    firstPostIndex,
+    lastPostIndex
+  );
+
+  const ongoingPosts = ongoingEvents.slice(firstPostIndex, lastPostIndex);
+
+  const pastPosts = pastEvents.slice(firstPostIndex, lastPostIndex);
+
+  const postsToShow =
+    selectedTab === 0
+      ? upcomingEvents
+      : selectedTab === 1
+      ? ongoingEvents
+      : pastEvents;
+
   return (
     <div className={styles.container}>
       <ToggleTabsContext selectedTab={selectedTab} setSelectedTab={handleClick}>
@@ -100,18 +120,22 @@ const EventList: React.FC = (props: FetchContentResult) => {
           <ToggleTab label="Past" index={2} />
         </ToggleTabs>
         <ToggleTabPane index={0}>
-          {renderEventList(upcomingEvents)}
+          {renderEventList(upcomingEvents && upComingEventsPosts)}
         </ToggleTabPane>
         <ToggleTabPane index={1}>
-          {renderEventList(ongoingEvents)}
+          {renderEventList(ongoingEvents && ongoingPosts)}
         </ToggleTabPane>
-        <ToggleTabPane index={2}>{renderEventList(pastEvents)}</ToggleTabPane>
+        <ToggleTabPane index={2}>
+          {renderEventList(pastEvents && pastPosts)}
+        </ToggleTabPane>
       </ToggleTabsContext>
-      <Pagination
-        activePage={activePage}
-        totalPages={10}
-        setActivePage={setActivePage}
-      />
+      {Math.ceil(postsToShow.length / postPerPage) > 1 && (
+        <Pagination
+          activePage={activePage}
+          totalPages={Math.ceil(postsToShow.length / postPerPage)}
+          setActivePage={setActivePage}
+        />
+      )}
     </div>
   );
 };
