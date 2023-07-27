@@ -1,5 +1,6 @@
 import { PartData } from "@enonic/nextjs-adapter";
 import { Link } from "@gjensidige/nci-core-typography/lib/link";
+import { Title } from "@gjensidige/nci-core-typography/lib/title";
 import React from "react";
 
 import style from "./Maps.module.css";
@@ -17,6 +18,7 @@ const Maps: React.FC<MapsProps> = ({ part }) => {
 
   return (
     <div id="partAnchor_maps" className={style.mapFrame}>
+      <Title tag="h2">Directions</Title>
       <iframe className={style.OpenMap} src={src}></iframe>
       <Link href={largeMap}>Vis større kart</Link>
     </div>

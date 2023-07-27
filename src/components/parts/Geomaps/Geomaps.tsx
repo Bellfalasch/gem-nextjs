@@ -1,5 +1,6 @@
 import { PartData } from "@enonic/nextjs-adapter";
 import { Link } from "@gjensidige/nci-core-typography/lib/link";
+import { Title } from "@gjensidige/nci-core-typography/lib/title";
 import React, { useEffect, useState } from "react";
 
 import style from "./Geomaps.module.css";
@@ -41,6 +42,7 @@ const Geomaps: React.FC<GeoMapsProps> = ({ part, data }) => {
 
   return (
     <div id="partAnchor_maps" className={style.mapFrame}>
+      <Title tag="h2">Directions</Title>
       {latitude !== null && longitude !== null ? (
         <>
           <iframe className={style.OpenMap} src={src}></iframe>

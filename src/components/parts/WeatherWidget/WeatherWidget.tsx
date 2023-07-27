@@ -14,9 +14,7 @@ const WeatherWidget: React.FC<weatherProps> = ({ part }) => {
 
   return (
     <div id="partAnchor_weatherwidget" className={style.weatherPart}>
-      <Title tag="h2" size="2">
-        Været
-      </Title>
+      <Title tag="h2">Været</Title>
       <iframe src={src} title="Weather Widget" width="100%" height="515px" />
     </div>
   );

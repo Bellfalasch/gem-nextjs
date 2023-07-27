@@ -21,9 +21,7 @@ const Faq: React.FC<FaqProps> = ({ part }) => {
 
   return (
     <div id="partAnchor_faq" className={styles.container}>
-      <Title tag="h2" size="2">
-        {faqHeading ? faqHeading : "Ofte stilte spørsmål"}
-      </Title>
+      <Title tag="h2">{faqHeading ? faqHeading : "Ofte stilte spørsmål"}</Title>
       {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         faqs.map((faq: any, i: number) => (
