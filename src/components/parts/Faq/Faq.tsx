@@ -13,6 +13,7 @@ interface FaqProps extends PartProps {
 }
 
 const Faq: React.FC<FaqProps> = ({ part }) => {
+  const faqHeading = part?.config?.faqHeading;
   const faqs = part?.config?.faqs || "";
   if (!faqs) {
     return null;
@@ -21,7 +22,7 @@ const Faq: React.FC<FaqProps> = ({ part }) => {
   return (
     <div id="partAnchor_faq" className={styles.container}>
       <Title tag="h2" size="2">
-        Ofte stilte spørsmål
+        {faqHeading ? faqHeading : "Ofte stilte spørsmål"}
       </Title>
       {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
