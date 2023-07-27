@@ -23,6 +23,7 @@ import Header from "../components/views/Header";
 function MyApp({ Component, pageProps }: AppProps<FetchContentResult>) {
   const isEdit = pageProps?.meta?.renderMode === RENDER_MODE.EDIT;
   const theme = pageProps?.common?.get?.dataAsJson?.theme;
+  const tabDisplayName = pageProps.common?.get?.displayName as string;
 
   const partList: Array<string> = []; //moved this one out here since the return statement was complaining
 
@@ -80,6 +81,7 @@ function MyApp({ Component, pageProps }: AppProps<FetchContentResult>) {
       }}
     >
       <Header meta={pageProps.meta} theme={theme} partList={partList} />
+      <title>{tabDisplayName}</title>
       <main
         style={{
           margin: `0 auto`,
