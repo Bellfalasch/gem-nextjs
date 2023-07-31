@@ -12,37 +12,45 @@ import React, { useState } from "react";
 import style from "./Rsvp.module.css";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-/* @ts-ignore sdfsf */
-function sendForm(e) {
-  e.preventDefault();
-  const form = e.target;
-  const formData = new FormData(form);
-  const formJson = Object.fromEntries(formData.entries());
-
-  const options = {
-    method: form.method,
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      eventId: formJson.eventId,
-      name: formJson.name,
-      email: formJson.email,
-      rsvp: formJson.rsvp,
-      allergy: formJson.allergy,
-    }),
-  };
-
-  fetch(form.action, options)
-    .then((response) => response.json())
-    .then((response) => console.log(response))
-    .catch((err) => console.error(err));
-}
-
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore force work
 const Rsvp: React.FC = (props: FetchContentResult) => {
   const [valueOther, setValueOther] = useState("");
   const [valueName, setValueName] = useState("");
   const [valueEmail, setValueEmail] = useState("");
+  const [submissionStatus, setSubmissionStatus] = useState("");
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  /* @ts-ignore sdfsf */
+
+  function sendForm(e) {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const formJson = Object.fromEntries(formData.entries());
+
+    const options = {
+      method: form.method,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        eventId: formJson.eventId,
+        name: formJson.name,
+        email: formJson.email,
+        rsvp: formJson.rsvp,
+        allergy: formJson.allergy,
+      }),
+    };
+
+    fetch(form.action, options)
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+        setSubmissionStatus(`success`);
+      })
+      .catch((error) => {
+        console.log(error);
+        setSubmissionStatus("error");
+      });
+  }
 
   // We must have eventId (content _id from XP) to be able to store RSVPs properly. Also hides form if not onevent.
   const eventId =
@@ -133,14 +141,12 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
                 .map((allergy) => allergy.name) // The .map will for the remaining items return the allergyList.name
                 .join(",")} // Then join them, separated with a ","
             />
-
             <Default
               closable={false}
               showIcon={true}
               text={`Registration will be closing at ${closedDate} - ${closedTime}`}
               title=""
             />
-
             <div className={style.rsvpAttending}>
               <RadioButton
                 id="RadioButton-1"
@@ -157,7 +163,6 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
                 withBackground={false}
               />
             </div>
-
             <Input
               id="input-name"
               labelText="Your name (first and last)"
@@ -173,7 +178,6 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
               postfixIcon={<Email />}
               value={valueEmail}
             />
-
             {allergy && (
               <>
                 <Title tag="h3" size="5">
@@ -207,6 +211,24 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
             <Button variant="primary" flexible type="submit">
               Send RSVP
             </Button>
+            {submissionStatus === "success" && (
+              <Default
+                closable={true}
+                showIcon={true}
+                text="RSVP submitted successfully!"
+                title="Success"
+                alertType="success"
+              />
+            )}
+            {submissionStatus === "error" && (
+              <Default
+                closable={true}
+                showIcon={true}
+                text="An error occurred. Please try again later."
+                title="Error"
+                alertType="error"
+              />
+            )}
           </form>
         </>
       ) : (
