@@ -80,8 +80,9 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
 
   let showForm = true;
   if (
-    timestampNow < timestampOpenForRegistration ||
-    timestampNow > timestampCloseForRegistration
+    submissionStatus === "success" ||
+    timestampNow > timestampCloseForRegistration ||
+    timestampNow < timestampOpenForRegistration
   ) {
     showForm = false;
   }
@@ -211,15 +212,6 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
             <Button variant="primary" flexible type="submit">
               Send RSVP
             </Button>
-            {submissionStatus === "success" && (
-              <Default
-                closable={true}
-                showIcon={true}
-                text="RSVP submitted successfully!"
-                title="Success"
-                alertType="success"
-              />
-            )}
             {submissionStatus === "error" && (
               <Default
                 closable={true}
@@ -232,16 +224,31 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
           </form>
         </>
       ) : (
-        <Default
-          closable={false}
-          showIcon={true}
-          text={
-            timestampNow > timestampCloseForRegistration
-              ? "The registration for the event has ended. Please check out our other events. Thank you for your interest."
-              : `The event registration is not opened yet. Please come back at ${registrationDate} - ${registrationTime} to register for this event.`
-          }
-          title=""
-        />
+        <div className={style.information}>
+          {submissionStatus !== "success" && (
+            <Default
+              closable={false}
+              showIcon={true}
+              text={
+                timestampNow > timestampCloseForRegistration
+                  ? "The registration for the event has ended. Please check out our other events. Thank you for your interest."
+                  : `The event registration is not opened yet. Please come back at ${registrationDate} - ${registrationTime} to register for this event.`
+              }
+              title=""
+            />
+          )}
+        </div>
+      )}
+      {submissionStatus === "success" && (
+        <div className={style.information}>
+          <Default
+            closable={false}
+            showIcon={true}
+            text="RSVP submitted successfully!"
+            title="Success"
+            alertType="success"
+          />
+        </div>
       )}
     </div>
   );
