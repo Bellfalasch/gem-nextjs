@@ -4,6 +4,7 @@ import { Button } from "@gjensidige/core-components/lib/button";
 import { Checkbox } from "@gjensidige/core-components/lib/forms/checkbox";
 import { Input } from "@gjensidige/core-components/lib/forms/input";
 import { RadioButton } from "@gjensidige/core-components/lib/forms/radiobutton";
+import { ProgressBar } from "@gjensidige/core-components/lib/progressbar";
 import { Email } from "@gjensidige/nci-core-icons/lib/email";
 import { Title } from "@gjensidige/nci-core-typography";
 import { format, getUnixTime } from "date-fns";
@@ -58,6 +59,13 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
       ? props?.common?.get._id
       : undefined;
   if (!eventId) return;
+
+  fetch(
+    `http://localhost:8080/admin/site/preview/moviedb/draft/gem/test-event/_/service/com.gjensidige.internal.gem/rsvp?eventId=${eventId}`
+  )
+    .then((response) => response.json())
+    .then((response) => console.log(response))
+    .catch((error) => console.log(error));
 
   /* eslint-disable  @typescript-eslint/no-explicit-any */
   const { data } = props.data?.get as any;
@@ -127,6 +135,7 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
     <div id="partAnchor_rsvp" className={style.rsvpPart}>
       {showForm ? (
         <>
+          <ProgressBar steps={["step 1", true "step 2"]} ariaLabel={""} />
           <Title tag="h2">Are you coming?</Title>
           <form
             method="post"
