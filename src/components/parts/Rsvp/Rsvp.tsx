@@ -4,7 +4,6 @@ import { Button } from "@gjensidige/core-components/lib/button";
 import { Checkbox } from "@gjensidige/core-components/lib/forms/checkbox";
 import { Input } from "@gjensidige/core-components/lib/forms/input";
 import { RadioButton } from "@gjensidige/core-components/lib/forms/radiobutton";
-import { ProgressBar } from "@gjensidige/core-components/lib/progressbar";
 import { Email } from "@gjensidige/nci-core-icons/lib/email";
 import { Title } from "@gjensidige/nci-core-typography";
 import { format, getUnixTime } from "date-fns";
@@ -145,7 +144,6 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
     <div id="partAnchor_rsvp" className={style.rsvpPart}>
       {showForm ? (
         <>
-          <ProgressBar steps={["step 1", true, "step 100"]} ariaLabel={""} />
           <Title tag="h2">Are you coming?</Title>
           <form
             method="post"

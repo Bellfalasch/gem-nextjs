@@ -7,9 +7,10 @@ import { Earth } from "@gjensidige/nci-core-icons/lib/products/earth";
 import { Valuables } from "@gjensidige/nci-core-icons/lib/products/valuables";
 import { Text } from "@gjensidige/nci-core-typography/lib/text";
 import { Title } from "@gjensidige/nci-core-typography/lib/title";
+import Axios from "axios";
 import classNames from "classnames";
 import { format } from "date-fns";
-import React, { useState } from "react";
+import React, { use, useEffect, useState } from "react";
 
 import styles from "./Event.module.css";
 
@@ -57,6 +58,22 @@ const Event: React.FC = (props: FetchContentResult) => {
   };
 
   const [timeLeft] = useState(calculateTimeLeft());
+
+  const eventId =
+    props?.common?.get.type === "com.gjensidige.internal.gem:event"
+      ? props?.common?.get._id
+      : undefined;
+  if (!eventId) return;
+
+  const [participants, setParticipants] = useState(0);
+
+  useEffect(() => {
+    Axios.get(
+      `http://localhost:8080/admin/site/preview/moviedb/draft/gem/test-event/_/service/com.gjensidige.internal.gem/rsvp?eventId=${eventId}`
+    ).then((res) => {
+      setParticipants(res.data.participants);
+    });
+  }, []);
 
   return (
     <header className={classNames(styles["background"], styles[theme])}>
@@ -146,10 +163,16 @@ const Event: React.FC = (props: FetchContentResult) => {
         {startDate && startTime && showCountdown && (
           <div>
             {attendees > 0 && (
-              <Text className={styles.information}>
-                This event is limited to <strong>{attendees}</strong>{" "}
-                participants!
-              </Text>
+              <>
+                <Text className={styles.information}>
+                  This event is limited to <strong>{attendees}</strong>{" "}
+                  participants!
+                </Text>
+                <Text>
+                  There is currently
+                  <strong> {participants}</strong> registered
+                </Text>
+              </>
             )}
             <div className={styles.countdownContainer}>
               <Title tag="h4" size="4" className={styles.countdown}>
