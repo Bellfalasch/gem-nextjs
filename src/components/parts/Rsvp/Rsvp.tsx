@@ -59,23 +59,6 @@ const Rsvp: React.FC = (props: FetchContentResult) => {
       : undefined;
   if (!eventId) return;
 
-  let participantsData;
-
-  fetch(
-    `http://localhost:8080/admin/site/preview/moviedb/draft/gem/test-event/_/service/com.gjensidige.internal.gem/rsvp?eventId=${eventId}`
-  )
-    .then((response) => response.json())
-    .then((response) => {
-      participantsData = response.participants;
-      console.log(response);
-      processParticipantsData(participantsData);
-    })
-    .catch((error) => console.log(error));
-
-  function processParticipantsData(data: number) {
-    console.log(data);
-  }
-
   /* eslint-disable  @typescript-eslint/no-explicit-any */
   const { data } = props.data?.get as any;
   if (!data) return;

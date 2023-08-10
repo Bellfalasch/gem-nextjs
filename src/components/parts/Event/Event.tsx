@@ -73,7 +73,7 @@ const Event: React.FC = (props: FetchContentResult) => {
     ).then((res) => {
       setParticipants(res.data.participants);
     });
-  }, []);
+  }, [eventId]);
 
   return (
     <header className={classNames(styles["background"], styles[theme])}>
