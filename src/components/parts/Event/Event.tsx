@@ -120,9 +120,7 @@ const Event: React.FC = (props: FetchContentResult) => {
         )}
         <TextContainer className={styles.container}>
           <div className={styles.columnise}>
-            <Title tag="h4" size="6">
-              Begins at:
-            </Title>
+            <Title tag="h6">Begins at:</Title>
             {startDate && (
               <div className={styles.iconAndTextCell}>
                 <DateRange className={styles.icon} />
@@ -141,9 +139,7 @@ const Event: React.FC = (props: FetchContentResult) => {
             )}
           </div>
           <div className={styles.columnise}>
-            <Title tag="h4" size="6">
-              Ends at:
-            </Title>
+            <Title tag="h6">Ends at:</Title>
             {endDate && (
               <div className={styles.iconAndTextCell}>
                 <DateRange className={styles.icon} />
@@ -175,7 +171,7 @@ const Event: React.FC = (props: FetchContentResult) => {
               </>
             )}
             <div className={styles.countdownContainer}>
-              <Title tag="h4" size="4" className={styles.countdown}>
+              <Title tag="h4" className={styles.countdown}>
                 Countdown
               </Title>
               <Text className={styles.countdowntext}>
